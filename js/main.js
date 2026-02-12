@@ -1,27 +1,38 @@
 /**
  * ===================================================================
- * MARTOO TECH WORKS - PRODUCTION READY MAIN.JS
- * Core initialization, global utilities, and shared functionality
+ * MARTOO TECH WORKS - MAIN ENTRY POINT
  * Version: 2.0.0
+ * Backend: Node.js/Express on Vercel - YOUR ACTUAL BACKEND
+ * Repository: mtechworks1-hub/martoo-tech-backend-Qgis
+ * Features: Global initialization, error handling, performance monitoring
  * ===================================================================
  */
 
-(function() {
-    'use strict';
+'use strict';
 
+// ===================================================================
+// 🚀 IMMEDIATE SELF-EXECUTING FUNCTION - NO EXPORTS!
+// ===================================================================
+
+(function() {
+    
     // ===================================================================
-    // 🔥 GLOBAL CONFIGURATION
+    // 🔧 GLOBAL CONFIGURATION
     // ===================================================================
-    window.MARTOO_CONFIG = {
+    
+    const CONFIG = {
+        // App info
         APP_NAME: 'Martoo Tech Works',
         VERSION: '2.0.0',
-        API_BASE_URL: 'https://martoo-tech-backend-qgis.vercel.app/api',
+        
+        // Your live backend URL
+        API_URL: 'https://martoo-tech-backend-qgis.vercel.app/api',
+        
+        // Environment
         ENV: 'production',
         DEBUG: false,
-        CACHE_DURATION: 300, // 5 minutes
-        ANIMATION_ENABLED: true,
-        TOAST_DURATION: 5000,
-        DEFAULT_CURRENCY: 'ZMW',
+        
+        // Your contact details
         CONTACT: {
             whatsapp: '260973495316',
             phone1: '260774766077',
@@ -34,75 +45,142 @@
     };
 
     // ===================================================================
-    // 🚦 READY STATE DETECTION
+    // 🔧 GLOBAL ERROR HANDLER
     // ===================================================================
-    const readyCallbacks = [];
-    let isDOMReady = false;
+    
+    const ErrorHandler = {
+        /**
+         * Initialize global error handling
+         */
+        init() {
+            // Window error events
+            window.addEventListener('error', (event) => {
+                this.handleError({
+                    message: event.message,
+                    source: event.filename,
+                    line: event.lineno,
+                    column: event.colno,
+                    error: event.error,
+                    type: 'uncaught'
+                });
+            });
 
-    function onReady(callback) {
-        if (isDOMReady) {
-            callback();
-        } else {
-            readyCallbacks.push(callback);
-        }
-    }
+            // Unhandled promise rejections
+            window.addEventListener('unhandledrejection', (event) => {
+                this.handleError({
+                    message: event.reason?.message || 'Unhandled Promise Rejection',
+                    error: event.reason,
+                    type: 'promise'
+                });
+            });
 
-    function triggerReady() {
-        isDOMReady = true;
-        readyCallbacks.forEach(callback => {
-            try {
-                callback();
-            } catch (error) {
-                console.error('Error in ready callback:', error);
-            }
-        });
-    }
-
-    // ===================================================================
-    // 📱 DEVICE & BROWSER DETECTION
-    // ===================================================================
-    const Device = {
-        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
-        isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
-        isAndroid: /Android/.test(navigator.userAgent),
-        isTouch: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
-        isSafari: /^((?!chrome|android).)*safari/i.test(navigator.userAgent),
-        isFirefox: typeof InstallTrigger !== 'undefined',
-        isChrome: !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
-        
-        getBrowserInfo() {
-            const ua = navigator.userAgent;
-            let browser = 'Unknown';
-            
-            if (this.isChrome) browser = 'Chrome';
-            else if (this.isFirefox) browser = 'Firefox';
-            else if (this.isSafari) browser = 'Safari';
-            else if (ua.indexOf('MSIE') !== -1 || ua.indexOf('Trident/') !== -1) browser = 'Internet Explorer';
-            else if (ua.indexOf('Edge') !== -1) browser = 'Edge';
-            
-            return {
-                name: browser,
-                version: ua.match(/(?:Chrome|Firefox|Safari|Edge|MSIE|Trident)[\/\s](\d+)/)?.[1] || 'Unknown',
-                isMobile: this.isMobile,
-                isTouch: this.isTouch
+            // Console.error override for additional tracking
+            const originalConsoleError = console.error;
+            console.error = (...args) => {
+                this.handleError({
+                    message: args.join(' '),
+                    type: 'console',
+                    args
+                });
+                originalConsoleError.apply(console, args);
             };
+
+            console.log('✅ Error handler initialized');
+        },
+
+        /**
+         * Handle error
+         */
+        handleError(error) {
+            // Log to console in development
+            if (CONFIG.DEBUG) {
+                console.group('❌ Error Caught');
+                console.error('Type:', error.type);
+                console.error('Message:', error.message);
+                console.error('Source:', error.source);
+                console.error('Line:', error.line);
+                console.error('Error:', error.error);
+                console.groupEnd();
+            }
+
+            // Track error for analytics (if available)
+            if (window.gtag) {
+                window.gtag('event', 'error', {
+                    event_category: error.type || 'javascript',
+                    event_label: error.message,
+                    value: error.line || 0
+                });
+            }
+
+            // Store error in localStorage for debugging
+            try {
+                const errors = JSON.parse(localStorage.getItem('martoo_errors') || '[]');
+                errors.push({
+                    timestamp: new Date().toISOString(),
+                    ...error
+                });
+                // Keep last 10 errors only
+                if (errors.length > 10) errors.shift();
+                localStorage.setItem('martoo_errors', JSON.stringify(errors));
+            } catch (e) {
+                // Ignore storage errors
+            }
         }
     };
 
     // ===================================================================
-    // 🎯 PERFORMANCE MONITORING
+    // 📊 PERFORMANCE MONITORING
     // ===================================================================
-    const Performance = {
+    
+    const PerformanceMonitor = {
         marks: {},
         measures: {},
-        
+
+        /**
+         * Initialize performance monitoring
+         */
+        init() {
+            if (window.performance && window.performance.mark) {
+                this.mark('app-start');
+                
+                // Track page load performance
+                window.addEventListener('load', () => {
+                    this.mark('app-loaded');
+                    this.measure('load-time', 'app-start', 'app-loaded');
+                    
+                    if (CONFIG.DEBUG) {
+                        const loadTime = this.measures['load-time'];
+                        console.log(`⏱️ Page load time: ${loadTime.toFixed(2)}ms`);
+                    }
+                });
+
+                // Track first paint
+                if (window.performance.getEntriesByType) {
+                    const paintEntries = window.performance.getEntriesByType('paint');
+                    paintEntries.forEach(entry => {
+                        if (entry.name === 'first-contentful-paint') {
+                            console.log(`🎨 First Contentful Paint: ${entry.startTime.toFixed(2)}ms`);
+                        }
+                    });
+                }
+
+                console.log('✅ Performance monitor initialized');
+            }
+        },
+
+        /**
+         * Create performance mark
+         */
         mark(name) {
             if (window.performance && window.performance.mark) {
                 window.performance.mark(name);
                 this.marks[name] = performance.now();
             }
         },
-        
+
+        /**
+         * Measure between marks
+         */
         measure(name, startMark, endMark) {
             if (window.performance && window.performance.measure) {
                 try {
@@ -116,7 +194,10 @@
                 }
             }
         },
-        
+
+        /**
+         * Get page load time
+         */
         getLoadTime() {
             if (window.performance && window.performance.timing) {
                 const timing = window.performance.timing;
@@ -124,54 +205,171 @@
                 return loadTime > 0 ? loadTime : null;
             }
             return null;
+        }
+    };
+
+    // ===================================================================
+    // 📱 DEVICE DETECTION
+    // ===================================================================
+    
+    const DeviceDetector = {
+        /**
+         * Detect device and browser
+         */
+        detect() {
+            const ua = navigator.userAgent;
+            
+            return {
+                // Device type
+                isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua),
+                isIOS: /iPad|iPhone|iPod/.test(ua) && !window.MSStream,
+                isAndroid: /Android/.test(ua),
+                isTouch: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+                
+                // Browser
+                isChrome: !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime),
+                isFirefox: typeof InstallTrigger !== 'undefined',
+                isSafari: /^((?!chrome|android).)*safari/i.test(ua),
+                isEdge: ua.indexOf('Edg') > -1,
+                
+                // OS
+                isWindows: ua.indexOf('Windows') > -1,
+                isMac: ua.indexOf('Mac') > -1,
+                isLinux: ua.indexOf('Linux') > -1,
+                
+                // Screen
+                screenWidth: window.screen.width,
+                screenHeight: window.screen.height,
+                pixelRatio: window.devicePixelRatio || 1
+            };
         },
-        
-        logMetrics() {
-            if (this.DEBUG) {
-                console.log('📊 Performance Metrics:', {
-                    loadTime: this.getLoadTime(),
-                    measures: this.measures
-                });
+
+        /**
+         * Get browser info
+         */
+        getBrowserInfo() {
+            const ua = navigator.userAgent;
+            let browser = 'Unknown';
+            
+            if (this.detect().isChrome) browser = 'Chrome';
+            else if (this.detect().isFirefox) browser = 'Firefox';
+            else if (this.detect().isSafari) browser = 'Safari';
+            else if (this.detect().isEdge) browser = 'Edge';
+            
+            return {
+                name: browser,
+                version: ua.match(/(?:Chrome|Firefox|Safari|Edg|MSIE|Trident)[\/\s](\d+)/)?.[1] || 'Unknown',
+                ...this.detect()
+            };
+        },
+
+        /**
+         * Add device classes to body
+         */
+        addDeviceClasses() {
+            const device = this.detect();
+            const body = document.body;
+            
+            if (device.isMobile) body.classList.add('device-mobile');
+            if (device.isIOS) body.classList.add('device-ios');
+            if (device.isAndroid) body.classList.add('device-android');
+            if (device.isTouch) body.classList.add('device-touch');
+            
+            // Responsive classes
+            if (window.innerWidth < 768) body.classList.add('viewport-mobile');
+            else if (window.innerWidth < 992) body.classList.add('viewport-tablet');
+            else body.classList.add('viewport-desktop');
+        }
+    };
+
+    // ===================================================================
+    // 🌐 NETWORK STATUS
+    // ===================================================================
+    
+    const NetworkMonitor = {
+        /**
+         * Initialize network monitoring
+         */
+        init() {
+            window.addEventListener('online', () => {
+                document.body.classList.remove('offline');
+                this.showToast('You are back online', 'success');
+            });
+
+            window.addEventListener('offline', () => {
+                document.body.classList.add('offline');
+                this.showToast('You are currently offline', 'warning');
+            });
+
+            console.log('✅ Network monitor initialized');
+        },
+
+        /**
+         * Show toast notification (fallback)
+         */
+        showToast(message, type = 'info') {
+            // Use MartooToast if available
+            if (window.MartooToast) {
+                window.MartooToast[type]?.(message);
+            } else {
+                console.log(`[${type}] ${message}`);
             }
+        },
+
+        /**
+         * Check if online
+         */
+        isOnline() {
+            return navigator.onLine;
         }
     };
 
     // ===================================================================
     // 🔧 UTILITY FUNCTIONS
     // ===================================================================
+    
     const Utils = {
         /**
-         * Debounce function to limit rate of execution
+         * Safe query selector
          */
-        debounce(func, wait = 300, immediate = false) {
+        $(selector, context = document) {
+            try {
+                return context.querySelector(selector);
+            } catch {
+                return null;
+            }
+        },
+
+        /**
+         * Safe query selector all
+         */
+        $$(selector, context = document) {
+            try {
+                return Array.from(context.querySelectorAll(selector));
+            } catch {
+                return [];
+            }
+        },
+
+        /**
+         * Debounce function
+         */
+        debounce(func, wait = 300) {
             let timeout;
-            return function executedFunction() {
-                const context = this;
-                const args = arguments;
-                
-                const later = function() {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                
-                const callNow = immediate && !timeout;
+            return function(...args) {
                 clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-                
-                if (callNow) func.apply(context, args);
+                timeout = setTimeout(() => func.apply(this, args), wait);
             };
         },
 
         /**
-         * Throttle function to limit rate of execution
+         * Throttle function
          */
         throttle(func, limit = 300) {
             let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
+            return function(...args) {
                 if (!inThrottle) {
-                    func.apply(context, args);
+                    func.apply(this, args);
                     inThrottle = true;
                     setTimeout(() => inThrottle = false, limit);
                 }
@@ -179,78 +377,21 @@
         },
 
         /**
-         * Format currency
-         */
-        formatCurrency(amount, currency = 'ZMW') {
-            if (isNaN(amount)) return `${currency} 0.00`;
-            return `${currency} ${Number(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
-        },
-
-        /**
          * Format date
          */
-        formatDate(date, format = 'DD MMM, YYYY') {
+        formatDate(date, format = 'short') {
+            if (!date) return '—';
             const d = new Date(date);
-            if (isNaN(d.getTime())) return 'Invalid Date';
+            if (isNaN(d.getTime())) return '—';
             
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            
-            const replacements = {
-                'YYYY': d.getFullYear(),
-                'YY': String(d.getFullYear()).slice(-2),
-                'MM': String(d.getMonth() + 1).padStart(2, '0'),
-                'MMM': months[d.getMonth()],
-                'MMMM': months[d.getMonth()],
-                'DD': String(d.getDate()).padStart(2, '0'),
-                'DDD': days[d.getDay()],
-                'HH': String(d.getHours()).padStart(2, '0'),
-                'hh': String(d.getHours() % 12 || 12).padStart(2, '0'),
-                'mm': String(d.getMinutes()).padStart(2, '0'),
-                'ss': String(d.getSeconds()).padStart(2, '0'),
-                'a': d.getHours() >= 12 ? 'PM' : 'AM'
+            const options = {
+                full: { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' },
+                date: { day: 'numeric', month: 'short', year: 'numeric' },
+                time: { hour: '2-digit', minute: '2-digit' },
+                short: { day: '2-digit', month: '2-digit', year: 'numeric' }
             };
             
-            return format.replace(/YYYY|YY|MMMM|MMM|MM|DDD|DD|HH|hh|mm|ss|a/g, match => replacements[match]);
-        },
-
-        /**
-         * Truncate text with ellipsis
-         */
-        truncateText(text, length = 100, ellipsis = '...') {
-            if (!text || text.length <= length) return text;
-            return text.substring(0, length).trim() + ellipsis;
-        },
-
-        /**
-         * Slugify string
-         */
-        slugify(text) {
-            return text
-                .toString()
-                .toLowerCase()
-                .trim()
-                .replace(/\s+/g, '-')
-                .replace(/[^\w\-]+/g, '')
-                .replace(/\-\-+/g, '-')
-                .replace(/^-+/, '')
-                .replace(/-+$/, '');
-        },
-
-        /**
-         * Validate email
-         */
-        isValidEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(String(email).toLowerCase());
-        },
-
-        /**
-         * Validate phone (Zambian format)
-         */
-        isValidZambianPhone(phone) {
-            const cleaned = phone.replace(/\D/g, '');
-            return /^(\+260|0)?[97]\d{8}$/.test(cleaned);
+            return d.toLocaleDateString('en-ZM', options[format] || options.date);
         },
 
         /**
@@ -277,762 +418,222 @@
          * Set cookie
          */
         setCookie(name, value, days = 7) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = `expires=${date.toUTCString()}`;
-            document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax`;
+            try {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+                return true;
+            } catch {
+                return false;
+            }
         },
 
         /**
          * Get cookie
          */
         getCookie(name) {
-            const cookieName = `${name}=`;
-            const cookies = document.cookie.split(';');
-            
-            for (let cookie of cookies) {
-                cookie = cookie.trim();
-                if (cookie.indexOf(cookieName) === 0) {
-                    return cookie.substring(cookieName.length);
-                }
+            try {
+                const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+                return match ? match[2] : null;
+            } catch {
+                return null;
             }
-            
-            return null;
         },
 
         /**
          * Delete cookie
          */
         deleteCookie(name) {
-            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
-        },
-
-        /**
-         * Copy to clipboard
-         */
-        async copyToClipboard(text) {
             try {
-                await navigator.clipboard.writeText(text);
-                return { success: true };
-            } catch (err) {
-                // Fallback
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                document.body.appendChild(textarea);
-                textarea.select();
-                
-                try {
-                    document.execCommand('copy');
-                    return { success: true };
-                } catch (e) {
-                    return { success: false, error: e };
-                } finally {
-                    document.body.removeChild(textarea);
-                }
-            }
-        },
-
-        /**
-         * Generate random ID
-         */
-        generateId(length = 8) {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let result = '';
-            for (let i = 0; i < length; i++) {
-                result += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return result;
-        },
-
-        /**
-         * Safe JSON parse
-         */
-        safeJsonParse(str, fallback = null) {
-            try {
-                return JSON.parse(str);
+                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
+                return true;
             } catch {
-                return fallback;
+                return false;
             }
-        },
-
-        /**
-         * Detect offline/online status
-         */
-        isOnline() {
-            return navigator.onLine;
-        },
-
-        /**
-         * Smooth scroll to element
-         */
-        scrollToElement(element, offset = 0, duration = 800) {
-            if (!element) return;
-            
-            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - offset;
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
         }
     };
 
     // ===================================================================
-    // 🍞 TOAST NOTIFICATION SYSTEM
+    // 🚀 TOAST NOTIFICATION SYSTEM (FALLBACK)
     // ===================================================================
+    
     const Toast = {
-        container: null,
-        defaults: {
-            duration: 5000,
-            position: 'top-right',
-            closeable: true
-        },
-
-        init() {
-            // Create toast container if not exists
-            if (!this.container) {
-                this.container = document.createElement('div');
-                this.container.id = 'toast-container';
-                this.container.className = `toast-container toast-${this.defaults.position}`;
-                document.body.appendChild(this.container);
-                
-                // Add styles dynamically
-                const style = document.createElement('style');
-                style.textContent = `
-                    #toast-container {
-                        position: fixed;
-                        z-index: 999999;
-                        pointer-events: none;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 10px;
-                        max-width: 350px;
-                        width: 100%;
-                    }
-                    
-                    #toast-container.toast-top-right {
-                        top: 20px;
-                        right: 20px;
-                    }
-                    
-                    #toast-container.toast-top-left {
-                        top: 20px;
-                        left: 20px;
-                    }
-                    
-                    #toast-container.toast-bottom-right {
-                        bottom: 20px;
-                        right: 20px;
-                    }
-                    
-                    #toast-container.toast-bottom-left {
-                        bottom: 20px;
-                        left: 20px;
-                    }
-                    
-                    #toast-container.toast-top-center {
-                        top: 20px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                    }
-                    
-                    #toast-container.toast-bottom-center {
-                        bottom: 20px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                    }
-                    
-                    .toast {
-                        background: linear-gradient(145deg, #1A2A4A, #0F1A2F);
-                        border-left: 4px solid;
-                        border-radius: 8px;
-                        padding: 16px;
-                        color: white;
-                        font-family: 'Open Sans', sans-serif;
-                        font-size: 14px;
-                        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-                        display: flex;
-                        align-items: flex-start;
-                        gap: 12px;
-                        pointer-events: auto;
-                        animation: toast-slide-in 0.3s ease;
-                        border: 1px solid rgba(255, 255, 255, 0.05);
-                        backdrop-filter: blur(10px);
-                        position: relative;
-                        overflow: hidden;
-                    }
-                    
-                    .toast::before {
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 3px;
-                        background: rgba(255, 255, 255, 0.1);
-                    }
-                    
-                    .toast-progress {
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        height: 3px;
-                        width: 100%;
-                        transform-origin: left;
-                        animation: toast-progress linear forwards;
-                    }
-                    
-                    .toast.success {
-                        border-left-color: #28A745;
-                    }
-                    
-                    .toast.success .toast-progress {
-                        background: #28A745;
-                    }
-                    
-                    .toast.error {
-                        border-left-color: #DC3545;
-                    }
-                    
-                    .toast.error .toast-progress {
-                        background: #DC3545;
-                    }
-                    
-                    .toast.warning {
-                        border-left-color: #FFC107;
-                    }
-                    
-                    .toast.warning .toast-progress {
-                        background: #FFC107;
-                    }
-                    
-                    .toast.info {
-                        border-left-color: #007BFF;
-                    }
-                    
-                    .toast.info .toast-progress {
-                        background: #007BFF;
-                    }
-                    
-                    .toast-icon {
-                        font-size: 20px;
-                        flex-shrink: 0;
-                    }
-                    
-                    .toast-content {
-                        flex: 1;
-                    }
-                    
-                    .toast-title {
-                        font-weight: 700;
-                        margin-bottom: 4px;
-                        color: white;
-                    }
-                    
-                    .toast-message {
-                        color: rgba(255, 255, 255, 0.9);
-                        line-height: 1.5;
-                    }
-                    
-                    .toast-close {
-                        background: none;
-                        border: none;
-                        color: rgba(255, 255, 255, 0.5);
-                        cursor: pointer;
-                        padding: 4px;
-                        font-size: 16px;
-                        transition: color 0.2s;
-                        flex-shrink: 0;
-                    }
-                    
-                    .toast-close:hover {
-                        color: white;
-                    }
-                    
-                    @keyframes toast-slide-in {
-                        from {
-                            transform: translateX(100%);
-                            opacity: 0;
-                        }
-                        to {
-                            transform: translateX(0);
-                            opacity: 1;
-                        }
-                    }
-                    
-                    @keyframes toast-progress {
-                        from { width: 100%; }
-                        to { width: 0%; }
-                    }
-                    
-                    @media (max-width: 768px) {
-                        #toast-container {
-                            max-width: calc(100% - 40px);
-                            left: 20px;
-                            right: 20px;
-                            transform: none;
-                        }
-                        
-                        #toast-container.toast-top-right,
-                        #toast-container.toast-top-left,
-                        #toast-container.toast-top-center {
-                            top: 20px;
-                            left: 20px;
-                            right: 20px;
-                            width: auto;
-                        }
-                        
-                        #toast-container.toast-bottom-right,
-                        #toast-container.toast-bottom-left,
-                        #toast-container.toast-bottom-center {
-                            bottom: 20px;
-                            left: 20px;
-                            right: 20px;
-                            width: auto;
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        },
-
-        show(options) {
-            this.init();
-            
-            const {
-                title,
-                message,
-                type = 'info',
-                duration = this.defaults.duration,
-                closeable = this.defaults.closeable
-            } = options;
-            
+        /**
+         * Show toast notification
+         */
+        show(message, type = 'info', duration = 5000) {
             const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
+            toast.className = `toast toast-${type}`;
             
-            // Icons
             const icons = {
-                success: '<i class="fas fa-check-circle"></i>',
-                error: '<i class="fas fa-exclamation-circle"></i>',
-                warning: '<i class="fas fa-exclamation-triangle"></i>',
-                info: '<i class="fas fa-info-circle"></i>'
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
             };
             
             toast.innerHTML = `
-                <div class="toast-icon">${icons[type] || icons.info}</div>
+                <div class="toast-icon">
+                    <i class="fas ${icons[type] || icons.info}"></i>
+                </div>
                 <div class="toast-content">
-                    ${title ? `<div class="toast-title">${title}</div>` : ''}
                     <div class="toast-message">${message}</div>
                 </div>
-                ${closeable ? '<button class="toast-close"><i class="fas fa-times"></i></button>' : ''}
-                <div class="toast-progress" style="animation-duration: ${duration}ms;"></div>
+                <button class="toast-close">
+                    <i class="fas fa-times"></i>
+                </button>
             `;
             
-            this.container.appendChild(toast);
-            
-            // Close button handler
-            if (closeable) {
-                toast.querySelector('.toast-close').addEventListener('click', () => {
-                    this.hide(toast);
-                });
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                document.body.appendChild(container);
             }
             
-            // Auto hide
-            if (duration > 0) {
-                setTimeout(() => {
-                    this.hide(toast);
-                }, duration);
-            }
+            container.appendChild(toast);
+            
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.remove();
+            });
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, duration);
             
             return toast;
         },
 
-        hide(toast) {
-            if (toast && toast.parentNode) {
-                toast.style.animation = 'toast-slide-in 0.3s ease reverse';
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.remove();
-                    }
-                }, 300);
-            }
+        /**
+         * Show success toast
+         */
+        success(message) {
+            return this.show(message, 'success');
         },
 
-        success(message, title = 'Success', duration = 5000) {
-            return this.show({ title, message, type: 'success', duration });
+        /**
+         * Show error toast
+         */
+        error(message) {
+            return this.show(message, 'error');
         },
 
-        error(message, title = 'Error', duration = 5000) {
-            return this.show({ title, message, type: 'error', duration });
+        /**
+         * Show warning toast
+         */
+        warning(message) {
+            return this.show(message, 'warning');
         },
 
-        warning(message, title = 'Warning', duration = 5000) {
-            return this.show({ title, message, type: 'warning', duration });
-        },
-
-        info(message, title = 'Info', duration = 5000) {
-            return this.show({ title, message, type: 'info', duration });
+        /**
+         * Show info toast
+         */
+        info(message) {
+            return this.show(message, 'info');
         }
     };
 
     // ===================================================================
-    // 📊 ANALYTICS & TRACKING
+    // 🚀 INITIALIZATION
     // ===================================================================
-    const Analytics = {
-        enabled: true,
-        
-        init() {
-            if (!this.enabled) return;
-            
-            // Track page views
-            this.trackPageView();
-            
-            // Track clicks on important elements
-            document.addEventListener('click', (e) => {
-                const element = e.target.closest('[data-track]');
-                if (element) {
-                    this.trackEvent('click', {
-                        action: element.dataset.track,
-                        label: element.dataset.label || element.textContent,
-                        url: element.href || window.location.href
-                    });
-                }
-            });
-        },
-
-        trackPageView() {
-            const data = {
-                event: 'page_view',
-                url: window.location.href,
-                path: window.location.pathname,
-                title: document.title,
-                referrer: document.referrer,
-                timestamp: new Date().toISOString()
-            };
-            
-            // Store in session storage for backend sync
-            this.queueEvent(data);
-        },
-
-        trackEvent(category, action, label = '', value = null) {
-            const data = {
-                event: 'custom_event',
-                category,
-                action,
-                label,
-                value,
-                url: window.location.href,
-                timestamp: new Date().toISOString()
-            };
-            
-            this.queueEvent(data);
-        },
-
-        queueEvent(data) {
-            try {
-                const queue = JSON.parse(sessionStorage.getItem('analytics_queue') || '[]');
-                queue.push(data);
-                sessionStorage.setItem('analytics_queue', JSON.stringify(queue));
-                
-                // Send immediately if queue is large
-                if (queue.length >= 10) {
-                    this.flush();
-                }
-            } catch (e) {
-                console.warn('Failed to queue analytics event:', e);
-            }
-        },
-
-        flush() {
-            // Will be implemented with backend API
-            const queue = JSON.parse(sessionStorage.getItem('analytics_queue') || '[]');
-            if (queue.length > 0) {
-                console.log('Analytics queue:', queue);
-                sessionStorage.removeItem('analytics_queue');
-            }
-        }
-    };
-
-    // ===================================================================
-    // 🎨 THEME & APPEARANCE
-    // ===================================================================
-    const Theme = {
-        init() {
-            this.setInitialTheme();
-            this.setupThemeToggle();
-        },
-
-        setInitialTheme() {
-            const savedTheme = Utils.getCookie('theme') || 'dark';
-            this.setTheme(savedTheme);
-        },
-
-        setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            Utils.setCookie('theme', theme, 365);
-            
-            // Dispatch event for other scripts
-            window.dispatchEvent(new CustomEvent('themechanged', { detail: { theme } }));
-        },
-
-        toggleTheme() {
-            const current = document.documentElement.getAttribute('data-theme') || 'dark';
-            const next = current === 'dark' ? 'light' : 'dark';
-            this.setTheme(next);
-        },
-
-        setupThemeToggle() {
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('[data-toggle="theme"]')) {
-                    this.toggleTheme();
-                }
-            });
-        }
-    };
-
-    // ===================================================================
-    // 🚀 LAZY LOADING
-    // ===================================================================
-    const LazyLoader = {
-        init() {
-            if ('IntersectionObserver' in window) {
-                this.setupImageLazyLoading();
-                this.setupIframeLazyLoading();
-            } else {
-                this.loadAllImmediately();
-            }
-        },
-
-        setupImageLazyLoading() {
-            const images = document.querySelectorAll('img[data-src]');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        this.loadImage(img);
-                        observer.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '50px 0px',
-                threshold: 0.1
-            });
-            
-            images.forEach(img => observer.observe(img));
-        },
-
-        setupIframeLazyLoading() {
-            const iframes = document.querySelectorAll('iframe[data-src]');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const iframe = entry.target;
-                        iframe.src = iframe.dataset.src;
-                        iframe.removeAttribute('data-src');
-                        observer.unobserve(iframe);
-                    }
-                });
-            }, {
-                rootMargin: '100px 0px'
-            });
-            
-            iframes.forEach(iframe => observer.observe(iframe));
-        },
-
-        loadImage(img) {
-            if (img.dataset.src) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                
-                if (img.dataset.srcset) {
-                    img.srcset = img.dataset.srcset;
-                    img.removeAttribute('data-srcset');
-                }
-                
-                img.classList.add('loaded');
-            }
-        },
-
-        loadAllImmediately() {
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                this.loadImage(img);
-            });
-            
-            document.querySelectorAll('iframe[data-src]').forEach(iframe => {
-                iframe.src = iframe.dataset.src;
-                iframe.removeAttribute('data-src');
-            });
-        }
-    };
-
-    // ===================================================================
-    // 🔍 SEBARANG FUNCTIONS (SEARCH BAR)
-    // ===================================================================
-    const Search = {
-        init() {
-            this.setupSearchTrigger();
-            this.setupSearchModal();
-        },
-
-        setupSearchTrigger() {
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('[data-action="search"]')) {
-                    e.preventDefault();
-                    this.openSearchModal();
-                }
-            });
-
-            // Keyboard shortcut: Ctrl+K or Cmd+K
-            document.addEventListener('keydown', (e) => {
-                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                    e.preventDefault();
-                    this.openSearchModal();
-                }
-            });
-        },
-
-        setupSearchModal() {
-            // Will be implemented by search.js
-        },
-
-        openSearchModal() {
-            window.dispatchEvent(new CustomEvent('openSearchModal'));
-        }
-    };
-
-    // ===================================================================
-    // 💪 INITIALIZATION
-    // ===================================================================
+    
     function init() {
-        // Performance marking
-        Performance.mark('init-start');
+        // 1. Make config globally available
+        window.MARTOO_CONFIG = CONFIG;
         
-        // Set global objects
-        window.MARTOO = {
-            config: window.MARTOO_CONFIG,
-            utils: Utils,
-            toast: Toast,
-            device: Device,
-            performance: Performance,
-            analytics: Analytics,
-            theme: Theme,
-            lazyLoader: LazyLoader,
-            search: Search,
-            version: '2.0.0'
-        };
+        // 2. Initialize error handler
+        ErrorHandler.init();
         
-        // Initialize modules
-        if (window.MARTOO_CONFIG.ANIMATION_ENABLED) {
-            document.documentElement.classList.add('animations-enabled');
+        // 3. Initialize performance monitoring
+        PerformanceMonitor.init();
+        
+        // 4. Add device classes
+        DeviceDetector.addDeviceClasses();
+        
+        // 5. Initialize network monitoring
+        NetworkMonitor.init();
+        
+        // 6. Make utilities globally available
+        window.$ = Utils.$;
+        window.$$ = Utils.$$;
+        window.MartooUtils = Utils;
+        
+        // 7. Make toast globally available
+        window.MartooToast = Toast;
+        
+        // 8. Log environment info
+        const device = DeviceDetector.getBrowserInfo();
+        
+        console.log(`
+╔══════════════════════════════════════════════════════════╗
+║                                                          ║
+║   ███╗   ███╗ █████╗ ██████╗ ████████╗ ██████╗  ██████╗ 
+║   ████╗ ████║██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔═══██╗
+║   ██╔████╔██║███████║██████╔╝   ██║   ██║   ██║██║   ██║
+║   ██║╚██╔╝██║██╔══██║██╔══██╗   ██║   ██║   ██║██║   ██║
+║   ██║ ╚═╝ ██║██║  ██║██║  ██║   ██║   ╚██████╔╝╚██████╔╝
+║   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝ 
+║                                                          ║
+╠══════════════════════════════════════════════════════════╣
+║                                                          ║
+║   🚀 Version: ${CONFIG.VERSION.padEnd(36)}║
+║   🔧 Environment: ${CONFIG.ENV.padEnd(34)}║
+║   🌐 Backend: ${CONFIG.API_URL.padEnd(36)}║
+║   📱 Device: ${device.name} ${device.version} on ${device.isMobile ? 'Mobile' : 'Desktop'.padEnd(25)}║
+║                                                          ║
+╚══════════════════════════════════════════════════════════╝
+        `);
+
+        // 9. Dispatch ready event
+        const readyEvent = new CustomEvent('martoo:ready', {
+            detail: { config: CONFIG, device }
+        });
+        window.dispatchEvent(readyEvent);
+        
+        // 10. Check if API is available
+        if (window.API) {
+            window.API.system.checkHealth()
+                .then(() => console.log('✅ Backend connection verified'))
+                .catch(() => console.warn('⚠️ Backend connection failed - using offline mode'));
         }
         
-        // Analytics init
-        Analytics.init();
-        
-        // Theme init
-        Theme.init();
-        
-        // Lazy loading init
-        LazyLoader.init();
-        
-        // Search init
-        Search.init();
-        
-        // Add touch class for touch devices
-        if (Device.isTouch) {
-            document.documentElement.classList.add('touch-device');
-        }
-        
-        // Performance marking
-        Performance.mark('init-end');
-        Performance.measure('init-duration', 'init-start', 'init-end');
-        
-        // Log metrics in development
-        if (window.MARTOO_CONFIG.DEBUG) {
-            Performance.logMetrics();
-            console.log('✅ Martoo Tech Works v2.0.0 initialized', {
-                device: Device.getBrowserInfo(),
-                config: window.MARTOO_CONFIG
-            });
-        }
-        
-        // Trigger ready event
-        triggerReady();
+        // 11. Remove loading class from body
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
     }
 
     // ===================================================================
-    // 🚦 DOM READY HANDLER
+    // 🚀 START APPLICATION
     // ===================================================================
+    
+    // Add loading class
+    document.body.classList.add('loading');
+    
+    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
-        // DOM is already loaded
         init();
     }
 
-    // ===================================================================
-    // 📤 EXPOSE PUBLIC API
-    // ===================================================================
-    window.Martoo = {
-        // Core
-        utils: Utils,
-        toast: Toast,
-        device: Device,
-        
-        // Helpers
-        formatCurrency: Utils.formatCurrency,
-        formatDate: Utils.formatDate,
-        isValidEmail: Utils.isValidEmail,
-        copyToClipboard: Utils.copyToClipboard,
-        
-        // Events
-        onReady: onReady,
-        
-        // Debug
-        debug: window.MARTOO_CONFIG.DEBUG ? console.log : () => {}
-    };
-
-    // ===================================================================
-    // 🛡️ ERROR HANDLING
-    // ===================================================================
-    window.addEventListener('error', (event) => {
-        console.error('Global error:', {
-            message: event.message,
-            filename: event.filename,
-            lineno: event.lineno,
-            colno: event.colno,
-            error: event.error
-        });
-        
-        // Track error
-        if (window.MARTOO && window.MARTOO.analytics) {
-            window.MARTOO.analytics.trackEvent('error', 'javascript', event.message);
+    // Handle page visibility
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            // Page became visible
+            const event = new CustomEvent('martoo:visible');
+            window.dispatchEvent(event);
+        } else {
+            // Page became hidden
+            const event = new CustomEvent('martoo:hidden');
+            window.dispatchEvent(event);
         }
     });
 
-    window.addEventListener('unhandledrejection', (event) => {
-        console.error('Unhandled promise rejection:', event.reason);
-        
-        // Track error
-        if (window.MARTOO && window.MARTOO.analytics) {
-            window.MARTOO.analytics.trackEvent('error', 'promise', event.reason?.message || 'Unknown');
-        }
-    });
-
-    // ===================================================================
-    // 🔌 NETWORK STATUS
-    // ===================================================================
-    window.addEventListener('online', () => {
-        document.documentElement.classList.remove('offline');
-        Toast.info('You are back online', 'Connection Restored');
-    });
-
-    window.addEventListener('offline', () => {
-        document.documentElement.classList.add('offline');
-        Toast.warning('You are currently offline', 'No Internet Connection');
+    // Handle before unload
+    window.addEventListener('beforeunload', () => {
+        // Cleanup if needed
     });
 
 })();
