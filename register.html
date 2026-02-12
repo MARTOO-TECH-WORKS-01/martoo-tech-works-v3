@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Create your Martoo Tech Works account - Access courses, learning resources, and start your journey in GIS, STATA, and public health research.">
-    <meta name="keywords" content="register, sign up, create account, Martoo Tech, student enrollment, Zambian edtech">
+    <meta name="description" content="Enroll in Martoo Tech Works courses - Submit your information to get started with GIS, STATA, and public health research training.">
+    <meta name="keywords" content="enroll, sign up, create account, Martoo Tech, student enrollment, Zambian edtech">
     <meta name="author" content="Martoo Tech Works">
-    <meta property="og:title" content="Create Account - Martoo Tech Works">
-    <meta property="og:description" content="Join Martoo Tech Works and start learning today">
-    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:title" content="Enroll Now - Martoo Tech Works">
+    <meta property="og:description" content="Submit your course enrollment request">
+    <meta property="og:image" content="Images/martoo_tech_logo.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     
-    <title>Create Account - Martoo Tech Works</title>
+    <title>Enroll Now - Martoo Tech Works</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,12 +20,12 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/responsive.css">
+    <!-- Custom CSS - FIXED PATHS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    <!-- Favicon - FIXED PATH -->
+    <link rel="icon" type="image/png" href="Images/martoo_tech_logo.png">
     
     <style>
         /* ===== REGISTER PAGE SPECIFIC STYLES ===== */
@@ -118,6 +118,57 @@
             color: var(--neutral-300);
             font-size: 16px;
             margin-bottom: 0;
+        }
+        
+        /* Enrollment Info Banner - NEW */
+        .enrollment-info {
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .enrollment-info i {
+            font-size: 28px;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+        
+        .enrollment-info-content h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .enrollment-info-content p {
+            color: var(--neutral-300);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .enrollment-info-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+        
+        .enrollment-info-content li {
+            color: var(--neutral-300);
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .enrollment-info-content li i {
+            font-size: 14px;
+            color: var(--accent-green);
         }
         
         /* Progress Steps */
@@ -349,76 +400,6 @@
             min-width: 80px;
         }
         
-        /* Course Selection */
-        .course-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 8px;
-        }
-        
-        .course-option {
-            background: var(--primary-deep);
-            border: 2px solid rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            position: relative;
-        }
-        
-        .course-option:hover {
-            border-color: var(--accent-blue);
-            background: var(--primary-midnight);
-        }
-        
-        .course-option.selected {
-            border-color: var(--accent-green);
-            background: rgba(40, 167, 69, 0.05);
-        }
-        
-        .course-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .course-option h4 {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: var(--neutral-100);
-        }
-        
-        .course-option p {
-            font-size: 13px;
-            margin-bottom: 12px;
-            color: var(--neutral-400);
-        }
-        
-        .course-price {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(40, 167, 69, 0.1);
-            border-radius: var(--radius-full);
-            color: var(--accent-green);
-            font-size: 13px;
-            font-weight: 700;
-        }
-        
-        .course-badge {
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            padding: 4px 12px;
-            background: var(--accent-blue);
-            border-radius: var(--radius-full);
-            color: white;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        
         /* Form Options */
         .form-options {
             display: flex;
@@ -465,7 +446,7 @@
         }
         
         /* Buttons */
-        .register-btn {
+        .enroll-btn {
             width: 100%;
             padding: 16px 24px;
             background: var(--gradient-green);
@@ -486,7 +467,7 @@
             margin-bottom: 24px;
         }
         
-        .register-btn::before {
+        .enroll-btn::before {
             content: '';
             position: absolute;
             top: 50%;
@@ -499,26 +480,26 @@
             transition: width 0.6s, height 0.6s;
         }
         
-        .register-btn:hover::before {
+        .enroll-btn:hover::before {
             width: 300px;
             height: 300px;
         }
         
-        .register-btn:hover {
+        .enroll-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(40, 167, 69, 0.3);
         }
         
-        .register-btn i {
+        .enroll-btn i {
             font-size: 18px;
             transition: transform var(--transition-fast);
         }
         
-        .register-btn:hover i {
+        .enroll-btn:hover i {
             transform: translateX(4px);
         }
         
-        .register-btn:disabled {
+        .enroll-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
@@ -603,6 +584,17 @@
             animation: shake 0.5s ease;
         }
         
+        .error-message i {
+            font-size: 18px;
+            color: var(--danger);
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
         .success-message {
             background: rgba(40, 167, 69, 0.1);
             border: 1px solid rgba(40, 167, 69, 0.3);
@@ -616,10 +608,9 @@
             gap: 12px;
         }
         
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        .success-message i {
+            font-size: 18px;
+            color: var(--success);
         }
         
         /* Benefits Section */
@@ -668,10 +659,6 @@
                 gap: 0;
             }
             
-            .course-options {
-                grid-template-columns: 1fr;
-            }
-            
             .form-options {
                 flex-direction: column;
                 align-items: flex-start;
@@ -693,6 +680,11 @@
             .benefit-item i {
                 margin-bottom: 0;
             }
+            
+            .enrollment-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -703,26 +695,26 @@
     <header class="header">
         <div class="container header-container">
             <div class="logo-wrapper">
-                <a href="./index.html" class="logo">
-                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                <a href="index.html" class="logo">
+                    <img src="Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
                     <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
                 </a>
             </div>
             
             <nav class="nav-menu">
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
-                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
-                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
-                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-buttons">
-                    <a href="./login.html" class="btn btn-outline">Sign In</a>
-                    <a href="./register.html" class="btn btn-primary active">Get Started</a>
+                    <a href="login.html" class="btn btn-outline">Sign In</a>
+                    <a href="register.html" class="btn btn-primary active">Get Started</a>
                 </div>
             </nav>
             
@@ -736,25 +728,40 @@
 
     <main>
         <!-- ============================================ -->
-        <!-- 📝 REGISTRATION SECTION - PRODUCTION READY  -->
+        <!-- 📝 ENROLLMENT SECTION - EXPLAINS THE FLOW    -->
         <!-- ============================================ -->
         <section class="register-section">
             <div class="container register-container">
                 <div class="register-card">
                     <!-- Logo -->
                     <div class="register-header">
-                        <a href="./index.html" class="register-logo">
-                            <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <a href="index.html" class="register-logo">
+                            <img src="Images/martoo_tech_logo.png" alt="Martoo Tech Works">
                         </a>
-                        <h1>Create Your Account</h1>
-                        <p>Join Martoo Tech Works and start your learning journey</p>
+                        <h1>Enroll in a Course</h1>
+                        <p>Start your journey with Martoo Tech Works</p>
+                    </div>
+
+                    <!-- 🔥 ENROLLMENT INFO BANNER - EXPLAINS THE PROCESS -->
+                    <div class="enrollment-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div class="enrollment-info-content">
+                            <h4>How Enrollment Works:</h4>
+                            <p>Completing this form creates a <strong>course enrollment request</strong>, not an instant login account. Here's what happens next:</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Step 1: Submit your enrollment request</li>
+                                <li><i class="fas fa-check-circle"></i> Step 2: Our team reviews your request (within 24-48 hours)</li>
+                                <li><i class="fas fa-check-circle"></i> Step 3: You'll receive an email with your login credentials</li>
+                                <li><i class="fas fa-check-circle"></i> Step 4: Sign in with the provided credentials to access your course</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <!-- Progress Steps -->
                     <div class="registration-progress">
                         <div class="progress-step active" id="step1Indicator">
                             <div class="step-number">1</div>
-                            <span class="step-label">Account</span>
+                            <span class="step-label">Your Info</span>
                         </div>
                         <div class="progress-step" id="step2Indicator">
                             <div class="step-number">2</div>
@@ -762,7 +769,7 @@
                         </div>
                         <div class="progress-step" id="step3Indicator">
                             <div class="step-number">3</div>
-                            <span class="step-label">Complete</span>
+                            <span class="step-label">Review</span>
                         </div>
                     </div>
 
@@ -779,7 +786,7 @@
 
                     <!-- Registration Form -->
                     <form id="registerForm" class="register-form">
-                        <!-- STEP 1: Account Information -->
+                        <!-- STEP 1: Personal Information -->
                         <div id="step1" class="form-step">
                             <div class="form-row">
                                 <div class="form-group">
@@ -829,58 +836,17 @@
                                 >
                             </div>
 
-                            <div class="form-group">
-                                <i class="fas fa-lock"></i>
-                                <input 
-                                    type="password" 
-                                    id="password" 
-                                    name="password" 
-                                    placeholder="Password" 
-                                    autocomplete="new-password"
-                                    required
-                                    minlength="8"
-                                >
-                                <button 
-                                    type="button" 
-                                    class="password-toggle" 
-                                    onclick="togglePasswordVisibility('password')"
-                                    aria-label="Toggle password visibility"
-                                >
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-
-                            <!-- Password Strength Indicator -->
-                            <div class="password-strength">
-                                <div class="strength-bar">
-                                    <div id="strengthFill" class="strength-fill"></div>
-                                </div>
-                                <span id="strengthText" class="strength-text">Enter password</span>
-                            </div>
-
-                            <div class="form-group">
-                                <i class="fas fa-lock"></i>
-                                <input 
-                                    type="password" 
-                                    id="confirmPassword" 
-                                    name="confirmPassword" 
-                                    placeholder="Confirm Password" 
-                                    autocomplete="new-password"
-                                    required
-                                >
-                                <button 
-                                    type="button" 
-                                    class="password-toggle" 
-                                    onclick="togglePasswordVisibility('confirmPassword')"
-                                    aria-label="Toggle password visibility"
-                                >
-                                    <i class="fas fa-eye"></i>
-                                </button>
+                            <!-- NOTE: Password fields are removed because admin generates the password -->
+                            <div style="background: rgba(255, 193, 7, 0.05); border-left: 4px solid var(--warning); padding: 16px; border-radius: var(--radius-md); margin-bottom: 24px;">
+                                <i class="fas fa-info-circle" style="color: var(--warning); margin-right: 8px;"></i>
+                                <span style="color: var(--neutral-300); font-size: 14px;">
+                                    <strong>No password needed yet.</strong> After your enrollment is approved, you'll receive an email with your login credentials.
+                                </span>
                             </div>
 
                             <div class="form-navigation">
                                 <button type="button" class="next-btn" onclick="nextStep(1)">
-                                    Continue
+                                    Continue to Course Selection
                                     <i class="fas fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -892,12 +858,12 @@
                                 <i class="fas fa-graduation-cap"></i>
                                 <select id="course" name="course" required>
                                     <option value="" disabled selected>Select a Course</option>
-                                    <option value="stata-beginner">Introduction to STATA for Public Health</option>
-                                    <option value="stata-advanced">Advanced STATA Analysis</option>
-                                    <option value="gis-beginner">GIS / QGIS Fundamentals</option>
-                                    <option value="gis-advanced">Advanced GIS Mapping</option>
-                                    <option value="research-proposal">Research Proposal Writing</option>
-                                    <option value="academic-writing">Academic Writing & Formatting</option>
+                                    <option value="stata-beginner">📊 Introduction to STATA for Public Health</option>
+                                    <option value="stata-advanced">📈 Advanced STATA Analysis</option>
+                                    <option value="gis-beginner">🗺️ GIS / QGIS Fundamentals</option>
+                                    <option value="gis-advanced">📍 Advanced GIS Mapping</option>
+                                    <option value="research-proposal">📝 Research Proposal Writing</option>
+                                    <option value="academic-writing">✍️ Academic Writing & Formatting</option>
                                 </select>
                             </div>
 
@@ -906,7 +872,7 @@
                                 <textarea 
                                     id="notes" 
                                     name="notes" 
-                                    placeholder="Additional notes or questions (optional)"
+                                    placeholder="Tell us about your background or specific learning goals (optional)"
                                     rows="3"
                                 ></textarea>
                             </div>
@@ -914,7 +880,7 @@
                             <div class="form-options">
                                 <label class="terms-checkbox">
                                     <input type="checkbox" id="terms" required>
-                                    <span>I agree to the <a href="./terms.html" target="_blank">Terms of Service</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a></span>
+                                    <span>I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></span>
                                 </label>
                             </div>
 
@@ -924,7 +890,7 @@
                                     Back
                                 </button>
                                 <button type="button" class="next-btn" onclick="nextStep(2)">
-                                    Review Registration
+                                    Review Enrollment
                                     <i class="fas fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -935,7 +901,7 @@
                             <div style="text-align: center; margin-bottom: 32px;">
                                 <i class="fas fa-check-circle" style="font-size: 64px; color: var(--accent-green); margin-bottom: 16px;"></i>
                                 <h3 style="color: var(--neutral-100); margin-bottom: 8px;">Almost Done!</h3>
-                                <p style="color: var(--neutral-300);">Please review your information before submitting.</p>
+                                <p style="color: var(--neutral-300);">Please review your enrollment information before submitting.</p>
                             </div>
 
                             <div style="background: var(--primary-deep); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px;">
@@ -956,9 +922,16 @@
                                     <span style="color: var(--accent-green); font-weight: 600;" id="reviewCourse"></span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <span style="color: var(--neutral-400);">Account Type</span>
-                                    <span style="color: var(--neutral-100); font-weight: 600;">Student</span>
+                                    <span style="color: var(--neutral-400);">Status</span>
+                                    <span style="color: var(--warning); font-weight: 600;">Pending Review</span>
                                 </div>
+                            </div>
+
+                            <div style="background: rgba(0, 123, 255, 0.05); border-left: 4px solid var(--accent-blue); padding: 16px; border-radius: var(--radius-md); margin-bottom: 24px;">
+                                <i class="fas fa-clock" style="color: var(--accent-blue); margin-right: 8px;"></i>
+                                <span style="color: var(--neutral-300); font-size: 14px;">
+                                    <strong>What happens next?</strong> Our team will review your enrollment request within 24-48 hours. You'll receive an email with your login credentials once approved.
+                                </span>
                             </div>
 
                             <label class="newsletter-checkbox" style="margin-bottom: 24px;">
@@ -971,9 +944,9 @@
                                     <i class="fas fa-arrow-left"></i>
                                     Back
                                 </button>
-                                <button type="submit" id="registerBtn" class="register-btn">
-                                    <span>Create Account</span>
-                                    <i class="fas fa-user-plus"></i>
+                                <button type="submit" id="registerBtn" class="enroll-btn">
+                                    <span>Submit Enrollment</span>
+                                    <i class="fas fa-paper-plane"></i>
                                 </button>
                             </div>
                         </div>
@@ -981,7 +954,7 @@
 
                     <!-- Sign In Link -->
                     <div class="register-footer">
-                        <p>Already have an account? <a href="./login.html">Sign In</a></p>
+                        <p>Already have an account? <a href="login.html">Sign In</a></p>
                     </div>
 
                     <!-- Benefits -->
@@ -1012,7 +985,7 @@
             <div class="footer-grid">
                 <div class="footer-info">
                     <div class="footer-logo">
-                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <img src="Images/martoo_tech_logo.png" alt="Martoo Tech Works">
                         <span>MARTOO TECH</span>
                     </div>
                     <p class="footer-description">
@@ -1038,29 +1011,29 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="./about.html">About Us</a></li>
-                        <li><a href="./services.html">Services</a></li>
-                        <li><a href="./academy.html">Academy</a></li>
-                        <li><a href="./portfolio.html">Portfolio</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="academy.html">Academy</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="./faq.html">FAQ</a></li>
-                        <li><a href="./terms.html">Terms of Service</a></li>
-                        <li><a href="./privacy.html">Privacy Policy</a></li>
-                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-newsletter">
                     <h4>Stay Updated</h4>
                     <p>Get the latest tips and course updates.</p>
-                    <form id="newsletterForm" class="newsletter-form">
+                    <form id="newsletterForm" class="newsletter-form" onsubmit="event.preventDefault(); alert('✅ Thanks for subscribing!'); this.reset();">
                         <input type="email" placeholder="Your email address" required>
                         <button type="submit" aria-label="Subscribe">
                             <i class="fas fa-paper-plane"></i>
@@ -1072,49 +1045,47 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="./terms.html">Terms</a>
-                    <a href="./privacy.html">Privacy</a>
-                    <a href="./refund-policy.html">Refunds</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="refund-policy.html">Refunds</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="./js/main.js"></script>
-    <script src="./js/navigation.js"></script>
-    <script src="./js/api.js"></script>
-    <script src="./js/auth.js"></script>
+    <!-- JavaScript - FIXED PATHS -->
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
     
     <script>
         // ============================================
-        // 📝 REGISTRATION PAGE - PRODUCTION READY
+        // 📝 ENROLLMENT PAGE - PRODUCTION READY
         // ============================================
         
         'use strict';
-
-        // API Configuration
-        const API_BASE_URL = 'https://martoo-tech-backend-qgis.vercel.app/api';
 
         // ============================================
         // 🔧 UTILITY FUNCTIONS
         // ============================================
         
         /**
-         * Toggle Password Visibility
+         * Validate email format
          */
-        window.togglePasswordVisibility = function(inputId) {
-            const input = document.getElementById(inputId);
-            const toggleBtn = input.parentElement.querySelector('.password-toggle i');
-            
-            if (input.type === 'password') {
-                input.type = 'text';
-                toggleBtn.className = 'fas fa-eye-slash';
-            } else {
-                input.type = 'password';
-                toggleBtn.className = 'fas fa-eye';
-            }
-        };
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        /**
+         * Validate Zambian phone number
+         */
+        function isValidZambianPhone(phone) {
+            if (!phone) return true;
+            const cleaned = phone.replace(/\D/g, '');
+            return /^(\+?260|0)?[97]\d{8}$/.test(cleaned);
+        }
 
         /**
          * Show Error Message
@@ -1160,51 +1131,8 @@
             if (registerBtn) {
                 registerBtn.disabled = isLoading;
                 registerBtn.innerHTML = isLoading 
-                    ? '<span>Creating Account...</span> <i class="fas fa-spinner fa-spin"></i>'
-                    : '<span>Create Account</span> <i class="fas fa-user-plus"></i>';
-            }
-        }
-
-        // ============================================
-        // 📊 PASSWORD STRENGTH CHECKER
-        // ============================================
-        
-        function checkPasswordStrength(password) {
-            let strength = 0;
-            
-            if (password.length >= 8) strength += 1;
-            if (password.length >= 12) strength += 1;
-            if (/[A-Z]/.test(password)) strength += 1;
-            if (/[a-z]/.test(password)) strength += 1;
-            if (/[0-9]/.test(password)) strength += 1;
-            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength += 1;
-            
-            return strength;
-        }
-
-        function updatePasswordStrength() {
-            const password = document.getElementById('password').value;
-            const strength = checkPasswordStrength(password);
-            const strengthFill = document.getElementById('strengthFill');
-            const strengthText = document.getElementById('strengthText');
-            
-            strengthFill.className = 'strength-fill';
-            
-            if (password.length === 0) {
-                strengthFill.style.width = '0';
-                strengthText.textContent = 'Enter password';
-            } else if (strength <= 2) {
-                strengthFill.classList.add('weak');
-                strengthText.textContent = 'Weak';
-            } else if (strength <= 3) {
-                strengthFill.classList.add('medium');
-                strengthText.textContent = 'Medium';
-            } else if (strength <= 4) {
-                strengthFill.classList.add('strong');
-                strengthText.textContent = 'Strong';
-            } else {
-                strengthFill.classList.add('very-strong');
-                strengthText.textContent = 'Very Strong';
+                    ? '<span>Submitting...</span> <i class="fas fa-spinner fa-spin"></i>'
+                    : '<span>Submit Enrollment</span> <i class="fas fa-paper-plane"></i>';
             }
         }
 
@@ -1216,19 +1144,12 @@
 
         window.nextStep = function(step) {
             if (step === 1) {
-                // Validate Step 1
-                if (!validateStep1()) {
-                    return;
-                }
-                // Update review info
+                if (!validateStep1()) return;
                 updateReviewInfo();
             }
             
             if (step === 2) {
-                // Validate Step 2
-                if (!validateStep2()) {
-                    return;
-                }
+                if (!validateStep2()) return;
             }
             
             // Hide current step
@@ -1269,8 +1190,6 @@
             const lastName = document.getElementById('lastName').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
             
             if (!firstName || !lastName) {
                 showError('Please enter your full name');
@@ -1282,27 +1201,13 @@
                 return false;
             }
             
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
+            if (!isValidEmail(email)) {
                 showError('Please enter a valid email address');
                 return false;
             }
             
-            if (phone) {
-                const phoneRegex = /^(\+?260|0)[97]\d{8}$/;
-                if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
-                    showError('Please enter a valid Zambian phone number');
-                    return false;
-                }
-            }
-            
-            if (password.length < 8) {
-                showError('Password must be at least 8 characters long');
-                return false;
-            }
-            
-            if (password !== confirmPassword) {
-                showError('Passwords do not match');
+            if (phone && !isValidZambianPhone(phone)) {
+                showError('Please enter a valid Zambian phone number (e.g., 0971234567)');
                 return false;
             }
             
@@ -1345,14 +1250,13 @@
             document.getElementById('reviewEmail').textContent = email;
             document.getElementById('reviewPhone').textContent = phone || 'Not provided';
             
-            // Get course display name
             const courseSelect = document.getElementById('course');
             const selectedOption = courseSelect.options[courseSelect.selectedIndex];
-            document.getElementById('reviewCourse').textContent = selectedOption ? selectedOption.text : 'Not selected';
+            document.getElementById('reviewCourse').textContent = selectedOption ? selectedOption.text.replace(/[📊🗺️📍📝✍️]/g, '').trim() : 'Not selected';
         }
 
         // ============================================
-        // 🚀 FORM SUBMISSION
+        // 🚀 FORM SUBMISSION - POST /enrollments
         // ============================================
         
         async function handleSubmit(e) {
@@ -1374,53 +1278,67 @@
                 const notes = document.getElementById('notes').value.trim();
                 const newsletter = document.getElementById('newsletter').checked;
                 
-                // Format phone number
-                const formattedPhone = phone ? (phone.startsWith('0') ? '+260' + phone.substring(1) : phone) : null;
+                // Format phone number for backend
+                let formattedPhone = null;
+                if (phone) {
+                    formattedPhone = phone.startsWith('0') ? '+260' + phone.substring(1) : phone;
+                    if (formattedPhone.startsWith('260')) formattedPhone = '+' + formattedPhone;
+                }
                 
-                // Create enrollment first
+                // ✅ POST /enrollments - Create enrollment
                 const enrollmentData = {
-                    name: `${firstName} ${lastName}`,
+                    name: `${firstName} ${lastName}`.trim(),
                     email: email,
                     phone: formattedPhone,
                     course: course,
                     notes: notes || null
                 };
                 
-                const enrollmentResponse = await fetch(`${API_BASE_URL}/enrollments`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(enrollmentData)
-                });
+                console.log('Submitting enrollment:', enrollmentData);
                 
-                const enrollmentResult = await enrollmentResponse.json();
+                // Use window.API if available, otherwise fallback to fetch
+                let enrollmentResult;
                 
-                if (enrollmentResult.success) {
-                    showSuccess('Account created successfully! Redirecting to login...');
-                    
+                if (window.API && window.API.enrollments) {
+                    const response = await window.API.enrollments.createEnrollment(enrollmentData);
+                    enrollmentResult = response.data;
+                } else {
+                    const response = await fetch('https://martoo-tech-backend-qgis.vercel.app/api/enrollments', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(enrollmentData)
+                    });
+                    enrollmentResult = await response.json();
+                }
+                
+                if (enrollmentResult.success || enrollmentResult.id) {
                     // Store enrollment ID for reference
                     localStorage.setItem('pending_enrollment', JSON.stringify({
                         id: enrollmentResult.id,
                         email: email,
-                        course: course
+                        course: course,
+                        timestamp: new Date().toISOString()
                     }));
                     
-                    // Redirect to login page
+                    showSuccess('✅ Enrollment submitted successfully! Check your email within 24-48 hours for login credentials.');
+                    
+                    // Redirect to login page after 3 seconds
                     setTimeout(() => {
-                        window.location.href = './login.html';
-                    }, 2000);
+                        window.location.href = 'login.html?enrollment=pending';
+                    }, 3000);
                 } else {
-                    showError(enrollmentResult.error || 'Registration failed. Please try again.');
+                    showError(enrollmentResult.error || 'Enrollment failed. Please try again.');
                 }
                 
             } catch (error) {
-                console.error('Registration error:', error);
+                console.error('Enrollment error:', error);
                 
                 if (error.message === 'Failed to fetch') {
                     showError('Network error. Please check your internet connection.');
                 } else {
-                    showError('Registration failed. Please try again later.');
+                    showError('Enrollment failed. Please try again later.');
                 }
             } finally {
                 setLoading(false);
@@ -1433,15 +1351,18 @@
         
         function checkExistingSession() {
             const token = localStorage.getItem('martoo_token') || sessionStorage.getItem('martoo_token');
-            const user = localStorage.getItem('martoo_user');
+            const userJson = localStorage.getItem('martoo_user');
             
-            if (token && user) {
-                // User is already logged in, redirect to dashboard
-                const userData = JSON.parse(user);
-                if (userData.role === 'admin') {
-                    window.location.href = './admin-dashboard.html';
-                } else {
-                    window.location.href = './user_dashboard.html';
+            if (token && userJson) {
+                try {
+                    const userData = JSON.parse(userJson);
+                    if (userData.role === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        window.location.href = 'user_dashboard.html';
+                    }
+                } catch (e) {
+                    // Ignore parse errors
                 }
             }
         }
@@ -1453,12 +1374,6 @@
         function init() {
             // Check for existing session
             checkExistingSession();
-            
-            // Password strength checker
-            const passwordInput = document.getElementById('password');
-            if (passwordInput) {
-                passwordInput.addEventListener('input', updatePasswordStrength);
-            }
             
             // Form submission
             const registerForm = document.getElementById('registerForm');
@@ -1488,13 +1403,16 @@
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href');
-                if (href === './' + currentPage || 
-                    (currentPage === 'register.html' && href === './register.html')) {
+                if (href === currentPage || 
+                    (currentPage === 'register.html' && href === 'register.html')) {
                     link.classList.add('active');
                 }
             });
             
-            console.log('✅ Registration page initialized');
+            console.log('✅ Enrollment page initialized', {
+                apiAvailable: !!window.API,
+                backend: 'https://martoo-tech-backend-qgis.vercel.app/api'
+            });
         }
 
         // Initialize when DOM is ready
