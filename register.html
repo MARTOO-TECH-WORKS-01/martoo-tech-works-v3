@@ -1,1 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Create your Martoo Tech Works account - Access courses, learning resources, and start your journey in GIS, STATA, and public health research.">
+    <meta name="keywords" content="register, sign up, create account, Martoo Tech, student enrollment, Zambian edtech">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="Create Account - Martoo Tech Works">
+    <meta property="og:description" content="Join Martoo Tech Works and start learning today">
+    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Create Account - Martoo Tech Works</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== REGISTER PAGE SPECIFIC STYLES ===== */
+        .register-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0 60px;
+            background: linear-gradient(145deg, var(--primary-deeper) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .register-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .register-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(40, 167, 69, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .register-container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .register-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .register-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-green);
+        }
+        
+        .register-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .register-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .register-logo img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .register-header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .register-header p {
+            color: var(--neutral-300);
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+        
+        /* Progress Steps */
+        .registration-progress {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .registration-progress::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-navy);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            color: var(--neutral-400);
+            font-weight: 700;
+            transition: all var(--transition-normal);
+        }
+        
+        .progress-step.active .step-number {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+        }
+        
+        .progress-step.completed .step-number {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 12px;
+            color: var(--neutral-400);
+            transition: all var(--transition-normal);
+        }
+        
+        .progress-step.active .step-label {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        
+        .progress-step.completed .step-label {
+            color: var(--accent-green);
+        }
+        
+        /* Form Styles */
+        .register-form {
+            transition: opacity var(--transition-normal);
+        }
+        
+        .form-step {
+            display: block;
+        }
+        
+        .form-step.hidden {
+            display: none;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .form-group i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-400);
+            font-size: 18px;
+            transition: color var(--transition-fast);
+            z-index: 2;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 16px 16px 52px;
+            background: var(--primary-deep);
+            border: 2px solid rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            color: var(--neutral-100);
+            font-family: var(--font-body);
+            font-size: 16px;
+            transition: all var(--transition-normal);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group textarea {
+            padding: 16px 16px 16px 52px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-group textarea ~ i {
+            top: 20px;
+            transform: none;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: var(--primary-midnight);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+        }
+        
+        .form-group input:focus + i,
+        .form-group select:focus ~ i,
+        .form-group textarea:focus ~ i {
+            color: var(--accent-blue);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--neutral-400);
+            font-weight: 400;
+        }
+        
+        .form-group select {
+            appearance: none;
+            cursor: pointer;
+        }
+        
+        .form-group select option {
+            background: var(--primary-dark);
+            color: var(--neutral-100);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--neutral-400);
+            cursor: pointer;
+            padding: 0;
+            font-size: 18px;
+            transition: color var(--transition-fast);
+            z-index: 3;
+        }
+        
+        .password-toggle:hover {
+            color: var(--accent-blue);
+        }
+        
+        .password-strength {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .strength-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            width: 0;
+            transition: all var(--transition-normal);
+        }
+        
+        .strength-fill.weak {
+            width: 25%;
+            background: var(--danger);
+        }
+        
+        .strength-fill.medium {
+            width: 50%;
+            background: var(--warning);
+        }
+        
+        .strength-fill.strong {
+            width: 75%;
+            background: var(--accent-blue);
+        }
+        
+        .strength-fill.very-strong {
+            width: 100%;
+            background: var(--success);
+        }
+        
+        .strength-text {
+            font-size: 12px;
+            color: var(--neutral-400);
+            min-width: 80px;
+        }
+        
+        /* Course Selection */
+        .course-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 8px;
+        }
+        
+        .course-option {
+            background: var(--primary-deep);
+            border: 2px solid rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        .course-option:hover {
+            border-color: var(--accent-blue);
+            background: var(--primary-midnight);
+        }
+        
+        .course-option.selected {
+            border-color: var(--accent-green);
+            background: rgba(40, 167, 69, 0.05);
+        }
+        
+        .course-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .course-option h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .course-option p {
+            font-size: 13px;
+            margin-bottom: 12px;
+            color: var(--neutral-400);
+        }
+        
+        .course-price {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: var(--radius-full);
+            color: var(--accent-green);
+            font-size: 13px;
+            font-weight: 700;
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            padding: 4px 12px;
+            background: var(--accent-blue);
+            border-radius: var(--radius-full);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Form Options */
+        .form-options {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--neutral-300);
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .terms-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-blue);
+            background: var(--primary-deep);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .terms-checkbox a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .terms-checkbox a:hover {
+            text-decoration: underline;
+        }
+        
+        .newsletter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--neutral-300);
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        /* Buttons */
+        .register-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .register-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .register-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(40, 167, 69, 0.3);
+        }
+        
+        .register-btn i {
+            font-size: 18px;
+            transition: transform var(--transition-fast);
+        }
+        
+        .register-btn:hover i {
+            transform: translateX(4px);
+        }
+        
+        .register-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .next-btn,
+        .prev-btn {
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .next-btn {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            flex: 1;
+        }
+        
+        .next-btn:hover {
+            background: var(--accent-blue-deep);
+            transform: translateY(-2px);
+        }
+        
+        .prev-btn {
+            background: transparent;
+            color: var(--neutral-300);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .prev-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+        
+        .form-navigation {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        /* Login Link */
+        .register-footer {
+            text-align: center;
+            color: var(--neutral-300);
+            font-size: 15px;
+        }
+        
+        .register-footer a {
+            color: var(--accent-blue);
+            font-weight: 700;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .register-footer a:hover {
+            color: var(--accent-blue-light);
+            text-decoration: underline;
+        }
+        
+        /* Error & Success Messages */
+        .error-message {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            color: #ff6b7b;
+            font-size: 14px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: shake 0.5s ease;
+        }
+        
+        .success-message {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            color: var(--accent-green-light);
+            font-size: 14px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        /* Benefits Section */
+        .register-benefits {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .benefit-item {
+            text-align: center;
+        }
+        
+        .benefit-item i {
+            font-size: 24px;
+            color: var(--accent-green);
+            margin-bottom: 8px;
+        }
+        
+        .benefit-item span {
+            display: block;
+            color: var(--neutral-300);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .register-section {
+                padding: 100px 20px 40px;
+            }
+            
+            .register-card {
+                padding: 32px 24px;
+            }
+            
+            .register-header h1 {
+                font-size: 28px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .course-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            
+            .register-benefits {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .benefit-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-align: left;
+            }
+            
+            .benefit-item i {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="./index.html" class="logo">
+                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="./login.html" class="btn btn-outline">Sign In</a>
+                    <a href="./register.html" class="btn btn-primary active">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 📝 REGISTRATION SECTION - PRODUCTION READY  -->
+        <!-- ============================================ -->
+        <section class="register-section">
+            <div class="container register-container">
+                <div class="register-card">
+                    <!-- Logo -->
+                    <div class="register-header">
+                        <a href="./index.html" class="register-logo">
+                            <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        </a>
+                        <h1>Create Your Account</h1>
+                        <p>Join Martoo Tech Works and start your learning journey</p>
+                    </div>
+
+                    <!-- Progress Steps -->
+                    <div class="registration-progress">
+                        <div class="progress-step active" id="step1Indicator">
+                            <div class="step-number">1</div>
+                            <span class="step-label">Account</span>
+                        </div>
+                        <div class="progress-step" id="step2Indicator">
+                            <div class="step-number">2</div>
+                            <span class="step-label">Course</span>
+                        </div>
+                        <div class="progress-step" id="step3Indicator">
+                            <div class="step-number">3</div>
+                            <span class="step-label">Complete</span>
+                        </div>
+                    </div>
+
+                    <!-- Error/Success Messages -->
+                    <div id="errorContainer" class="error-message" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span id="errorText"></span>
+                    </div>
+                    
+                    <div id="successContainer" class="success-message" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="successText"></span>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <form id="registerForm" class="register-form">
+                        <!-- STEP 1: Account Information -->
+                        <div id="step1" class="form-step">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <i class="fas fa-user"></i>
+                                    <input 
+                                        type="text" 
+                                        id="firstName" 
+                                        name="firstName" 
+                                        placeholder="First Name" 
+                                        autocomplete="given-name"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-user"></i>
+                                    <input 
+                                        type="text" 
+                                        id="lastName" 
+                                        name="lastName" 
+                                        placeholder="Last Name" 
+                                        autocomplete="family-name"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-envelope"></i>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="Email Address" 
+                                    autocomplete="email"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-phone"></i>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    placeholder="Phone Number (e.g., 0971234567)" 
+                                    autocomplete="tel"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-lock"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Password" 
+                                    autocomplete="new-password"
+                                    required
+                                    minlength="8"
+                                >
+                                <button 
+                                    type="button" 
+                                    class="password-toggle" 
+                                    onclick="togglePasswordVisibility('password')"
+                                    aria-label="Toggle password visibility"
+                                >
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+
+                            <!-- Password Strength Indicator -->
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div id="strengthFill" class="strength-fill"></div>
+                                </div>
+                                <span id="strengthText" class="strength-text">Enter password</span>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-lock"></i>
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword" 
+                                    name="confirmPassword" 
+                                    placeholder="Confirm Password" 
+                                    autocomplete="new-password"
+                                    required
+                                >
+                                <button 
+                                    type="button" 
+                                    class="password-toggle" 
+                                    onclick="togglePasswordVisibility('confirmPassword')"
+                                    aria-label="Toggle password visibility"
+                                >
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+
+                            <div class="form-navigation">
+                                <button type="button" class="next-btn" onclick="nextStep(1)">
+                                    Continue
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: Course Selection -->
+                        <div id="step2" class="form-step hidden">
+                            <div class="form-group">
+                                <i class="fas fa-graduation-cap"></i>
+                                <select id="course" name="course" required>
+                                    <option value="" disabled selected>Select a Course</option>
+                                    <option value="stata-beginner">Introduction to STATA for Public Health</option>
+                                    <option value="stata-advanced">Advanced STATA Analysis</option>
+                                    <option value="gis-beginner">GIS / QGIS Fundamentals</option>
+                                    <option value="gis-advanced">Advanced GIS Mapping</option>
+                                    <option value="research-proposal">Research Proposal Writing</option>
+                                    <option value="academic-writing">Academic Writing & Formatting</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-comment"></i>
+                                <textarea 
+                                    id="notes" 
+                                    name="notes" 
+                                    placeholder="Additional notes or questions (optional)"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+
+                            <div class="form-options">
+                                <label class="terms-checkbox">
+                                    <input type="checkbox" id="terms" required>
+                                    <span>I agree to the <a href="./terms.html" target="_blank">Terms of Service</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a></span>
+                                </label>
+                            </div>
+
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn" onclick="prevStep(2)">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Back
+                                </button>
+                                <button type="button" class="next-btn" onclick="nextStep(2)">
+                                    Review Registration
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: Review & Submit -->
+                        <div id="step3" class="form-step hidden">
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <i class="fas fa-check-circle" style="font-size: 64px; color: var(--accent-green); margin-bottom: 16px;"></i>
+                                <h3 style="color: var(--neutral-100); margin-bottom: 8px;">Almost Done!</h3>
+                                <p style="color: var(--neutral-300);">Please review your information before submitting.</p>
+                            </div>
+
+                            <div style="background: var(--primary-deep); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <span style="color: var(--neutral-400);">Full Name</span>
+                                    <span style="color: var(--neutral-100); font-weight: 600;" id="reviewName"></span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <span style="color: var(--neutral-400);">Email Address</span>
+                                    <span style="color: var(--neutral-100); font-weight: 600;" id="reviewEmail"></span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <span style="color: var(--neutral-400);">Phone Number</span>
+                                    <span style="color: var(--neutral-100); font-weight: 600;" id="reviewPhone"></span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <span style="color: var(--neutral-400);">Selected Course</span>
+                                    <span style="color: var(--accent-green); font-weight: 600;" id="reviewCourse"></span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--neutral-400);">Account Type</span>
+                                    <span style="color: var(--neutral-100); font-weight: 600;">Student</span>
+                                </div>
+                            </div>
+
+                            <label class="newsletter-checkbox" style="margin-bottom: 24px;">
+                                <input type="checkbox" id="newsletter" checked>
+                                <span>Send me updates about courses and new resources</span>
+                            </label>
+
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn" onclick="prevStep(3)">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Back
+                                </button>
+                                <button type="submit" id="registerBtn" class="register-btn">
+                                    <span>Create Account</span>
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Sign In Link -->
+                    <div class="register-footer">
+                        <p>Already have an account? <a href="./login.html">Sign In</a></p>
+                    </div>
+
+                    <!-- Benefits -->
+                    <div class="register-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-infinity"></i>
+                            <span>Lifetime Access</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificates</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-headset"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER                                   -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./academy.html">Academy</a></li>
+                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="./faq.html">FAQ</a></li>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest tips and course updates.</p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/auth.js"></script>
+    
+    <script>
+        // ============================================
+        // 📝 REGISTRATION PAGE - PRODUCTION READY
+        // ============================================
+        
+        'use strict';
+
+        // API Configuration
+        const API_BASE_URL = 'https://martoo-tech-backend-qgis.vercel.app/api';
+
+        // ============================================
+        // 🔧 UTILITY FUNCTIONS
+        // ============================================
+        
+        /**
+         * Toggle Password Visibility
+         */
+        window.togglePasswordVisibility = function(inputId) {
+            const input = document.getElementById(inputId);
+            const toggleBtn = input.parentElement.querySelector('.password-toggle i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                toggleBtn.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                toggleBtn.className = 'fas fa-eye';
+            }
+        };
+
+        /**
+         * Show Error Message
+         */
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            const errorText = document.getElementById('errorText');
+            errorText.textContent = message;
+            errorContainer.style.display = 'flex';
+            
+            setTimeout(() => {
+                errorContainer.style.display = 'none';
+            }, 5000);
+        }
+
+        /**
+         * Show Success Message
+         */
+        function showSuccess(message) {
+            const successContainer = document.getElementById('successContainer');
+            const successText = document.getElementById('successText');
+            successText.textContent = message;
+            successContainer.style.display = 'flex';
+            
+            setTimeout(() => {
+                successContainer.style.display = 'none';
+            }, 5000);
+        }
+
+        /**
+         * Hide All Messages
+         */
+        function hideMessages() {
+            document.getElementById('errorContainer').style.display = 'none';
+            document.getElementById('successContainer').style.display = 'none';
+        }
+
+        /**
+         * Set Loading State
+         */
+        function setLoading(isLoading) {
+            const registerBtn = document.getElementById('registerBtn');
+            if (registerBtn) {
+                registerBtn.disabled = isLoading;
+                registerBtn.innerHTML = isLoading 
+                    ? '<span>Creating Account...</span> <i class="fas fa-spinner fa-spin"></i>'
+                    : '<span>Create Account</span> <i class="fas fa-user-plus"></i>';
+            }
+        }
+
+        // ============================================
+        // 📊 PASSWORD STRENGTH CHECKER
+        // ============================================
+        
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            
+            if (password.length >= 8) strength += 1;
+            if (password.length >= 12) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[a-z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength += 1;
+            
+            return strength;
+        }
+
+        function updatePasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strength = checkPasswordStrength(password);
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+            
+            strengthFill.className = 'strength-fill';
+            
+            if (password.length === 0) {
+                strengthFill.style.width = '0';
+                strengthText.textContent = 'Enter password';
+            } else if (strength <= 2) {
+                strengthFill.classList.add('weak');
+                strengthText.textContent = 'Weak';
+            } else if (strength <= 3) {
+                strengthFill.classList.add('medium');
+                strengthText.textContent = 'Medium';
+            } else if (strength <= 4) {
+                strengthFill.classList.add('strong');
+                strengthText.textContent = 'Strong';
+            } else {
+                strengthFill.classList.add('very-strong');
+                strengthText.textContent = 'Very Strong';
+            }
+        }
+
+        // ============================================
+        // 🧭 STEP NAVIGATION
+        // ============================================
+        
+        let currentStep = 1;
+
+        window.nextStep = function(step) {
+            if (step === 1) {
+                // Validate Step 1
+                if (!validateStep1()) {
+                    return;
+                }
+                // Update review info
+                updateReviewInfo();
+            }
+            
+            if (step === 2) {
+                // Validate Step 2
+                if (!validateStep2()) {
+                    return;
+                }
+            }
+            
+            // Hide current step
+            document.getElementById(`step${step}`).classList.add('hidden');
+            
+            // Show next step
+            document.getElementById(`step${step + 1}`).classList.remove('hidden');
+            
+            // Update progress indicators
+            document.getElementById(`step${step}Indicator`).classList.remove('active');
+            document.getElementById(`step${step}Indicator`).classList.add('completed');
+            document.getElementById(`step${step + 1}Indicator`).classList.add('active');
+            
+            currentStep = step + 1;
+        };
+
+        window.prevStep = function(step) {
+            // Hide current step
+            document.getElementById(`step${step}`).classList.add('hidden');
+            
+            // Show previous step
+            document.getElementById(`step${step - 1}`).classList.remove('hidden');
+            
+            // Update progress indicators
+            document.getElementById(`step${step}Indicator`).classList.remove('active');
+            document.getElementById(`step${step - 1}Indicator`).classList.remove('completed');
+            document.getElementById(`step${step - 1}Indicator`).classList.add('active');
+            
+            currentStep = step - 1;
+        };
+
+        // ============================================
+        // ✅ VALIDATION FUNCTIONS
+        // ============================================
+        
+        function validateStep1() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (!firstName || !lastName) {
+                showError('Please enter your full name');
+                return false;
+            }
+            
+            if (!email) {
+                showError('Please enter your email address');
+                return false;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('Please enter a valid email address');
+                return false;
+            }
+            
+            if (phone) {
+                const phoneRegex = /^(\+?260|0)[97]\d{8}$/;
+                if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                    showError('Please enter a valid Zambian phone number');
+                    return false;
+                }
+            }
+            
+            if (password.length < 8) {
+                showError('Password must be at least 8 characters long');
+                return false;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function validateStep2() {
+            const course = document.getElementById('course').value;
+            const terms = document.getElementById('terms').checked;
+            
+            if (!course) {
+                showError('Please select a course');
+                return false;
+            }
+            
+            if (!terms) {
+                showError('You must agree to the Terms of Service and Privacy Policy');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function validateForm() {
+            return validateStep1() && validateStep2();
+        }
+
+        // ============================================
+        // 📋 REVIEW INFORMATION
+        // ============================================
+        
+        function updateReviewInfo() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const course = document.getElementById('course').value;
+            
+            document.getElementById('reviewName').textContent = `${firstName} ${lastName}`;
+            document.getElementById('reviewEmail').textContent = email;
+            document.getElementById('reviewPhone').textContent = phone || 'Not provided';
+            
+            // Get course display name
+            const courseSelect = document.getElementById('course');
+            const selectedOption = courseSelect.options[courseSelect.selectedIndex];
+            document.getElementById('reviewCourse').textContent = selectedOption ? selectedOption.text : 'Not selected';
+        }
+
+        // ============================================
+        // 🚀 FORM SUBMISSION
+        // ============================================
+        
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            try {
+                setLoading(true);
+                hideMessages();
+                
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const course = document.getElementById('course').value;
+                const notes = document.getElementById('notes').value.trim();
+                const newsletter = document.getElementById('newsletter').checked;
+                
+                // Format phone number
+                const formattedPhone = phone ? (phone.startsWith('0') ? '+260' + phone.substring(1) : phone) : null;
+                
+                // Create enrollment first
+                const enrollmentData = {
+                    name: `${firstName} ${lastName}`,
+                    email: email,
+                    phone: formattedPhone,
+                    course: course,
+                    notes: notes || null
+                };
+                
+                const enrollmentResponse = await fetch(`${API_BASE_URL}/enrollments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(enrollmentData)
+                });
+                
+                const enrollmentResult = await enrollmentResponse.json();
+                
+                if (enrollmentResult.success) {
+                    showSuccess('Account created successfully! Redirecting to login...');
+                    
+                    // Store enrollment ID for reference
+                    localStorage.setItem('pending_enrollment', JSON.stringify({
+                        id: enrollmentResult.id,
+                        email: email,
+                        course: course
+                    }));
+                    
+                    // Redirect to login page
+                    setTimeout(() => {
+                        window.location.href = './login.html';
+                    }, 2000);
+                } else {
+                    showError(enrollmentResult.error || 'Registration failed. Please try again.');
+                }
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                
+                if (error.message === 'Failed to fetch') {
+                    showError('Network error. Please check your internet connection.');
+                } else {
+                    showError('Registration failed. Please try again later.');
+                }
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        // ============================================
+        // 🔍 CHECK EXISTING SESSION
+        // ============================================
+        
+        function checkExistingSession() {
+            const token = localStorage.getItem('martoo_token') || sessionStorage.getItem('martoo_token');
+            const user = localStorage.getItem('martoo_user');
+            
+            if (token && user) {
+                // User is already logged in, redirect to dashboard
+                const userData = JSON.parse(user);
+                if (userData.role === 'admin') {
+                    window.location.href = './admin-dashboard.html';
+                } else {
+                    window.location.href = './user_dashboard.html';
+                }
+            }
+        }
+
+        // ============================================
+        // 🎯 INITIALIZATION
+        // ============================================
+        
+        function init() {
+            // Check for existing session
+            checkExistingSession();
+            
+            // Password strength checker
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', updatePasswordStrength);
+            }
+            
+            // Form submission
+            const registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', handleSubmit);
+            }
+            
+            // Clear messages on input
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', hideMessages);
+            });
+            
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+            
+            // Set active nav based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === './' + currentPage || 
+                    (currentPage === 'register.html' && href === './register.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            console.log('✅ Registration page initialized');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
