@@ -1,1 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Martoo Tech Works Refund Policy - Clear terms on refunds, cancellations, and payment disputes for our services, courses, and software downloads.">
+    <meta name="keywords" content="refund policy, cancellation, payment terms, money back guarantee, Zambian consumer rights">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="Refund Policy - Martoo Tech Works">
+    <meta property="og:description" content="Our commitment to fair and transparent refunds">
+    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Refund Policy - Martoo Tech Works</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== REFUND POLICY PAGE SPECIFIC STYLES ===== */
+        .legal-hero {
+            background: linear-gradient(145deg, var(--primary-deeper) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legal-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .legal-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(40, 167, 69, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .legal-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .legal-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .legal-hero p {
+            font-size: 18px;
+            color: var(--neutral-300);
+            margin-bottom: 0;
+        }
+        
+        .last-updated {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 24px;
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-full);
+            color: var(--accent-blue-light);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .last-updated i {
+            margin-right: 8px;
+        }
+        
+        /* Legal Content */
+        .legal-content-section {
+            padding: 60px 0;
+            background: var(--primary-deep);
+        }
+        
+        .legal-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Table of Contents */
+        .toc-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+        }
+        
+        .toc-title {
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: var(--neutral-100);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .toc-title i {
+            color: var(--accent-blue);
+            font-size: 20px;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-item {
+            margin-bottom: 12px;
+        }
+        
+        .toc-link {
+            color: var(--neutral-300);
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-link i {
+            color: var(--accent-blue);
+            font-size: 12px;
+            opacity: 0.7;
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--accent-blue);
+            padding-left: 20px;
+        }
+        
+        .toc-link:hover i {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        
+        .toc-link.active {
+            color: var(--accent-blue);
+            font-weight: 600;
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        /* Main Content */
+        .legal-main {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+        }
+        
+        .legal-section {
+            margin-bottom: 48px;
+            scroll-margin-top: 100px;
+        }
+        
+        .legal-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .legal-section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--accent-blue);
+        }
+        
+        .legal-section-header h2 {
+            font-size: 28px;
+            margin-bottom: 0;
+            color: var(--neutral-100);
+        }
+        
+        .legal-section h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .legal-section h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--neutral-200);
+        }
+        
+        .legal-section p {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .legal-section ul,
+        .legal-section ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+        
+        .legal-section li {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        .legal-section li strong {
+            color: var(--neutral-100);
+        }
+        
+        .legal-section li i {
+            color: var(--accent-blue);
+            margin-right: 8px;
+        }
+        
+        /* Policy Cards */
+        .policy-card {
+            background: var(--primary-deep);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin: 24px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-blue);
+        }
+        
+        .policy-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: var(--accent-blue);
+        }
+        
+        .policy-card h4 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .policy-card p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        /* Eligibility Table */
+        .eligibility-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--primary-deep);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        
+        .eligibility-table th {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--neutral-100);
+            font-weight: 700;
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .eligibility-table td {
+            padding: 16px;
+            color: var(--neutral-300);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        
+        .eligibility-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .eligibility-table tr:hover td {
+            background: rgba(0, 123, 255, 0.02);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .status-eligible {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(40, 167, 69, 0.2);
+        }
+        
+        .status-not-eligible {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+        }
+        
+        .status-partial {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+            border-left: 2px solid rgba(0, 123, 255, 0.3);
+            padding-left: 30px;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            border: 3px solid var(--primary-dark);
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-full);
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-content h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .timeline-content p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(40, 167, 69, 0.05);
+            border-left: 4px solid var(--accent-green);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .highlight-box i {
+            color: var(--accent-green);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box h4 {
+            color: var(--accent-green);
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--neutral-200);
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255, 193, 7, 0.05);
+            border-left: 4px solid var(--warning);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .warning-box i {
+            color: var(--warning);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .warning-box h4 {
+            color: var(--warning);
+            margin-bottom: 12px;
+        }
+        
+        /* Contact Card */
+        .refund-contact {
+            background: var(--gradient-navy);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        
+        .refund-contact h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .refund-contact p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        .refund-contact .contact-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        /* Policy Footer */
+        .policy-footer {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--neutral-400);
+            font-size: 14px;
+        }
+        
+        .policy-footer i {
+            color: var(--accent-blue);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .legal-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc-sidebar {
+                position: relative;
+                top: 0;
+                margin-bottom: 30px;
+            }
+            
+            .legal-main {
+                padding: 32px 24px;
+            }
+            
+            .legal-section-header h2 {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .legal-hero h1 {
+                font-size: 36px;
+            }
+            
+            .refund-contact {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .eligibility-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .policy-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="./index.html" class="logo">
+                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="./login.html" class="btn btn-outline">Sign In</a>
+                    <a href="./register.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 💰 REFUND POLICY HERO                      -->
+        <!-- ============================================ -->
+        <section class="legal-hero">
+            <div class="container">
+                <div class="legal-hero-content">
+                    <h1>Refund <span class="highlight-green">Policy</span></h1>
+                    <p>Our commitment to fair, transparent, and timely refunds for our services, courses, and digital products.</p>
+                    <span class="last-updated">
+                        <i class="fas fa-calendar-alt"></i>
+                        Last Updated: February 12, 2026
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📋 REFUND POLICY CONTENT                   -->
+        <!-- ============================================ -->
+        <section class="legal-content-section">
+            <div class="legal-container">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <h3 class="toc-title">
+                        <i class="fas fa-list-ul"></i>
+                        Contents
+                    </h3>
+                    <ul class="toc-list">
+                        <li class="toc-item">
+                            <a href="#introduction" class="toc-link active">
+                                <i class="fas fa-chevron-right"></i>
+                                Introduction
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#eligibility" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Refund Eligibility
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#courses" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Academy Courses
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#services" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Professional Services
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#software" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Software Downloads
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#subscriptions" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Subscriptions
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#process" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Refund Process
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#timeline" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Processing Timeline
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#non-refundable" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Non-Refundable Items
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#duplicate" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Duplicate Payments
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#cancellations" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Cancellations
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#disputes" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Payment Disputes
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#contact" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Contact for Refunds
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <a href="./contact.html" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-headset"></i>
+                            Request Refund
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="legal-main">
+                    <!-- Introduction -->
+                    <section id="introduction" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h2>Introduction</h2>
+                        </div>
+                        
+                        <p>At Martoo Tech Works, we strive to ensure your complete satisfaction with our services, courses, and products. This Refund Policy outlines the terms and conditions under which refunds are issued. We believe in fair and transparent practices that respect both our clients and our business sustainability.</p>
+                        
+                        <p>This policy applies to all payments made to Martoo Tech Works, including:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Academy Courses:</strong> Single course purchases and subscription plans</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Professional Services:</strong> GIS mapping, STATA analysis, research support, academic services</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Software Downloads:</strong> Password-protected software packages</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Consulting Services:</strong> One-on-one consultations and training sessions</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <i class="fas fa-heart"></i>
+                            <h4>Our Promise</h4>
+                            <p>If you're not satisfied with your purchase, we'll work with you to make it right. Our goal is fair resolution, not hiding behind fine print.</p>
+                        </div>
+                    </section>
+
+                    <!-- Refund Eligibility -->
+                    <section id="eligibility" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h2>Refund Eligibility</h2>
+                        </div>
+                        
+                        <p>Refund eligibility varies depending on the type of product or service purchased. The table below summarizes our refund policy for each category:</p>
+                        
+                        <table class="eligibility-table">
+                            <thead>
+                                <tr>
+                                    <th>Product/Service</th>
+                                    <th>Refund Period</th>
+                                    <th>Eligibility</th>
+                                    <th>Fee</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Single Course Purchase</strong></td>
+                                    <td>7 days</td>
+                                    <td><span class="status-badge status-eligible">Eligible</span></td>
+                                    <td>No fee</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Course Subscriptions</strong></td>
+                                    <td>14 days</td>
+                                    <td><span class="status-badge status-partial">Prorated</span></td>
+                                    <td>No fee</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Professional Services</strong></td>
+                                    <td>Before work begins</td>
+                                    <td><span class="status-badge status-eligible">100% refund</span></td>
+                                    <td>No fee</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Services in Progress</strong></td>
+                                    <td>N/A</td>
+                                    <td><span class="status-badge status-partial">Partial (work completed)</span></td>
+                                    <td>15% admin fee</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Completed Projects</strong></td>
+                                    <td>N/A</td>
+                                    <td><span class="status-badge status-not-eligible">Not eligible</span></td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Software Downloads</strong></td>
+                                    <td>N/A</td>
+                                    <td><span class="status-badge status-not-eligible">Not eligible</span></td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Consulting Sessions</strong></td>
+                                    <td>24 hours before</td>
+                                    <td><span class="status-badge status-eligible">Eligible</span></td>
+                                    <td>No fee</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Duplicate Payments</strong></td>
+                                    <td>30 days</td>
+                                    <td><span class="status-badge status-eligible">100% refund</span></td>
+                                    <td>No fee</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Important Note</h4>
+                            <p>All refund requests must be submitted within the specified timeframes. Requests submitted after the refund period will not be eligible for a refund.</p>
+                        </div>
+                    </section>
+
+                    <!-- Academy Courses -->
+                    <section id="courses" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h2>Academy Courses</h2>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <h4>Single Course Purchases</h4>
+                            <p>You may request a full refund within 7 days of purchase if you have not completed more than 30% of the course content. Refunds after 7 days or after completing more than 30% of the course are not available.</p>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h4>Monthly Subscriptions</h4>
+                            <p>You may cancel your monthly subscription at any time. Refunds for the current billing period are provided on a prorated basis for unused time. To receive a prorated refund, you must cancel within 14 days of your billing date.</p>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <h4>Annual Subscriptions</h4>
+                            <p>Annual subscriptions may be refunded on a prorated basis for the unused portion of the subscription year, minus a 15% administrative fee. Refund requests must be submitted within 30 days of the purchase date.</p>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h4>Free Courses</h4>
+                            <p>Free courses are not eligible for refunds as no payment was collected. Access to free courses may be revoked at any time at our discretion.</p>
+                        </div>
+                    </section>
+
+                    <!-- Professional Services -->
+                    <section id="services" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h2>Professional Services</h2>
+                        </div>
+                        
+                        <p>Our professional services include GIS mapping, STATA data analysis, research proposal writing, academic support, and consulting. Refund eligibility depends on the stage of the project:</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-date">Before Work Begins</span>
+                                <div class="timeline-content">
+                                    <h4>100% Refund</h4>
+                                    <p>If you cancel before any work has commenced on your project, you are eligible for a full 100% refund of any amounts paid.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <span class="timeline-date">Work in Progress</span>
+                                <div class="timeline-content">
+                                    <h4>Partial Refund</h4>
+                                    <p>If you cancel while work is in progress, you will receive a refund for the portion of work not yet completed, minus a 15% administrative fee. You will receive all work completed up to the cancellation date.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <span class="timeline-date">Project Complete</span>
+                                <div class="timeline-content">
+                                    <h4>No Refund</h4>
+                                    <p>Once a project has been completed and delivered to you, no refunds are available. However, we offer 14 days of free revisions to ensure your satisfaction with the delivered work.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <i class="fas fa-edit"></i>
+                            <h4>Satisfaction Guarantee</h4>
+                            <p>For all completed service projects, we provide up to 14 days of free revisions. If you are unsatisfied with the delivered work, please contact us immediately to discuss revisions. We are committed to delivering work that meets your requirements.</p>
+                        </div>
+                    </section>
+
+                    <!-- Software Downloads -->
+                    <section id="software" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h2>Software Downloads</h2>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h4>Password-Protected Software</h4>
+                            <p>Software downloads, including SPSS 16, STATA 14, and QGIS, are provided as password-protected files. Due to the digital nature of these products and the immediate access upon download, <strong>all software download sales are final and non-refundable</strong>.</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Exception: Technical Issues</h4>
+                            <p>If you experience technical issues that prevent you from installing or using the downloaded software, please contact our support team. We will work with you to resolve the issue. If we are unable to resolve the issue within 7 days, a full refund will be issued.</p>
+                        </div>
+                    </section>
+
+                    <!-- Subscriptions -->
+                    <section id="subscriptions" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h2>Subscriptions</h2>
+                        </div>
+                        
+                        <h4>Cancellation Policy</h4>
+                        <p>You may cancel your subscription at any time through your account dashboard or by contacting our support team. Cancellation will take effect at the end of your current billing period.</p>
+                        
+                        <h4>Prorated Refunds</h4>
+                        <p>Prorated refunds for unused portions of subscriptions are available under the following conditions:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Monthly subscriptions: Refund requests within 14 days of billing date</li>
+                            <li><i class="fas fa-check-circle"></i> Annual subscriptions: Refund requests within 30 days of purchase date</li>
+                            <li><i class="fas fa-check-circle"></i> All prorated refunds are calculated based on the number of unused days remaining in the billing period</li>
+                        </ul>
+                        
+                        <h4>Failed Payments</h4>
+                        <p>If a subscription payment fails, we will attempt to process the payment up to 3 times over 5 days. If all attempts fail, your subscription will be suspended. No refunds are issued for failed payments that are later successfully processed.</p>
+                    </section>
+
+                    <!-- Refund Process -->
+                    <section id="process" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-process"></i>
+                            </div>
+                            <h2>Refund Process</h2>
+                        </div>
+                        
+                        <h4>How to Request a Refund</h4>
+                        <p>To request a refund, please follow these steps:</p>
+                        
+                        <ol>
+                            <li><strong>Contact Us:</strong> Email refunds@martootech.com or use our <a href="./contact.html" style="color: var(--accent-blue);">contact form</a> with the subject line "Refund Request"</li>
+                            <li><strong>Provide Information:</strong> Include your full name, email address used for purchase, date of purchase, amount paid, and reason for refund request</li>
+                            <li><strong>Attach Receipt:</strong> If available, attach a copy of your payment receipt or transaction confirmation</li>
+                            <li><strong>Submit:</strong> Send your request and await confirmation from our team</li>
+                        </ol>
+                        
+                        <h4>Required Information</h4>
+                        <p>To process your refund efficiently, please include the following information in your request:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-user"></i> Full name and email address</li>
+                            <li><i class="fas fa-calendar"></i> Date of purchase</li>
+                            <li><i class="fas fa-tag"></i> Product or service purchased</li>
+                            <li><i class="fas fa-dollar-sign"></i> Amount paid</li>
+                            <li><i class="fas fa-file-invoice"></i> Transaction ID or receipt number (if available)</li>
+                            <li><i class="fas fa-comment"></i> Reason for refund request</li>
+                        </ul>
+                        
+                        <div class="info-card" style="display: flex; align-items: flex-start; gap: 20px; background: var(--primary-deep); padding: 24px; border-radius: var(--radius-lg); margin: 24px 0;">
+                            <i class="fas fa-envelope" style="font-size: 32px; color: var(--accent-blue);"></i>
+                            <div>
+                                <h4 style="font-size: 18px; margin-bottom: 8px;">Email Your Refund Request</h4>
+                                <p style="margin-bottom: 8px;">Send all refund requests to:</p>
+                                <p style="font-size: 18px; font-weight: 700; color: var(--accent-blue); margin-bottom: 0;">refunds@martootech.com</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Processing Timeline -->
+                    <section id="timeline" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h2>Processing Timeline</h2>
+                        </div>
+                        
+                        <p>Once your refund request is received and approved, refunds are processed according to the following timeline:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Acknowledgment:</strong> Within 24 hours of receiving your request</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Review Period:</strong> 2-3 business days to verify eligibility and process the request</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Payment Processing:</strong> 5-10 business days for the refund to appear in your account (varies by payment method and financial institution)</li>
+                        </ul>
+                        
+                        <p><strong>Total estimated time:</strong> 7-14 business days from request submission to refund receipt.</p>
+                        
+                        <div class="highlight-box">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Expedited Processing</h4>
+                            <p>For verified duplicate payments and clear billing errors, we prioritize processing within 48 hours.</p>
+                        </div>
+                    </section>
+
+                    <!-- Non-Refundable Items -->
+                    <section id="non-refundable" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <h2>Non-Refundable Items</h2>
+                        </div>
+                        
+                        <p>The following items are strictly non-refundable:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-times-circle"></i> <strong>Software Downloads:</strong> All password-protected software files (SPSS, STATA, QGIS)</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Completed Service Projects:</strong> Projects that have been delivered and accepted by the client</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Free Courses:</strong> No payment was collected, therefore no refund is applicable</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Donations:</strong> Any voluntary payments or contributions made to Martoo Tech Works</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Third-Party Fees:</strong> Payment processing fees charged by banks or payment providers (these are non-recoverable)</li>
+                        </ul>
+                    </section>
+
+                    <!-- Duplicate Payments -->
+                    <section id="duplicate" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-copy"></i>
+                            </div>
+                            <h2>Duplicate Payments</h2>
+                        </div>
+                        
+                        <p>If you accidentally make a duplicate payment, we will issue a full refund for the duplicate transaction(s). Please contact us with the following information:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Your name and email address</li>
+                            <li><i class="fas fa-check-circle"></i> Date and amount of the duplicate payment</li>
+                            <li><i class="fas fa-check-circle"></i> Transaction IDs for both payments (if available)</li>
+                        </ul>
+                        
+                        <p>Duplicate payment refunds are processed within 48 hours of verification and do not incur any administrative fees.</p>
+                    </section>
+
+                    <!-- Cancellations -->
+                    <section id="cancellations" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <h2>Cancellations</h2>
+                        </div>
+                        
+                        <h4>Course Cancellations</h4>
+                        <p>You may cancel your enrollment in a paid course within 7 days of purchase for a full refund, provided you have not completed more than 30% of the course content.</p>
+                        
+                        <h4>Subscription Cancellations</h4>
+                        <p>Subscriptions can be cancelled at any time through your account dashboard. Cancelled subscriptions remain active until the end of the current billing period. No further payments will be charged after cancellation.</p>
+                        
+                        <h4>Service Cancellations</h4>
+                        <p>To cancel a professional service project, please contact us immediately. Refunds will be processed according to the timeline outlined in the Professional Services section.</p>
+                    </section>
+
+                    <!-- Payment Disputes -->
+                    <section id="disputes" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h2>Payment Disputes</h2>
+                        </div>
+                        
+                        <p>If you believe a charge is incorrect or unauthorized, please contact us immediately before filing a dispute with your bank or payment provider. We are committed to resolving all billing issues directly and promptly.</p>
+                        
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Frivolous Disputes</h4>
+                            <p>Filing a chargeback or payment dispute without first attempting to resolve the issue with us may result in permanent suspension of your account and access to all purchased services and courses. We are reasonable people – please talk to us first.</p>
+                        </div>
+                    </section>
+
+                    <!-- Contact for Refunds -->
+                    <section id="contact" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h2>Contact for Refunds</h2>
+                        </div>
+                        
+                        <p>For all refund inquiries, cancellations, and billing questions, please contact our support team:</p>
+                        
+                        <div class="refund-contact">
+                            <div>
+                                <h3>Billing & Refunds Department</h3>
+                                <p><i class="fas fa-envelope" style="color: var(--accent-blue); margin-right: 8px;"></i> refunds@martootech.com</p>
+                                <p style="margin-top: 8px;"><i class="fas fa-phone" style="color: var(--accent-blue); margin-right: 8px;"></i> <a href="tel:260774766077" style="color: var(--neutral-300);">+260 774 766 077</a></p>
+                                <p><i class="fab fa-whatsapp" style="color: var(--accent-green); margin-right: 8px;"></i> <a href="https://wa.me/260973495316" target="_blank" style="color: var(--neutral-300);">+260 973 495 316</a></p>
+                            </div>
+                            <div class="contact-buttons">
+                                <a href="./contact.html" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Request Refund
+                                </a>
+                                <a href="https://wa.me/260973495316" class="btn btn-outline-primary" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-top: 24px; font-size: 14px; color: var(--neutral-400);">
+                            <i class="fas fa-clock"></i> Refund inquiries are typically answered within 24 hours, Monday-Friday.
+                        </p>
+                    </section>
+                    
+                    <!-- Policy Footer -->
+                    <div class="policy-footer">
+                        <p><i class="fas fa-balance-scale"></i> This Refund Policy was last updated on February 12, 2026.</p>
+                        <p style="margin-top: 8px;">© 2026 Martoo Tech Works. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🎯 RELATED LEGAL DOCUMENTS                 -->
+        <!-- ============================================ -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div style="background: var(--gradient-navy); border-radius: var(--radius-xl); padding: 48px; text-align: center; border: 1px solid rgba(0,123,255,0.2);">
+                <h2 style="font-size: 28px; margin-bottom: 20px; color: var(--neutral-100);">Other Legal <span class="highlight-blue">Documents</span></h2>
+                <p style="color: var(--neutral-300); font-size: 16px; max-width: 700px; margin: 0 auto 32px;">
+                    Review our terms of service, privacy policy, and other legal information.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="./terms.html" class="btn btn-outline-primary">
+                        <i class="fas fa-file-contract"></i>
+                        Terms of Service
+                    </a>
+                    <a href="./privacy.html" class="btn btn-outline-primary">
+                        <i class="fas fa-shield-alt"></i>
+                        Privacy Policy
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER                                   -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./academy.html">Academy</a></li>
+                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./blog.html">Insights</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./refund-policy.html" class="active">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest tips and course updates.</p>
+                    <form id="newsletterForm" class="newsletter-form" onsubmit="event.preventDefault(); alert('Newsletter subscription demo. In production, this would connect to your API.');">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    
+    <script>
+        // ============================================
+        // 💰 REFUND POLICY PAGE - PRODUCTION READY
+        // ============================================
+        
+        'use strict';
+
+        // ============================================
+        // 📋 TABLE OF CONTENTS HIGHLIGHTING
+        // ============================================
+        
+        function initTocHighlight() {
+            const sections = document.querySelectorAll('.legal-section');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            function updateActiveToc() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 130;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href').substring(1);
+                    if (href === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateTocHighlight);
+            window.addEventListener('load', updateTocHighlight);
+        }
+
+        // ============================================
+        // 🚀 INITIALIZATION
+        // ============================================
+        
+        function init() {
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+            
+            // Set active nav based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === './' + currentPage || 
+                    (currentPage === 'refund-policy.html' && href === './refund-policy.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Initialize table of contents highlighting
+            initTocHighlight();
+            
+            // Smooth scroll for TOC links
+            document.querySelectorAll('.toc-link').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            console.log('✅ Refund Policy page initialized');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
