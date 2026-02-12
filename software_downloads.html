@@ -1,1 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Download SPSS 16, STATA 14, and QGIS with password protection. Secure software downloads for Zambian students and researchers.">
+    <meta name="keywords" content="SPSS download, STATA download, QGIS download, statistical software, GIS software, password protected, Zambia">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="Software Downloads - Martoo Tech Works">
+    <meta property="og:description" content="Password-protected downloads of SPSS 16, STATA 14, and QGIS for academic use">
+    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Software Downloads - Martoo Tech Works</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== SOFTWARE DOWNLOADS PAGE SPECIFIC STYLES ===== */
+        .downloads-hero {
+            background: linear-gradient(145deg, var(--primary-deeper) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .downloads-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .downloads-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(40, 167, 69, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .downloads-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .downloads-hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+        }
+        
+        .downloads-hero p {
+            font-size: 18px;
+            color: var(--neutral-300);
+            margin-bottom: 30px;
+        }
+        
+        /* Security Notice */
+        .security-notice {
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-full);
+            padding: 12px 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent-blue-light);
+            margin-top: 20px;
+        }
+        
+        .security-notice i {
+            font-size: 18px;
+        }
+        
+        /* Downloads Grid */
+        .downloads-section {
+            padding: 60px 0;
+            background: var(--primary-deep);
+        }
+        
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .download-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .download-card::after {
+            content: '🔒';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: var(--accent-blue);
+            z-index: 2;
+        }
+        
+        .download-header {
+            padding: 32px 32px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        
+        .download-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 48px;
+            color: var(--accent-blue);
+            transition: all var(--transition-normal);
+        }
+        
+        .download-card:hover .download-icon {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .download-header h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .software-version {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-full);
+            color: var(--neutral-400);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .software-size {
+            color: var(--neutral-400);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        .download-body {
+            padding: 32px;
+            flex: 1;
+        }
+        
+        .software-description {
+            color: var(--neutral-300);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .software-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        
+        .software-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--neutral-200);
+            font-size: 14px;
+        }
+        
+        .software-features li i {
+            color: var(--accent-green);
+            font-size: 14px;
+        }
+        
+        .password-section {
+            background: var(--primary-deep);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .password-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--neutral-400);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        
+        .password-label i {
+            color: var(--accent-blue);
+        }
+        
+        .password-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--primary-midnight);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+        }
+        
+        .password-value {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-green);
+            letter-spacing: 1px;
+        }
+        
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--neutral-400);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 12px;
+            transition: all var(--transition-fast);
+            border-radius: var(--radius-sm);
+        }
+        
+        .copy-btn:hover {
+            color: var(--accent-blue);
+            background: rgba(0, 123, 255, 0.1);
+        }
+        
+        .copy-btn.copied {
+            color: var(--accent-green);
+        }
+        
+        .download-footer {
+            padding: 24px 32px 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .download-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .download-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.3);
+        }
+        
+        .download-btn i {
+            font-size: 16px;
+        }
+        
+        .download-note {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--neutral-400);
+            font-size: 12px;
+        }
+        
+        .download-note i {
+            color: var(--warning);
+        }
+        
+        /* Password Modal */
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .password-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--neutral-400);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover {
+            color: var(--danger);
+            background: rgba(220, 53, 69, 0.1);
+        }
+        
+        .modal-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 42px;
+            color: var(--accent-blue);
+            border: 2px solid rgba(0, 123, 255, 0.2);
+        }
+        
+        .modal-content h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            text-align: center;
+            color: var(--neutral-100);
+        }
+        
+        .modal-content p {
+            text-align: center;
+            color: var(--neutral-300);
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+        
+        .password-input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+        
+        .password-input-group i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-400);
+            font-size: 18px;
+            z-index: 2;
+        }
+        
+        .password-input-group input {
+            width: 100%;
+            padding: 18px 18px 18px 54px;
+            background: var(--primary-deep);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            color: var(--neutral-100);
+            font-size: 16px;
+            transition: all var(--transition-normal);
+        }
+        
+        .password-input-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: var(--primary-midnight);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--neutral-400);
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 3;
+        }
+        
+        .password-toggle:hover {
+            color: var(--accent-blue);
+        }
+        
+        .modal-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.3);
+        }
+        
+        .password-error {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            color: #ff6b7b;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .password-hint {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--neutral-400);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .password-hint i {
+            color: var(--accent-blue);
+        }
+        
+        /* System Requirements */
+        .requirements-section {
+            padding: 60px 0;
+            background: var(--gradient-navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .requirement-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: all var(--transition-normal);
+        }
+        
+        .requirement-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+        
+        .requirement-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: var(--accent-blue);
+        }
+        
+        .requirement-card h4 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .requirement-list {
+            list-style: none;
+        }
+        
+        .requirement-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--neutral-300);
+            font-size: 14px;
+        }
+        
+        .requirement-list li i {
+            color: var(--accent-green);
+            font-size: 12px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 0;
+            background: var(--primary-deep);
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .faq-item {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all var(--transition-normal);
+        }
+        
+        .faq-item:hover {
+            border-color: var(--accent-blue);
+        }
+        
+        .faq-question {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .faq-question i {
+            font-size: 20px;
+            color: var(--accent-blue);
+        }
+        
+        .faq-question h4 {
+            font-size: 18px;
+            margin-bottom: 0;
+            color: var(--neutral-100);
+        }
+        
+        .faq-answer {
+            color: var(--neutral-300);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-left: 32px;
+        }
+        
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--neutral-300);
+            font-size: 14px;
+        }
+        
+        .trust-badge i {
+            font-size: 20px;
+            color: var(--accent-green);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .downloads-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .requirements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .downloads-hero h1 {
+                font-size: 36px;
+            }
+            
+            .downloads-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .modal-content {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="./index.html" class="logo">
+                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="./login.html" class="btn btn-outline">Sign In</a>
+                    <a href="./register.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 📥 DOWNLOADS HERO                          -->
+        <!-- ============================================ -->
+        <section class="downloads-hero">
+            <div class="container">
+                <div class="downloads-hero-content">
+                    <h1>Software <span class="highlight-blue">Downloads</span></h1>
+                    <p>Secure, password-protected downloads of essential statistical and GIS software for Zambian students and researchers. All files are verified and malware-free.</p>
+                    
+                    <div class="security-notice">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Password protected for authorized academic use only</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 💿 SOFTWARE DOWNLOADS GRID                  -->
+        <!-- ============================================ -->
+        <section class="downloads-section">
+            <div class="container">
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Malware Free</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>Password Protected</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Verified Downloads</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Access</span>
+                    </div>
+                </div>
+
+                <!-- Downloads Grid -->
+                <div class="downloads-grid">
+                    <!-- SPSS 16 -->
+                    <div class="download-card" id="spss-card">
+                        <div class="download-header">
+                            <div class="download-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h2>SPSS 16</h2>
+                            <span class="software-version">Version 16.0.1</span>
+                            <span class="software-size"><i class="fas fa-database"></i> 1.2 GB</span>
+                        </div>
+                        
+                        <div class="download-body">
+                            <p class="software-description">
+                                IBM SPSS Statistics 16.0.1 - Professional statistical analysis software for social science research, survey data, and academic projects.
+                            </p>
+                            
+                            <ul class="software-features">
+                                <li><i class="fas fa-check-circle"></i> Descriptive statistics & cross-tabs</li>
+                                <li><i class="fas fa-check-circle"></i> T-tests, ANOVA, regression</li>
+                                <li><i class="fas fa-check-circle"></i> Factor analysis & clustering</li>
+                                <li><i class="fas fa-check-circle"></i> Chart builder & visualization</li>
+                                <li><i class="fas fa-check-circle"></i> Compatible with Windows 10/11</li>
+                            </ul>
+                            
+                            <div class="password-section">
+                                <div class="password-label">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Download Password (Case Sensitive)</span>
+                                </div>
+                                <div class="password-box">
+                                    <span class="password-value" id="spssPassword">MARTOOTECH@SPSS</span>
+                                    <button class="copy-btn" onclick="copyPassword('MARTOOTECH@SPSS', this)" title="Copy password">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="download-footer">
+                            <button class="download-btn" onclick="verifyPassword('spss')">
+                                <i class="fas fa-download"></i>
+                                Download SPSS 16
+                            </button>
+                            <div class="download-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Password required • Google Drive link</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STATA 14 -->
+                    <div class="download-card" id="stata-card">
+                        <div class="download-header">
+                            <div class="download-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h2>STATA 14</h2>
+                            <span class="software-version">Version 14.2</span>
+                            <span class="software-size"><i class="fas fa-database"></i> 850 MB</span>
+                        </div>
+                        
+                        <div class="download-body">
+                            <p class="software-description">
+                                STATA 14.2 - Powerful statistical software for data analysis, data management, and graphics. Ideal for public health research and econometrics.
+                            </p>
+                            
+                            <ul class="software-features">
+                                <li><i class="fas fa-check-circle"></i> Linear & logistic regression</li>
+                                <li><i class="fas fa-check-circle"></i> Survival analysis</li>
+                                <li><i class="fas fa-check-circle"></i> Panel data analysis</li>
+                                <li><i class="fas fa-check-circle"></i> Time series analysis</li>
+                                <li><i class="fas fa-check-circle"></i> Publication-quality graphics</li>
+                            </ul>
+                            
+                            <div class="password-section">
+                                <div class="password-label">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Download Password (Case Sensitive)</span>
+                                </div>
+                                <div class="password-box">
+                                    <span class="password-value" id="stataPassword">MARTOOTECH@STATA</span>
+                                    <button class="copy-btn" onclick="copyPassword('MARTOOTECH@STATA', this)" title="Copy password">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="download-footer">
+                            <button class="download-btn" onclick="verifyPassword('stata')">
+                                <i class="fas fa-download"></i>
+                                Download STATA 14
+                            </button>
+                            <div class="download-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Password required • Google Drive link</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QGIS -->
+                    <div class="download-card" id="qgis-card">
+                        <div class="download-header">
+                            <div class="download-icon">
+                                <i class="fas fa-map"></i>
+                            </div>
+                            <h2>QGIS</h2>
+                            <span class="software-version">Version 3.36.3</span>
+                            <span class="software-size"><i class="fas fa-database"></i> 1.1 GB</span>
+                        </div>
+                        
+                        <div class="download-body">
+                            <p class="software-description">
+                                QGIS 3.36.3 - Professional open-source geographic information system. Create, edit, visualize, analyze and publish geospatial information.
+                            </p>
+                            
+                            <ul class="software-features">
+                                <li><i class="fas fa-check-circle"></i> Health facility mapping</li>
+                                <li><i class="fas fa-check-circle"></i> Spatial analysis & geoprocessing</li>
+                                <li><i class="fas fa-check-circle"></i> Thematic mapping</li>
+                                <li><i class="fas fa-check-circle"></i> Georeferencing & digitizing</li>
+                                <li><i class="fas fa-check-circle"></i> Print layout & map export</li>
+                            </ul>
+                            
+                            <div class="password-section">
+                                <div class="password-label">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Download Password (Case Sensitive)</span>
+                                </div>
+                                <div class="password-box">
+                                    <span class="password-value" id="qgisPassword">MARTOOTECH@QGIS</span>
+                                    <button class="copy-btn" onclick="copyPassword('MARTOOTECH@QGIS', this)" title="Copy password">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="download-footer">
+                            <button class="download-btn" onclick="verifyPassword('qgis')">
+                                <i class="fas fa-download"></i>
+                                Download QGIS
+                            </button>
+                            <div class="download-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Password required • Google Drive link</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Installation Notice -->
+                <div style="background: var(--gradient-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 32px; margin-top: 40px;">
+                    <div style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
+                        <div style="flex-shrink: 0;">
+                            <i class="fas fa-info-circle" style="font-size: 32px; color: var(--accent-blue);"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <h4 style="font-size: 18px; margin-bottom: 8px; color: var(--neutral-100);">Installation Instructions</h4>
+                            <p style="color: var(--neutral-300); margin-bottom: 16px;">After downloading, you may need to enter the password to extract the files. All software is pre-configured for academic use.</p>
+                            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                                <span style="display: flex; align-items: center; gap: 8px; color: var(--neutral-400); font-size: 14px;">
+                                    <i class="fas fa-file-archive"></i> Extract with WinRAR/7-Zip
+                                </span>
+                                <span style="display: flex; align-items: center; gap: 8px; color: var(--neutral-400); font-size: 14px;">
+                                    <i class="fas fa-shield-alt"></i> Disable antivirus during install
+                                </span>
+                                <span style="display: flex; align-items: center; gap: 8px; color: var(--neutral-400); font-size: 14px;">
+                                    <i class="fas fa-key"></i> Use password above
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 💻 SYSTEM REQUIREMENTS                      -->
+        <!-- ============================================ -->
+        <section class="requirements-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>System <span class="highlight-blue">Requirements</span></h2>
+                    <p>Ensure your computer meets these specifications before downloading.</p>
+                </div>
+                
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <div class="requirement-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h4>Windows</h4>
+                        <ul class="requirement-list">
+                            <li><i class="fas fa-check"></i> Windows 7, 8, 10, 11 (64-bit)</li>
+                            <li><i class="fas fa-check"></i> 4 GB RAM minimum (8 GB recommended)</li>
+                            <li><i class="fas fa-check"></i> 2 GB free disk space</li>
+                            <li><i class="fas fa-check"></i> Intel Core i3 or equivalent</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirement-card">
+                        <div class="requirement-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h4>Mac</h4>
+                        <ul class="requirement-list">
+                            <li><i class="fas fa-check"></i> macOS 10.13+ (High Sierra+)</li>
+                            <li><i class="fas fa-check"></i> 4 GB RAM minimum (8 GB recommended)</li>
+                            <li><i class="fas fa-check"></i> 2 GB free disk space</li>
+                            <li><i class="fas fa-check"></i> Intel or Apple Silicon (M1/M2)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirement-card">
+                        <div class="requirement-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h4>Additional</h4>
+                        <ul class="requirement-list">
+                            <li><i class="fas fa-check"></i> WinRAR, 7-Zip or similar</li>
+                            <li><i class="fas fa-check"></i> Google Drive access</li>
+                            <li><i class="fas fa-check"></i> Stable internet connection</li>
+                            <li><i class="fas fa-check"></i> Administrator privileges</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ❓ FREQUENTLY ASKED QUESTIONS               -->
+        <!-- ============================================ -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Download <span class="highlight-green">FAQs</span></h2>
+                    <p>Common questions about our software downloads.</p>
+                </div>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-lock"></i>
+                            <h4>Why are downloads password protected?</h4>
+                        </div>
+                        <div class="faq-answer">
+                            We password-protect our downloads to ensure they are only accessed by legitimate students and researchers. This helps us maintain the integrity of the software and comply with licensing requirements.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-key"></i>
+                            <h4>What is the password?</h4>
+                        </div>
+                        <div class="faq-answer">
+                            Each software has its own unique password displayed on its download card. Passwords are case-sensitive and follow the format: MARTOOTECH@SOFTWARE (e.g., MARTOOTECH@SPSS, MARTOOTECH@STATA, MARTOOTECH@QGIS).
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-download"></i>
+                            <h4>How do I download?</h4>
+                        </div>
+                        <div class="faq-answer">
+                            Click the "Download" button, enter the password when prompted, and you'll be redirected to Google Drive. Click the download icon on Google Drive to save the file to your computer.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Are these files safe?</h4>
+                        </div>
+                        <div class="faq-answer">
+                            Yes. All downloads are scanned for malware and verified before being made available. We've been providing these downloads to Zambian students since 2022 with zero security incidents.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-file-archive"></i>
+                            <h4>How do I extract the files?</h4>
+                        </div>
+                        <div class="faq-answer">
+                            You'll need WinRAR, 7-Zip, or built-in Windows extraction tools. Right-click the downloaded file, select "Extract All," and enter the password when prompted.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <h4>Need help with installation?</h4>
+                        </div>
+                        <div class="faq-answer">
+                            Contact our support team via WhatsApp or email, and we'll guide you through the installation process. We offer free installation support for students.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🎯 CALL TO ACTION                          -->
+        <!-- ============================================ -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div style="background: linear-gradient(145deg, var(--primary-navy), var(--primary-midnight)); border-radius: var(--radius-xl); padding: 48px; text-align: center; border: 1px solid rgba(0,123,255,0.2);">
+                <h2 style="font-size: 32px; margin-bottom: 16px; color: var(--neutral-100);">Need Installation <span class="highlight-green">Assistance?</span></h2>
+                <p style="color: var(--neutral-300); font-size: 18px; max-width: 700px; margin: 0 auto 32px;">
+                    Our team is ready to help you with installation, configuration, or any technical issues.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/260973495316" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp Support
+                    </a>
+                    <a href="./contact.html" class="btn btn-outline-primary btn-large">
+                        <i class="fas fa-envelope"></i>
+                        Email Support
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🔐 PASSWORD VERIFICATION MODAL              -->
+    <!-- ============================================ -->
+    <div id="passwordModal" class="password-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-icon" id="modalIcon">
+                <i class="fas fa-lock"></i>
+            </div>
+            
+            <h3 id="modalTitle">Enter Password</h3>
+            <p id="modalSubtitle">This download is password protected</p>
+            
+            <div id="passwordError" class="password-error" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Incorrect password. Please try again.</span>
+            </div>
+            
+            <div class="password-input-group">
+                <i class="fas fa-key"></i>
+                <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
+                <button class="password-toggle" onclick="togglePasswordVisibility()">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            
+            <button class="modal-btn" onclick="submitPassword()">
+                <i class="fas fa-unlock-alt"></i>
+                Verify & Download
+            </button>
+            
+            <div class="password-hint">
+                <i class="fas fa-info-circle"></i>
+                <span id="passwordHint">Password is case-sensitive</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER                                   -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./academy.html">Academy</a></li>
+                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Downloads</h4>
+                    <ul>
+                        <li><a href="#spss-card">SPSS 16</a></li>
+                        <li><a href="#stata-card">STATA 14</a></li>
+                        <li><a href="#qgis-card">QGIS</a></li>
+                        <li><a href="./software_downloads.html">All Software</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    
+    <script>
+        // ============================================
+        // 📥 SOFTWARE DOWNLOADS - PRODUCTION READY
+        // ============================================
+        
+        'use strict';
+
+        // ============================================
+        // 🔗 DOWNLOAD LINKS - YOUR EXACT GOOGLE DRIVE LINKS
+        // ============================================
+        
+        const DOWNLOAD_LINKS = {
+            spss: 'https://drive.google.com/file/d/1-0T0omxeFigW_ct_xxoPxMS3-_hIc6Wl/view?usp=drivesdk',
+            stata: 'https://drive.google.com/file/d/1EBmJgeGp5Eh_NoYvbZOF9eGDc90OH13H/view?usp=drivesdk',
+            qgis: 'https://drive.google.com/file/d/14sEM_GhJwWL4cHQAaJg-D1UsDi7gjjku/view?usp=drivesdk'
+        };
+
+        // ============================================
+        // 🔐 PASSWORDS - AS SPECIFIED
+        // ============================================
+        
+        const PASSWORDS = {
+            spss: 'MARTOOTECH@SPSS',
+            stata: 'MARTOOTECH@STATA',
+            qgis: 'MARTOOTECH@QGIS'
+        };
+
+        // ============================================
+        // 📋 SOFTWARE NAMES
+        // ============================================
+        
+        const SOFTWARE_NAMES = {
+            spss: 'SPSS 16.0.1',
+            stata: 'STATA 14.2',
+            qgis: 'QGIS 3.36.3'
+        };
+
+        // Current software being downloaded
+        let currentSoftware = '';
+
+        // ============================================
+        // 📋 COPY PASSWORD FUNCTION
+        // ============================================
+        
+        window.copyPassword = function(password, button) {
+            navigator.clipboard.writeText(password).then(() => {
+                // Show success state
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.classList.add('copied');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                    button.classList.remove('copied');
+                }, 2000);
+                
+                // Optional toast notification
+                showToast('Password copied to clipboard!', 'success');
+            }).catch(err => {
+                console.error('Failed to copy password:', err);
+                showToast('Failed to copy password. Please copy manually.', 'error');
+            });
+        };
+
+        // ============================================
+        // 🔐 PASSWORD VERIFICATION
+        // ============================================
+        
+        window.verifyPassword = function(software) {
+            currentSoftware = software;
+            
+            // Update modal content
+            document.getElementById('modalTitle').textContent = `Download ${SOFTWARE_NAMES[software]}`;
+            document.getElementById('modalSubtitle').textContent = 'Enter the password to start your download';
+            document.getElementById('passwordHint').innerHTML = `<i class="fas fa-info-circle"></i> Password: ${PASSWORDS[software].substring(0, 12)}... (case-sensitive)`;
+            
+            // Set modal icon based on software
+            const modalIcon = document.getElementById('modalIcon');
+            if (software === 'spss') modalIcon.innerHTML = '<i class="fas fa-chart-pie"></i>';
+            else if (software === 'stata') modalIcon.innerHTML = '<i class="fas fa-chart-line"></i>';
+            else if (software === 'qgis') modalIcon.innerHTML = '<i class="fas fa-map"></i>';
+            
+            // Clear previous input and error
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+            
+            // Show modal
+            document.getElementById('passwordModal').classList.add('active');
+            
+            // Focus on input
+            setTimeout(() => {
+                document.getElementById('passwordInput').focus();
+            }, 100);
+        };
+
+        // ============================================
+        // ✅ SUBMIT PASSWORD
+        // ============================================
+        
+        window.submitPassword = function() {
+            const enteredPassword = document.getElementById('passwordInput').value.trim();
+            const correctPassword = PASSWORDS[currentSoftware];
+            
+            if (enteredPassword === correctPassword) {
+                // Correct password - proceed to download
+                window.open(DOWNLOAD_LINKS[currentSoftware], '_blank');
+                closeModal();
+                showToast(`Download started for ${SOFTWARE_NAMES[currentSoftware]}`, 'success');
+                
+                // Track download (optional)
+                console.log(`Download: ${currentSoftware} at ${new Date().toISOString()}`);
+            } else {
+                // Incorrect password
+                document.getElementById('passwordError').style.display = 'flex';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+                
+                // Shake effect
+                const modalContent = document.querySelector('.modal-content');
+                modalContent.style.animation = 'none';
+                setTimeout(() => {
+                    modalContent.style.animation = 'modalSlideIn 0.4s ease';
+                }, 10);
+            }
+        };
+
+        // ============================================
+        // 👁️ TOGGLE PASSWORD VISIBILITY
+        // ============================================
+        
+        window.togglePasswordVisibility = function() {
+            const passwordInput = document.getElementById('passwordInput');
+            const toggleBtn = document.querySelector('.password-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.className = 'fas fa-eye';
+            }
+        };
+
+        // ============================================
+        // ❌ CLOSE MODAL
+        // ============================================
+        
+        window.closeModal = function() {
+            document.getElementById('passwordModal').classList.remove('active');
+            currentSoftware = '';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        };
+
+        // ============================================
+        // 🍞 TOAST NOTIFICATION
+        // ============================================
+        
+        function showToast(message, type = 'info') {
+            // Create toast container if it doesn't exist
+            let toastContainer = document.getElementById('toast-container');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.id = 'toast-container';
+                toastContainer.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 10000;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                `;
+                document.body.appendChild(toastContainer);
+            }
+            
+            // Create toast
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                background: ${type === 'success' ? 'var(--accent-green)' : 'var(--danger)'};
+                color: white;
+                padding: 12px 24px;
+                border-radius: var(--radius-md);
+                font-size: 14px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                animation: slideIn 0.3s ease;
+                box-shadow: var(--shadow-lg);
+                min-width: 300px;
+            `;
+            
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span style="flex: 1;">${message}</span>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: white; opacity: 0.8; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.style.animation = 'slideOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        if (toast.parentNode) toast.remove();
+                    }, 300);
+                }
+            }, 3000);
+        }
+
+        // ============================================
+        // 🚀 INITIALIZATION
+        // ============================================
+        
+        function init() {
+            // Add animation styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+            
+            // Set active nav based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === './' + currentPage || 
+                    (currentPage === 'software_downloads.html' && href === './software_downloads.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('passwordModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            window.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            console.log('✅ Software Downloads page initialized with password protection');
+            console.log('📥 Download links loaded:', DOWNLOAD_LINKS);
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
