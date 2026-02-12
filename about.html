@@ -1,1 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="About Martoo Tech Works - Zambia's premier digital solutions provider for public health, GIS mapping, STATA analysis, and academic research support.">
+    <meta name="keywords" content="about Martoo Tech, Zambian tech company, public health solutions, GIS experts Zambia, STATA consultants, research support">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="About Us - Martoo Tech Works">
+    <meta property="og:description" content="Bridging Public Health and Digital Innovation in Zambia">
+    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>About Us - Martoo Tech Works</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== ABOUT PAGE SPECIFIC STYLES ===== */
+        .about-hero {
+            background: linear-gradient(145deg, var(--primary-deeper) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(40, 167, 69, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .about-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-hero h1 {
+            font-size: 52px;
+            margin-bottom: 24px;
+        }
+        
+        .about-hero p {
+            font-size: 20px;
+            color: var(--neutral-300);
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+        
+        /* Story Section */
+        .story-section {
+            padding: 80px 0;
+            background: var(--primary-deep);
+            position: relative;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .story-content h2 {
+            font-size: 36px;
+            margin-bottom: 24px;
+        }
+        
+        .story-content p {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .story-highlight {
+            background: var(--gradient-card);
+            border-left: 4px solid var(--accent-blue);
+            padding: 24px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin-top: 32px;
+        }
+        
+        .story-highlight i {
+            color: var(--accent-blue);
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        
+        .story-highlight p {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 0;
+            color: var(--neutral-200);
+        }
+        
+        .story-image {
+            position: relative;
+        }
+        
+        .story-image img {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+        
+        .story-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--gradient-blue);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            color: white;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .story-badge .year {
+            font-size: 36px;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+        
+        .story-badge .text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Mission Vision Section */
+        .mission-vision-section {
+            padding: 80px 0;
+            background: var(--gradient-navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-vision-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .mission-card,
+        .vision-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+            height: 100%;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-card:hover,
+        .vision-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .mission-card::before,
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .mission-card:hover::before,
+        .vision-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            font-size: 40px;
+            color: var(--accent-blue);
+            transition: all var(--transition-normal);
+        }
+        
+        .mission-card:hover .card-icon,
+        .vision-card:hover .card-icon {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .mission-card h3,
+        .vision-card h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--neutral-100);
+        }
+        
+        .mission-card p,
+        .vision-card p {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .values-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+        
+        .values-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--neutral-200);
+            font-size: 16px;
+        }
+        
+        .values-list li i {
+            color: var(--accent-green);
+            font-size: 18px;
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 80px 0;
+            background: var(--primary-deep);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            color: var(--neutral-300);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .value-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            color: var(--accent-blue);
+            transition: all var(--transition-normal);
+        }
+        
+        .value-card:hover .value-icon {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .value-card h4 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .value-card p {
+            color: var(--neutral-300);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 80px 0;
+            background: var(--gradient-navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .team-card:hover::after {
+            opacity: 1;
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 56px;
+            color: var(--accent-blue);
+            border: 3px solid rgba(0, 123, 255, 0.2);
+            transition: all var(--transition-normal);
+        }
+        
+        .team-card:hover .team-avatar {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+        
+        .team-card h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .team-title {
+            color: var(--accent-blue);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+        
+        .team-bio {
+            color: var(--neutral-400);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-deep);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-400);
+            transition: all var(--transition-fast);
+        }
+        
+        .team-social a:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: var(--gradient-card);
+            border-top: 1px solid rgba(0, 123, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 123, 255, 0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            color: var(--neutral-300);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Why Choose Us */
+        .why-choose-section {
+            padding: 80px 0;
+            background: var(--primary-deep);
+        }
+        
+        .why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .why-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .why-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .why-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            font-size: 36px;
+            color: var(--accent-blue);
+            transition: all var(--transition-normal);
+        }
+        
+        .why-card:hover .why-icon {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .why-card h4 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .why-card p {
+            color: var(--neutral-300);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .why-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .why-link:hover {
+            gap: 12px;
+            color: var(--accent-blue-light);
+        }
+        
+        .why-link i {
+            font-size: 14px;
+        }
+        
+        /* Partners Section */
+        .partners-section {
+            padding: 60px 0;
+            background: var(--gradient-navy);
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        
+        .partner-item {
+            text-align: center;
+            opacity: 0.7;
+            transition: all var(--transition-normal);
+        }
+        
+        .partner-item:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .partner-item i {
+            font-size: 48px;
+            color: var(--neutral-400);
+            margin-bottom: 8px;
+        }
+        
+        .partner-item span {
+            display: block;
+            color: var(--neutral-400);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .about-cta {
+            background: linear-gradient(145deg, var(--accent-blue-deep), var(--accent-blue));
+            border-radius: var(--radius-xl);
+            padding: 60px 48px;
+            text-align: center;
+            margin: 60px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .about-cta h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .about-cta p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .cta-btn {
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            border: none;
+        }
+        
+        .cta-btn.white {
+            background: white;
+            color: var(--accent-blue);
+        }
+        
+        .cta-btn.white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-btn.outline-white {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .cta-btn.outline-white:hover {
+            background: white;
+            color: var(--accent-blue);
+        }
+        
+        /* Timeline */
+        .timeline-section {
+            padding: 80px 0;
+            background: var(--primary-deep);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto 0;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--accent-blue), transparent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            position: relative;
+            transition: all var(--transition-normal);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .timeline-year {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--accent-blue);
+            border-radius: var(--radius-full);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .timeline-content h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--neutral-100);
+        }
+        
+        .timeline-content p {
+            color: var(--neutral-300);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent-blue);
+            border: 4px solid var(--primary-dark);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .why-choose-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                margin-left: 60px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-dot {
+                left: -40px;
+                top: 50%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-hero p {
+                font-size: 18px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .why-choose-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .story-badge {
+                position: static;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="./index.html" class="logo">
+                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link active">About</a></li>
+                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="./login.html" class="btn btn-outline">Sign In</a>
+                    <a href="./register.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 👥 ABOUT HERO                              -->
+        <!-- ============================================ -->
+        <section class="about-hero">
+            <div class="container">
+                <div class="about-hero-content">
+                    <h1>Bridging <span class="highlight-blue">Public Health</span> & <span class="highlight-green">Digital Innovation</span></h1>
+                    <p>Martoo Tech Works is a Zambian digital solutions provider dedicated to empowering researchers, public health professionals, and students with cutting-edge GIS mapping, STATA analysis, and academic support services.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📖 OUR STORY                               -->
+        <!-- ============================================ -->
+        <section class="story-section">
+            <div class="container">
+                <div class="story-grid">
+                    <div class="story-content">
+                        <h2>Our <span class="highlight-blue">Story</span></h2>
+                        <p>Founded in Lusaka, Zambia, Martoo Tech Works emerged from a clear observation: public health professionals and students across Zambia lacked access to affordable, high-quality technical support for their research and academic work.</p>
+                        <p>What began as freelance consulting for university students quickly grew into a full-service digital solutions platform. Today, we've supported over 100 researchers, trained hundreds of students, and partnered with leading health organizations to advance public health outcomes through data and technology.</p>
+                        <p>Our journey is driven by a simple belief: that the right tools and guidance can transform Zambian research and public health practice.</p>
+                        
+                        <div class="story-highlight">
+                            <i class="fas fa-quote-right"></i>
+                            <p>"We don't just provide services – we build capacity. Every project, every training, every map we create is an investment in Zambia's future public health leaders."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80" alt="Martoo Tech Works team at work" loading="lazy">
+                        <div class="story-badge">
+                            <span class="year">2022</span>
+                            <span class="text">Founded in Lusaka</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🎯 MISSION & VISION                        -->
+        <!-- ============================================ -->
+        <section class="mission-vision-section">
+            <div class="container">
+                <div class="mission-vision-grid">
+                    <div class="mission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To democratize access to high-quality data analysis, GIS mapping, and academic support services for Zambian researchers, public health professionals, and students – enabling evidence-based decision-making and academic excellence.</p>
+                        
+                        <ul class="values-list">
+                            <li><i class="fas fa-check-circle"></i> Deliver exceptional technical expertise</li>
+                            <li><i class="fas fa-check-circle"></i> Build local research capacity</li>
+                            <li><i class="fas fa-check-circle"></i> Make advanced tools accessible</li>
+                            <li><i class="fas fa-check-circle"></i> Foster innovation in public health</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To be Zambia's most trusted partner in digital innovation for public health and research – recognized for excellence, integrity, and lasting impact on health outcomes across Africa.</p>
+                        
+                        <ul class="values-list">
+                            <li><i class="fas fa-check-circle"></i> Leading GIS and data analysis hub</li>
+                            <li><i class="fas fa-check-circle"></i> Pan-African research network</li>
+                            <li><i class="fas fa-check-circle"></i> Innovation in health technology</li>
+                            <li><i class="fas fa-check-circle"></i> Sustainable social impact</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 💎 CORE VALUES                             -->
+        <!-- ============================================ -->
+        <section class="values-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our <span class="highlight-green">Core Values</span></h2>
+                    <p>The principles that guide everything we do, from client consultations to final deliverables.</p>
+                </div>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4>Excellence</h4>
+                        <p>We pursue the highest standards in every analysis, map, and document we deliver. No shortcuts.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h4>Integrity</h4>
+                        <p>We treat client data with strict confidentiality and provide honest, transparent consultation.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Capacity Building</h4>
+                        <p>We don't just do the work – we teach, mentor, and empower clients to grow their own skills.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h4>Accessibility</h4>
+                        <p>We keep our services affordable and accessible to students, NGOs, and public institutions.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Innovation</h4>
+                        <p>We continuously adopt new methodologies and technologies to serve clients better.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Partnership</h4>
+                        <p>We work collaboratively with clients, treating their projects and goals as our own.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Reliability</h4>
+                        <p>We meet deadlines consistently and communicate proactively throughout every project.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <h4>Local Impact</h4>
+                        <p>We are proudly Zambian and committed to improving public health outcomes in our community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📊 KEY STATISTICS                          -->
+        <!-- ============================================ -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Students Trained</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Research Papers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Client Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🕰️ OUR JOURNEY - TIMELINE                 -->
+        <!-- ============================================ -->
+        <section class="timeline-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our <span class="highlight-blue">Journey</span></h2>
+                    <p>How Martoo Tech Works grew from a vision to Zambia's trusted digital solutions partner.</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="timeline-year">2022</span>
+                            <h4>Foundation</h4>
+                            <p>Martoo Tech Works founded in Lusaka, Zambia. Begins offering freelance academic support and data analysis services to university students.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="timeline-year">2023</span>
+                            <h4>GIS & STATA Specialization</h4>
+                            <p>Expanded services to include professional GIS mapping and STATA data analysis. First partnership with UNZA Department of Public Health.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="timeline-year">2024</span>
+                            <h4>Research Consultancy</h4>
+                            <p>Collaborated with CIDRZ and MOH Zambia on health facility mapping projects. Trained 50+ ministry health officers.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="timeline-year">2025</span>
+                            <h4>Martoo Academy Launched</h4>
+                            <p>Launched structured online courses in GIS, STATA, and research methodology. Reached 200+ active students.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="timeline-year">2026</span>
+                            <h4>Digital Platform Launch</h4>
+                            <p>Full digital platform launched with integrated learning management, automated enrollment, and expanded service offerings.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 👨‍🏫 MEET THE FOUNDER                       -->
+        <!-- ============================================ -->
+        <section class="team-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Meet the <span class="highlight-blue">Founder</span></h2>
+                    <p>The vision and expertise behind Martoo Tech Works.</p>
+                </div>
+                
+                <div style="display: flex; justify-content: center; margin-bottom: 60px;">
+                    <div style="max-width: 800px; text-align: center;">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 180px; height: 180px; background: rgba(0,123,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 4px solid rgba(0,123,255,0.2);">
+                                <i class="fas fa-user-tie" style="font-size: 80px; color: var(--accent-blue);"></i>
+                            </div>
+                            <h3 style="font-size: 32px; margin-bottom: 8px; color: var(--neutral-100);">Martin Tech</h3>
+                            <div style="color: var(--accent-blue); font-size: 18px; font-weight: 600; margin-bottom: 20px;">Founder & Lead Consultant</div>
+                            <p style="color: var(--neutral-300); font-size: 16px; line-height: 1.8; max-width: 600px; margin-bottom: 24px;">
+                                With over 8 years of experience in GIS, data analysis, and research methodology, Martin founded Martoo Tech Works to bridge the gap between academic training and professional practice. His vision is to equip Zambian researchers and students with the digital skills needed to drive evidence-based public health policy.
+                            </p>
+                            <div style="display: flex; gap: 20px; justify-content: center;">
+                                <a href="https://www.linkedin.com" target="_blank" style="width: 45px; height: 45px; background: var(--primary-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--neutral-400); transition: all var(--transition-fast);">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://twitter.com" target="_blank" style="width: 45px; height: 45px; background: var(--primary-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--neutral-400); transition: all var(--transition-fast);">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="mailto:martin@martootech.com" style="width: 45px; height: 45px; background: var(--primary-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--neutral-400); transition: all var(--transition-fast);">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-header" style="margin-top: 40px;">
+                    <h2>Our <span class="highlight-green">Team</span></h2>
+                    <p>The experts behind our services and training programs.</p>
+                </div>
+                
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h4>Dr. Mwamba Banda</h4>
+                        <div class="team-title">GIS & Public Health Specialist</div>
+                        <p class="team-bio">10+ years in health facility mapping and spatial epidemiology at MOH Zambia. PhD in Public Health.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Chanda Mwila</h4>
+                        <div class="team-title">Senior Data Analyst</div>
+                        <p class="team-bio">Expert in STATA, SPSS, and R. Specializes in clinical trial analysis and health surveys.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h4>Dr. Thandiwe Phiri</h4>
+                        <div class="team-title">Research Consultant</div>
+                        <p class="team-bio">Public health researcher with funded projects from CIDRZ, UNICEF, and GRZ. Methodology specialist.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4>Mulenga Bwalya</h4>
+                        <div class="team-title">Academic Support Lead</div>
+                        <p class="team-bio">Specializes in thesis formatting, academic writing, and research proposal development.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ❓ WHY CHOOSE US                           -->
+        <!-- ============================================ -->
+        <section class="why-choose-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Choose <span class="highlight-blue">Martoo Tech</span></h2>
+                    <p>What sets us apart from other service providers.</p>
+                </div>
+                
+                <div class="why-choose-grid">
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4>Zambia-Focused Expertise</h4>
+                        <p>We understand the local context – our services are tailored to Zambian universities, health facilities, and research institutions.</p>
+                        <a href="./services.html" class="why-link">
+                            Learn more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4>Student-Friendly</h4>
+                        <p>We offer affordable rates, flexible payment plans, and mentorship – not just services. Your success is our priority.</p>
+                        <a href="./academy.html" class="why-link">
+                            Explore courses <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4>Qualified Professionals</h4>
+                        <p>Our team includes PhD-level consultants, published researchers, and certified GIS and STATA specialists.</p>
+                        <a href="#team" class="why-link">
+                            Meet the team <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Rapid Turnaround</h4>
+                        <p>We respect deadlines. Most projects are delivered within 24-72 hours without compromising quality.</p>
+                        <a href="./contact.html" class="why-link">
+                            Get urgent support <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Confidentiality</h4>
+                        <p>We sign NDAs and treat all client data as strictly confidential. Your research is your intellectual property.</p>
+                        <a href="./privacy.html" class="why-link">
+                            Read our policy <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h4>Ethical Pricing</h4>
+                        <p>Transparent, upfront quotes with no hidden fees. Discounts available for students and NGOs.</p>
+                        <a href="./services.html#pricing" class="why-link">
+                            View pricing <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🤝 TRUSTED PARTNERS                        -->
+        <!-- ============================================ -->
+        <section class="partners-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Trusted <span class="highlight-green">Partners</span></h2>
+                    <p>We've had the privilege of working with these institutions.</p>
+                </div>
+                
+                <div class="partners-grid">
+                    <div class="partner-item">
+                        <i class="fas fa-university"></i>
+                        <span>UNZA</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-school"></i>
+                        <span>CBU</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-hospital"></i>
+                        <span>MOH Zambia</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-globe-africa"></i>
+                        <span>CIDRZ</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span>UNICEF</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-flag"></i>
+                        <span>GRZ</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-microscope"></i>
+                        <span>TDRC</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-hospital-alt"></i>
+                        <span>UTH</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-leaf"></i>
+                        <span>Conservation</span>
+                    </div>
+                    <div class="partner-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>CSO</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🎯 FINAL CALL TO ACTION                    -->
+        <!-- ============================================ -->
+        <section class="container">
+            <div class="about-cta">
+                <h2>Ready to work with us?</h2>
+                <p>Whether you need GIS mapping, data analysis, research support, or professional training – we're here to help.</p>
+                <div class="cta-buttons">
+                    <a href="./contact.html" class="cta-btn white">
+                        <i class="fas fa-paper-plane"></i>
+                        Get in Touch
+                    </a>
+                    <a href="./services.html" class="cta-btn outline-white">
+                        <i class="fas fa-cog"></i>
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER                                   -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./academy.html">Academy</a></li>
+                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="./services.html#research">Research & Proposals</a></li>
+                        <li><a href="./services.html#stata">STATA Analysis</a></li>
+                        <li><a href="./services.html#gis">GIS / QGIS Mapping</a></li>
+                        <li><a href="./services.html#academic">Academic Support</a></li>
+                        <li><a href="./services.html#downloads">Software Downloads</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    
+    <script>
+        // ============================================
+        // 👥 ABOUT PAGE - PRODUCTION READY
+        // ============================================
+        
+        'use strict';
+
+        // ============================================
+        // 🚀 INITIALIZATION
+        // ============================================
+        
+        function init() {
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+            
+            // Set active nav based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === './' + currentPage || 
+                    (currentPage === 'about.html' && href === './about.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Animate statistics numbers (simple count-up)
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const value = element.innerText;
+                        if (value.includes('+')) {
+                            // Handle numbers with plus sign
+                            const num = parseInt(value.replace('+', ''));
+                            element.innerText = '0+';
+                            
+                            let current = 0;
+                            const increment = Math.ceil(num / 30);
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= num) {
+                                    element.innerText = value;
+                                    clearInterval(timer);
+                                } else {
+                                    element.innerText = current + '+';
+                                }
+                            }, 40);
+                        }
+                        observer.unobserve(element);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statNumbers.forEach(stat => observer.observe(stat));
+            
+            console.log('✅ About page initialized');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
