@@ -1,1 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Martoo Tech Works Terms of Service - Legal agreement governing use of our website, services, courses, and software downloads. Zambian jurisdiction.">
+    <meta name="keywords" content="terms of service, legal agreement, user terms, Zambian law, Martoo Tech terms">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="Terms of Service - Martoo Tech Works">
+    <meta property="og:description" content="Legal terms governing your use of Martoo Tech Works services">
+    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Terms of Service - Martoo Tech Works</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== TERMS OF SERVICE PAGE SPECIFIC STYLES ===== */
+        .legal-hero {
+            background: linear-gradient(145deg, var(--primary-deeper) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legal-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .legal-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(40, 167, 69, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .legal-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .legal-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .legal-hero p {
+            font-size: 18px;
+            color: var(--neutral-300);
+            margin-bottom: 0;
+        }
+        
+        .last-updated {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 24px;
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-full);
+            color: var(--accent-blue-light);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .last-updated i {
+            margin-right: 8px;
+        }
+        
+        /* Legal Content */
+        .legal-content-section {
+            padding: 60px 0;
+            background: var(--primary-deep);
+        }
+        
+        .legal-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Table of Contents */
+        .toc-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+        }
+        
+        .toc-title {
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: var(--neutral-100);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .toc-title i {
+            color: var(--accent-blue);
+            font-size: 20px;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-item {
+            margin-bottom: 12px;
+        }
+        
+        .toc-link {
+            color: var(--neutral-300);
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-link i {
+            color: var(--accent-blue);
+            font-size: 12px;
+            opacity: 0.7;
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--accent-blue);
+            padding-left: 20px;
+        }
+        
+        .toc-link:hover i {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        
+        .toc-link.active {
+            color: var(--accent-blue);
+            font-weight: 600;
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        /* Main Content */
+        .legal-main {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+        }
+        
+        .legal-section {
+            margin-bottom: 48px;
+            scroll-margin-top: 100px;
+        }
+        
+        .legal-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .legal-section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--accent-blue);
+        }
+        
+        .legal-section-header h2 {
+            font-size: 28px;
+            margin-bottom: 0;
+            color: var(--neutral-100);
+        }
+        
+        .legal-section h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .legal-section h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--neutral-200);
+        }
+        
+        .legal-section p {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .legal-section ul,
+        .legal-section ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+        
+        .legal-section li {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        .legal-section li strong {
+            color: var(--neutral-100);
+        }
+        
+        .legal-section li i {
+            color: var(--accent-blue);
+            margin-right: 8px;
+        }
+        
+        /* Policy Cards */
+        .policy-card {
+            background: var(--primary-deep);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin: 24px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-blue);
+        }
+        
+        .policy-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: var(--accent-blue);
+        }
+        
+        .policy-card h4 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .policy-card p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(40, 167, 69, 0.05);
+            border-left: 4px solid var(--accent-green);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .highlight-box i {
+            color: var(--accent-green);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box h4 {
+            color: var(--accent-green);
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--neutral-200);
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255, 193, 7, 0.05);
+            border-left: 4px solid var(--warning);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .warning-box i {
+            color: var(--warning);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .warning-box h4 {
+            color: var(--warning);
+            margin-bottom: 12px;
+        }
+        
+        /* Info Card */
+        .info-card {
+            background: rgba(0, 123, 255, 0.05);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .info-card i {
+            font-size: 28px;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+        
+        .info-card-content h4 {
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+        
+        .info-card-content p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        /* Contact Card */
+        .terms-contact {
+            background: var(--gradient-navy);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        
+        .terms-contact h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .terms-contact p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        .terms-contact .contact-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        /* Policy Footer */
+        .policy-footer {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--neutral-400);
+            font-size: 14px;
+        }
+        
+        .policy-footer i {
+            color: var(--accent-blue);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .legal-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc-sidebar {
+                position: relative;
+                top: 0;
+                margin-bottom: 30px;
+            }
+            
+            .legal-main {
+                padding: 32px 24px;
+            }
+            
+            .legal-section-header h2 {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .legal-hero h1 {
+                font-size: 36px;
+            }
+            
+            .terms-contact {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .info-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="./index.html" class="logo">
+                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="./login.html" class="btn btn-outline">Sign In</a>
+                    <a href="./register.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 📄 TERMS OF SERVICE HERO                   -->
+        <!-- ============================================ -->
+        <section class="legal-hero">
+            <div class="container">
+                <div class="legal-hero-content">
+                    <h1>Terms of <span class="highlight-blue">Service</span></h1>
+                    <p>Please read these terms carefully before using our website, services, courses, or software downloads. By using our services, you agree to be bound by these terms.</p>
+                    <span class="last-updated">
+                        <i class="fas fa-calendar-alt"></i>
+                        Last Updated: February 12, 2026
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📋 TERMS OF SERVICE CONTENT                -->
+        <!-- ============================================ -->
+        <section class="legal-content-section">
+            <div class="legal-container">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <h3 class="toc-title">
+                        <i class="fas fa-list-ul"></i>
+                        Contents
+                    </h3>
+                    <ul class="toc-list">
+                        <li class="toc-item">
+                            <a href="#acceptance" class="toc-link active">
+                                <i class="fas fa-chevron-right"></i>
+                                Acceptance of Terms
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#definitions" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Definitions
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#eligibility" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Eligibility
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#accounts" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                User Accounts
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#services" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Services Description
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#courses" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Academy Courses
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#software" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Software Downloads
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#payments" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Payments & Fees
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#intellectual-property" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Intellectual Property
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#user-content" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                User Content
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#prohibited" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Prohibited Activities
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#termination" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Termination
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#disclaimers" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Disclaimers
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#limitation" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Limitation of Liability
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#indemnification" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Indemnification
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#governing-law" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Governing Law
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#disputes" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Dispute Resolution
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#changes" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Changes to Terms
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#contact" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <a href="./terms.pdf" class="btn btn-outline-primary" style="width: 100%;" onclick="alert('PDF download demo. In production, this would download the terms of service.');">
+                            <i class="fas fa-file-pdf"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="legal-main">
+                    <!-- Acceptance of Terms -->
+                    <section id="acceptance" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h2>Acceptance of Terms</h2>
+                        </div>
+                        
+                        <p>By accessing or using the Martoo Tech Works website, services, courses, or software downloads, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any part of these terms, you may not access our services.</p>
+                        
+                        <p>These terms constitute a legally binding agreement between you ("User" or "Client") and Martoo Tech Works ("Company," "we," "our," or "us"). By creating an account, making a purchase, or using our services, you acknowledge that you have read, understood, and agree to be bound by these terms.</p>
+                        
+                        <div class="highlight-box">
+                            <i class="fas fa-gavel"></i>
+                            <h4>Binding Agreement</h4>
+                            <p>These Terms of Service are a legally binding contract. Please read them carefully. If you are using our services on behalf of an organization, you represent that you have authority to bind that organization to these terms.</p>
+                        </div>
+                    </section>
+
+                    <!-- Definitions -->
+                    <section id="definitions" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h2>Definitions</h2>
+                        </div>
+                        
+                        <p>Throughout these Terms of Service, the following definitions apply:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-circle"></i> <strong>"Company," "we," "our," "us"</strong> – Refers to Martoo Tech Works, a Zambian registered business.</li>
+                            <li><i class="fas fa-circle"></i> <strong>"User," "Client," "you," "your"</strong> – Refers to the individual or entity using our services.</li>
+                            <li><i class="fas fa-circle"></i> <strong>"Services"</strong> – All professional services offered, including GIS mapping, STATA analysis, research support, academic assistance, and consulting.</li>
+                            <li><i class="fas fa-circle"></i> <strong>"Academy"</strong> – Our online learning platform offering courses, tutorials, and educational content.</li>
+                            <li><i class="fas fa-circle"></i> <strong>"Software Downloads"</strong> – Password-protected software packages including SPSS 16, STATA 14, QGIS, and related materials.</li>
+                            <li><i class="fas fa-circle"></i> <strong>"Website"</strong> – All web pages located at martootechworks.com and related domains.</li>
+                            <li><i class="fas fa-circle"></i> <strong>"Content"</strong> – All text, graphics, images, videos, course materials, and other information provided through our services.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Eligibility -->
+                    <section id="eligibility" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <h2>Eligibility</h2>
+                        </div>
+                        
+                        <p>To use our services, you must:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Be at least 16 years of age (or have parental consent if under 16)</li>
+                            <li><i class="fas fa-check-circle"></i> Have the legal capacity to enter into binding contracts</li>
+                            <li><i class="fas fa-check-circle"></i> Provide accurate, current, and complete information when creating an account</li>
+                            <li><i class="fas fa-check-circle"></i> Not be located in a country subject to Zambian or international sanctions</li>
+                            <li><i class="fas fa-check-circle"></i> Not be using our services for any illegal purposes</li>
+                        </ul>
+                        
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Student Users</h4>
+                            <p>If you are a student using our academic support services, you are responsible for ensuring that your use complies with your educational institution's academic integrity policies. Martoo Tech Works does not condone plagiarism or academic dishonesty.</p>
+                        </div>
+                    </section>
+
+                    <!-- User Accounts -->
+                    <section id="accounts" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h2>User Accounts</h2>
+                        </div>
+                        
+                        <h4>Account Creation</h4>
+                        <p>To access certain features of our services, you must create an account. You agree to provide accurate, current, and complete information during the registration process and to update such information as necessary.</p>
+                        
+                        <h4>Account Security</h4>
+                        <p>You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-lock"></i> Not share your password or account access with others</li>
+                            <li><i class="fas fa-lock"></i> Use a strong, unique password not used on other services</li>
+                            <li><i class="fas fa-lock"></i> Notify us immediately of any unauthorized use of your account</li>
+                            <li><i class="fas fa-lock"></i> Log out of your account at the end of each session</li>
+                        </ul>
+                        
+                        <div class="info-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="info-card-content">
+                                <h4>Account Liability</h4>
+                                <p>We are not liable for any loss or damage arising from your failure to comply with these security obligations. You are fully responsible for all activities conducted through your account.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Services Description -->
+                    <section id="services" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h2>Services Description</h2>
+                        </div>
+                        
+                        <p>Martoo Tech Works offers the following professional services:</p>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h4>Research & Proposal Support</h4>
+                            <p>We provide assistance with research proposal development, literature reviews, methodology design, and research tool creation. All work is delivered as professional consultation, not ghostwriting.</p>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Data Analysis (STATA)</h4>
+                            <p>We offer data cleaning, statistical analysis, interpretation, and training services. Clients receive do-files, output logs, and interpretation guides to ensure transparency and reproducibility.</p>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-map"></i>
+                            </div>
+                            <h4>GIS / QGIS Mapping</h4>
+                            <p>We create professional maps, perform spatial analysis, and provide training. Deliverables include project files, high-resolution images, and print-ready maps.</p>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h4>Academic & Digital Support</h4>
+                            <p>We assist with formatting, editing, presentation design, and document preparation. All work is intended as guidance and technical support, not completion of assignments on behalf of students.</p>
+                        </div>
+                        
+                        <p><strong>Service Delivery:</strong> Unless otherwise agreed, services are delivered electronically via email or through your account dashboard. Project timelines are estimates and not guaranteed unless explicitly stated in a written service agreement.</p>
+                    </section>
+
+                    <!-- Academy Courses -->
+                    <section id="courses" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h2>Academy Courses</h2>
+                        </div>
+                        
+                        <h4>Course Access</h4>
+                        <p>Upon enrollment and payment, you receive a non-exclusive, non-transferable license to access and view the course content for your personal educational use. This license is for the duration of your access period as specified at purchase.</p>
+                        
+                        <h4>License Restrictions</h4>
+                        <p>You may not:</p>
+                        <ul>
+                            <li><i class="fas fa-times-circle"></i> Share your account credentials with others</li>
+                            <li><i class="fas fa-times-circle"></i> Download, copy, or distribute course videos or materials</li>
+                            <li><i class="fas fa-times-circle"></i> Sell, resell, or sublicense access to course content</li>
+                            <li><i class="fas fa-times-circle"></i> Use course content for commercial training purposes</li>
+                            <li><i class="fas fa-times-circle"></i> Remove copyright or proprietary notices from materials</li>
+                        </ul>
+                        
+                        <h4>Certificate of Completion</h4>
+                        <p>Upon successful completion of all course requirements, you may be eligible for a Certificate of Completion. Certificates are provided at our discretion and are not official academic credentials. We reserve the right to withhold certificates if course requirements are not met.</p>
+                        
+                        <div class="highlight-box">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Certificate Verification</h4>
+                            <p>Employers and institutions can verify the authenticity of Martoo Academy certificates by contacting us directly. We maintain a verification database for this purpose.</p>
+                        </div>
+                    </section>
+
+                    <!-- Software Downloads -->
+                    <section id="software" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h2>Software Downloads</h2>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h4>Password-Protected Software</h4>
+                            <p>Our software downloads (SPSS 16, STATA 14, QGIS) are provided "as is" for educational and research purposes. These are legacy versions made accessible to Zambian students who may not have institutional licenses for current versions.</p>
+                        </div>
+                        
+                        <h4>License & Copyright</h4>
+                        <p>Martoo Tech Works does not claim ownership of the software files themselves. SPSS is a trademark of IBM, STATA is a trademark of StataCorp, and QGIS is open-source software. You are responsible for ensuring your use complies with the respective software licenses.</p>
+                        
+                        <h4>Password Policy</h4>
+                        <p>Download passwords are provided for individual use only. You agree not to publicly share passwords or re-upload software files to public platforms. Violation of this policy may result in permanent suspension of download privileges.</p>
+                        
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>No Warranty</h4>
+                            <p>Software downloads are provided without any warranty, express or implied. We are not responsible for any damage to your computer system or data loss resulting from installation or use of downloaded software.</p>
+                        </div>
+                    </section>
+
+                    <!-- Payments & Fees -->
+                    <section id="payments" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h2>Payments & Fees</h2>
+                        </div>
+                        
+                        <h4>Pricing</h4>
+                        <p>All prices are listed in Zambian Kwacha (ZMW) unless otherwise specified. We reserve the right to modify prices at any time, with changes effective upon posting to our website or notification to existing subscribers.</p>
+                        
+                        <h4>Payment Methods</h4>
+                        <p>We accept mobile money (Airtel Money, MTN Mobile Money), bank transfers, and cash payments for local clients. International clients may be offered alternative payment methods on a case-by-case basis.</p>
+                        
+                        <h4>Payment Terms</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Courses:</strong> Full payment is required before course access is granted.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Services:</strong> A 50% deposit may be required for projects exceeding K500, with the balance due upon completion before final deliverables are released.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Subscriptions:</strong> Billed in advance on a monthly or annual basis.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Software Downloads:</strong> Payment is required before passwords are provided.</li>
+                        </ul>
+                        
+                        <h4>Taxes</h4>
+                        <p>You are responsible for all applicable taxes. If we are required to collect VAT or other taxes, these will be added to your invoice.</p>
+                        
+                        <h4>Late Payments</h4>
+                        <p>Late payments may result in suspension of services, course access, or download privileges. Repeated late payments may result in account termination.</p>
+                    </section>
+
+                    <!-- Intellectual Property -->
+                    <section id="intellectual-property" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-copyright"></i>
+                            </div>
+                            <h2>Intellectual Property</h2>
+                        </div>
+                        
+                        <h4>Our Content</h4>
+                        <p>All content provided through our website, courses, and services, including but not limited to text, graphics, logos, icons, images, video lessons, course materials, and software (excluding third-party software downloads), is the property of Martoo Tech Works or our content creators and is protected by Zambian and international copyright laws.</p>
+                        
+                        <h4>Client Intellectual Property</h4>
+                        <div class="highlight-box">
+                            <i class="fas fa-file-signature"></i>
+                            <h4>Your Work Remains Yours</h4>
+                            <p>Any research data, theses, dissertations, project reports, or other academic work you share with us remains your sole intellectual property. We claim no ownership over your work and will not use it for any purpose without your explicit written consent.</p>
+                        </div>
+                        
+                        <h4>Deliverables</h4>
+                        <p>Upon full payment, you receive a non-exclusive, perpetual license to use the deliverables created for you through our professional services (maps, analysis reports, edited documents). However, we retain the right to include the work in our portfolio unless otherwise agreed in writing.</p>
+                    </section>
+
+                    <!-- User Content -->
+                    <section id="user-content" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <h2>User Content</h2>
+                        </div>
+                        
+                        <p>By submitting content to our platform (including project files, research data, forum posts, or feedback), you grant us a non-exclusive, worldwide, royalty-free license to host, store, and process such content solely for the purpose of providing our services to you.</p>
+                        
+                        <h4>Your Responsibilities</h4>
+                        <p>You represent and warrant that:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> You own all rights to the content you submit or have obtained all necessary permissions</li>
+                            <li><i class="fas fa-check-circle"></i> Your content does not infringe any third-party intellectual property rights</li>
+                            <li><i class="fas fa-check-circle"></i> Your content does not violate any applicable laws or regulations</li>
+                            <li><i class="fas fa-check-circle"></i> Your content does not contain malicious code, viruses, or harmful components</li>
+                        </ul>
+                    </section>
+
+                    <!-- Prohibited Activities -->
+                    <section id="prohibited" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <h2>Prohibited Activities</h2>
+                        </div>
+                        
+                        <p>You agree not to engage in any of the following prohibited activities:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-times-circle"></i> <strong>Academic Dishonesty:</strong> Submitting our work as your own without proper attribution, using our services to complete assignments that are intended to evaluate your own skills, or violating your institution's academic integrity policy.</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Unauthorized Sharing:</strong> Sharing account credentials, course materials, or download passwords with unauthorized users.</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Reverse Engineering:</strong> Attempting to decompile, reverse engineer, or extract source code from our platform or software.</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Abusive Behavior:</strong> Harassing, threatening, or abusing our staff or other users.</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Unauthorized Access:</strong> Attempting to gain unauthorized access to our systems or user accounts.</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Malicious Activity:</strong> Introducing viruses, worms, or other harmful code to our platform.</li>
+                            <li><i class="fas fa-times-circle"></i> <strong>Commercial Resale:</strong> Reselling our services or content without written authorization.</li>
+                        </ul>
+                        
+                        <div class="warning-box">
+                            <i class="fas fa-gavel"></i>
+                            <h4>Academic Integrity</h4>
+                            <p>Martoo Tech Works provides guidance, training, and technical support. We do not complete assignments on behalf of students. Users who misrepresent our work as their own do so at their own risk and in violation of these terms. We cooperate with academic institutions investigating academic dishonesty.</p>
+                        </div>
+                    </section>
+
+                    <!-- Termination -->
+                    <section id="termination" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-stop-circle"></i>
+                            </div>
+                            <h2>Termination</h2>
+                        </div>
+                        
+                        <h4>Termination by You</h4>
+                        <p>You may terminate your account at any time by contacting us or through your account settings. Termination does not relieve you of any payment obligations incurred prior to termination.</p>
+                        
+                        <h4>Termination by Us</h4>
+                        <p>We reserve the right to suspend or terminate your account and access to our services at our sole discretion, without notice, for conduct that we believe violates these terms or is harmful to other users, our business, or third parties. Grounds for termination include, but are not limited to:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-times-circle"></i> Violation of any provision of these Terms</li>
+                            <li><i class="fas fa-times-circle"></i> Non-payment of fees</li>
+                            <li><i class="fas fa-times-circle"></i> Fraudulent or illegal activity</li>
+                            <li><i class="fas fa-times-circle"></i> Abuse of our staff or other users</li>
+                            <li><i class="fas fa-times-circle"></i> Sharing passwords or copyrighted materials</li>
+                        </ul>
+                        
+                        <h4>Effect of Termination</h4>
+                        <p>Upon termination, your right to access our services and content will immediately cease. Any fees paid are non-refundable except as provided in our Refund Policy. Sections of these terms that by their nature should survive termination shall survive, including but not limited to intellectual property provisions, disclaimers, and limitations of liability.</p>
+                    </section>
+
+                    <!-- Disclaimers -->
+                    <section id="disclaimers" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <h2>Disclaimers</h2>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h4>Services Provided "As Is"</h4>
+                            <p>OUR SERVICES AND CONTENT ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.</p>
+                        </div>
+                        
+                        <p><strong>No Guarantee of Results:</strong> We do not guarantee specific outcomes from use of our services, including but not limited to academic grades, research funding, publication acceptance, or job placement.</p>
+                        
+                        <p><strong>Accuracy of Information:</strong> While we strive to provide accurate and up-to-date information, we make no representations or warranties of any kind regarding the completeness, accuracy, reliability, suitability, or availability of any content on our website or through our services.</p>
+                        
+                        <p><strong>Third-Party Links:</strong> Our website may contain links to third-party websites. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites.</p>
+                    </section>
+
+                    <!-- Limitation of Liability -->
+                    <section id="limitation" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h2>Limitation of Liability</h2>
+                        </div>
+                        
+                        <div class="policy-card">
+                            <div class="policy-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Limitation of Liability</h4>
+                            <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL MARTOO TECH WORKS, ITS DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (I) YOUR USE OR INABILITY TO USE OUR SERVICES; (II) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY; (III) ANY CONTENT OBTAINED FROM OUR SERVICES; OR (IV) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.</p>
+                        </div>
+                        
+                        <p><strong>Total Liability:</strong> OUR TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATING TO THESE TERMS OR OUR SERVICES SHALL NOT EXCEED THE AMOUNT YOU PAID TO US DURING THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO SUCH LIABILITY.</p>
+                        
+                        <p>Some jurisdictions do not allow the exclusion of certain warranties or the limitation or exclusion of liability for incidental or consequential damages. Accordingly, some of the above limitations may not apply to you.</p>
+                    </section>
+
+                    <!-- Indemnification -->
+                    <section id="indemnification" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-shield"></i>
+                            </div>
+                            <h2>Indemnification</h2>
+                        </div>
+                        
+                        <p>You agree to indemnify, defend, and hold harmless Martoo Tech Works, its officers, directors, employees, and agents from and against any and all claims, liabilities, damages, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising from or relating to:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-times-circle"></i> Your use of our services in violation of these Terms</li>
+                            <li><i class="fas fa-times-circle"></i> Your violation of any applicable law or regulation</li>
+                            <li><i class="fas fa-times-circle"></i> Your violation of any third-party rights, including intellectual property or privacy rights</li>
+                            <li><i class="fas fa-times-circle"></i> Any content you submit to our platform</li>
+                            <li><i class="fas fa-times-circle"></i> Your academic dishonesty or violation of your institution's policies</li>
+                        </ul>
+                    </section>
+
+                    <!-- Governing Law -->
+                    <section id="governing-law" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h2>Governing Law</h2>
+                        </div>
+                        
+                        <p>These Terms shall be governed by and construed in accordance with the laws of the Republic of Zambia, without regard to its conflict of law provisions. The United Nations Convention on Contracts for the International Sale of Goods shall not apply to these Terms.</p>
+                        
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="info-card-content">
+                                <h4>Jurisdiction</h4>
+                                <p>Any legal suit, action, or proceeding arising out of or relating to these Terms or our services shall be instituted exclusively in the courts of Lusaka, Zambia. You waive any and all objections to the exercise of jurisdiction over you by such courts and to venue in such courts.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Dispute Resolution -->
+                    <section id="disputes" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h2>Dispute Resolution</h2>
+                        </div>
+                        
+                        <h4>Informal Resolution</h4>
+                        <p>Before filing any legal claim, you agree to attempt to resolve any dispute informally by contacting us at disputes@martootech.com. We will attempt to resolve the dispute through good-faith negotiations within 30 days of receiving your notice.</p>
+                        
+                        <h4>Arbitration</h4>
+                        <p>If informal resolution is unsuccessful, any dispute arising out of or relating to these Terms or our services shall be resolved by binding arbitration administered by the Zambia Association of Arbitration in accordance with its rules then in effect. The arbitration shall be conducted in Lusaka, Zambia, and judgment upon the award rendered may be entered in any court having jurisdiction thereof.</p>
+                        
+                        <h4>Class Action Waiver</h4>
+                        <p>You agree to resolve disputes with us on an individual basis and not as part of any class, consolidated, or representative action. You waive any right to participate in a class action lawsuit or class-wide arbitration.</p>
+                    </section>
+
+                    <!-- Changes to Terms -->
+                    <section id="changes" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h2>Changes to Terms</h2>
+                        </div>
+                        
+                        <p>We reserve the right to modify these Terms of Service at any time. If we make material changes, we will notify you by email (if you have an account) or through a prominent notice on our website prior to the change becoming effective.</p>
+                        
+                        <p>Your continued use of our services after the effective date of any modified Terms constitutes your acceptance of the modified Terms. If you do not agree to the modified Terms, you must discontinue your use of our services and cancel any subscriptions.</p>
+                        
+                        <p>The date of the most recent revision is indicated at the top of this page.</p>
+                    </section>
+
+                    <!-- Contact Us -->
+                    <section id="contact" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h2>Contact Us</h2>
+                        </div>
+                        
+                        <p>If you have any questions about these Terms of Service, please contact us:</p>
+                        
+                        <div class="terms-contact">
+                            <div>
+                                <h3>Legal & Compliance Department</h3>
+                                <p><i class="fas fa-envelope" style="color: var(--accent-blue); margin-right: 8px;"></i> legal@martootech.com</p>
+                                <p><i class="fas fa-envelope" style="color: var(--accent-blue); margin-right: 8px;"></i> disputes@martootech.com</p>
+                                <p style="margin-top: 8px;"><i class="fas fa-phone" style="color: var(--accent-blue); margin-right: 8px;"></i> <a href="tel:260774766077" style="color: var(--neutral-300);">+260 774 766 077</a></p>
+                                <p><i class="fas fa-map-marker-alt" style="color: var(--accent-blue); margin-right: 8px;"></i> Lusaka, Zambia</p>
+                            </div>
+                            <div class="contact-buttons">
+                                <a href="./contact.html" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Contact Form
+                                </a>
+                                <a href="https://wa.me/260973495316" class="btn btn-outline-primary" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-top: 24px; font-size: 14px; color: var(--neutral-400);">
+                            <i class="fas fa-clock"></i> Legal inquiries are typically answered within 2-3 business days.
+                        </p>
+                    </section>
+                    
+                    <!-- Policy Footer -->
+                    <div class="policy-footer">
+                        <p><i class="fas fa-balance-scale"></i> These Terms of Service were last updated on February 12, 2026.</p>
+                        <p style="margin-top: 8px;">© 2026 Martoo Tech Works. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🎯 RELATED LEGAL DOCUMENTS                 -->
+        <!-- ============================================ -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div style="background: var(--gradient-navy); border-radius: var(--radius-xl); padding: 48px; text-align: center; border: 1px solid rgba(0,123,255,0.2);">
+                <h2 style="font-size: 28px; margin-bottom: 20px; color: var(--neutral-100);">Other Legal <span class="highlight-blue">Documents</span></h2>
+                <p style="color: var(--neutral-300); font-size: 16px; max-width: 700px; margin: 0 auto 32px;">
+                    Review our privacy policy and refund policy for more information.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="./privacy.html" class="btn btn-outline-primary">
+                        <i class="fas fa-shield-alt"></i>
+                        Privacy Policy
+                    </a>
+                    <a href="./refund-policy.html" class="btn btn-outline-primary">
+                        <i class="fas fa-undo-alt"></i>
+                        Refund Policy
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER                                   -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./academy.html">Academy</a></li>
+                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./blog.html">Insights</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="./terms.html" class="active">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest tips and course updates.</p>
+                    <form id="newsletterForm" class="newsletter-form" onsubmit="event.preventDefault(); alert('Newsletter subscription demo. In production, this would connect to your API.');">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    
+    <script>
+        // ============================================
+        // 📄 TERMS OF SERVICE PAGE - PRODUCTION READY
+        // ============================================
+        
+        'use strict';
+
+        // ============================================
+        // 📋 TABLE OF CONTENTS HIGHLIGHTING
+        // ============================================
+        
+        function initTocHighlight() {
+            const sections = document.querySelectorAll('.legal-section');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            function updateActiveToc() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 130;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href').substring(1);
+                    if (href === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateTocHighlight);
+            window.addEventListener('load', updateTocHighlight);
+        }
+
+        // ============================================
+        // 🚀 INITIALIZATION
+        // ============================================
+        
+        function init() {
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+            
+            // Set active nav based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === './' + currentPage || 
+                    (currentPage === 'terms.html' && href === './terms.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Initialize table of contents highlighting
+            initTocHighlight();
+            
+            // Smooth scroll for TOC links
+            document.querySelectorAll('.toc-link').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            console.log('✅ Terms of Service page initialized');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
