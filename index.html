@@ -1,1 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Martoo Tech Works - Bridging Public Health and Digital Innovation in Zambia. Academic support, STATA analysis, GIS mapping, and digital learning.">
+    <meta name="keywords" content="GIS, STATA, public health, research, Zambia, UNZA, CBU, data analysis, QGIS">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="Martoo Tech Works - Public Health & Digital Innovation">
+    <meta property="og:description" content="Bridging Public Health and Digital Innovation">
+    <meta property="og:image" content="/Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Martoo Tech Works | Public Health & Digital Innovation</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/Images/martoo_tech_logo.png">
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="/" class="logo">
+                    <img src="/Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="/about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="/services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="/academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="/blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="/login.html" class="btn btn-outline">Sign In</a>
+                    <a href="/register.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 🎯 HERO SECTION - BOLD & IMPACTFUL          -->
+        <!-- ============================================ -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge">🇿🇲 Zambia's Premier Digital Solutions</span>
+                    <h1 class="hero-title">
+                        Bridging <span class="highlight-blue">Public Health</span><br>
+                        and <span class="highlight-green">Digital Innovation</span>
+                    </h1>
+                    <p class="hero-description">
+                        Empowering researchers, public health professionals, and students across Zambia 
+                        with cutting-edge GIS mapping, STATA analysis, and academic excellence.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="/contact.html" class="btn btn-primary btn-large">
+                            <i class="fas fa-headset"></i>
+                            Request Support
+                        </a>
+                        <a href="/academy.html" class="btn btn-outline-light btn-large">
+                            <i class="fas fa-graduation-cap"></i>
+                            Start Learning
+                        </a>
+                    </div>
+                    
+                    <!-- Social Icons - No Numbers, Just Icons -->
+                    <div class="hero-social">
+                        <span class="social-label">Connect:</span>
+                        <div class="social-icons">
+                            <a href="https://wa.me/260973495316" class="social-icon whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="tel:260774766077" class="social-icon call" aria-label="Call">
+                                <i class="fas fa-phone-alt"></i>
+                            </a>
+                            <a href="mailto:martootechworks@gmail.com" class="social-icon email" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61568599103956" class="social-icon facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://youtube.com/@martootechworks" class="social-icon youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="stats-card floating">
+                        <div class="stat-item">
+                            <span class="stat-value">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-value">100+</span>
+                            <span class="stat-label">Professionals Trained</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-value">24/7</span>
+                            <span class="stat-label">Support</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-map-preview">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <div class="map-dots"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wave Divider -->
+            <div class="hero-wave">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#0A1128" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 💡 SERVICES SECTION - CLEAN & PROFESSIONAL  -->
+        <!-- ============================================ -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">WHAT WE DO</span>
+                    <h2 class="section-title">Expert Solutions,<br>Tangible Results</h2>
+                    <p class="section-description">
+                        Specialized services designed for public health professionals, researchers, and students.
+                    </p>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- Service 1 - Research -->
+                    <div class="service-card" data-aos="fade-up">
+                        <div class="service-icon research">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="service-title">Research & Proposals</h3>
+                        <p class="service-description">
+                            Comprehensive proposal writing, literature review, and research tool development.
+                        </p>
+                        <div class="service-footer">
+                            <span class="price-range">K150 – K600</span>
+                            <a href="/services.html#research" class="service-link">
+                                Learn more <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 2 - STATA -->
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon stata">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="service-title">Data Analysis (STATA)</h3>
+                        <p class="service-description">
+                            Statistical analysis, data cleaning, interpretation guidance with expert oversight.
+                        </p>
+                        <div class="service-footer">
+                            <span class="price-range">K250 – K500</span>
+                            <a href="/services.html#stata" class="service-link">
+                                Learn more <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 3 - GIS -->
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon gis">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <h3 class="service-title">GIS / QGIS Mapping</h3>
+                        <p class="service-description">
+                            Health facility mapping, spatial visualization, and practical training sessions.
+                        </p>
+                        <div class="service-footer">
+                            <span class="price-range">K200 – K300</span>
+                            <a href="/services.html#gis" class="service-link">
+                                Learn more <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 4 - Academic -->
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon academic">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h3 class="service-title">Academic Support</h3>
+                        <p class="service-description">
+                            Assignments, report formatting, PowerPoint design, and document editing.
+                        </p>
+                        <div class="service-footer">
+                            <span class="price-range">K100 – K300</span>
+                            <a href="/services.html#academic" class="service-link">
+                                Learn more <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="services-cta">
+                    <a href="/services.html" class="btn btn-outline-primary">
+                        View All Services
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🎓 ACADEMY PROMO - DEEP OCEAN THEME         -->
+        <!-- ============================================ -->
+        <section class="academy-promo">
+            <div class="container">
+                <div class="academy-grid">
+                    <div class="academy-content">
+                        <span class="academy-badge">MARTOO ACADEMY</span>
+                        <h2 class="academy-title">
+                            Level Up Your<br>
+                            <span class="text-gradient">Data & Research</span> Skills
+                        </h2>
+                        <p class="academy-description">
+                            Structured learning paths with video lessons, downloadable resources, 
+                            quizzes, and professional certificates upon completion.
+                        </p>
+                        
+                        <div class="academy-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Structured modules</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Video lessons</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Downloadable PDFs</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Quizzes & certificates</span>
+                            </div>
+                        </div>
+                        
+                        <div class="academy-cta">
+                            <a href="/academy.html" class="btn btn-primary btn-large">
+                                <i class="fas fa-graduation-cap"></i>
+                                Explore Courses
+                            </a>
+                            <a href="/academy.html#free" class="btn btn-outline-light">
+                                Try Free Modules
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="academy-visual">
+                        <div class="course-card-preview">
+                            <div class="course-header">
+                                <span class="course-badge">POPULAR</span>
+                                <span class="course-price">Free</span>
+                            </div>
+                            <h4 class="course-title">Introduction to STATA for Public Health</h4>
+                            <div class="course-meta">
+                                <span><i class="fas fa-video"></i> 12 Lessons</span>
+                                <span><i class="fas fa-clock"></i> 4 Hours</span>
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                                <span class="progress-text">Free Preview</span>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card-preview second">
+                            <div class="course-header">
+                                <span class="course-badge premium">PREMIUM</span>
+                                <span class="course-price">K350</span>
+                            </div>
+                            <h4 class="course-title">Advanced GIS Mapping for Health Facilities</h4>
+                            <div class="course-meta">
+                                <span><i class="fas fa-video"></i> 24 Lessons</span>
+                                <span><i class="fas fa-clock"></i> 8 Hours</span>
+                            </div>
+                            <div class="course-includes">
+                                <i class="fas fa-certificate"></i> Certificate Included
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🗺️ PORTFOLIO PREVIEW - SHOWCASE            -->
+        <!-- ============================================ -->
+        <section class="portfolio-preview">
+            <div class="container">
+                <div class="section-header light">
+                    <span class="section-subtitle">OUR WORK</span>
+                    <h2 class="section-title">Real Projects,<br>Real Impact</h2>
+                    <p class="section-description">
+                        Explore our portfolio of GIS maps, data visualizations, and research projects.
+                    </p>
+                </div>
+                
+                <div class="portfolio-showcase">
+                    <div class="portfolio-tabs">
+                        <button class="portfolio-tab active" data-filter="all">All</button>
+                        <button class="portfolio-tab" data-filter="gis">GIS Mapping</button>
+                        <button class="portfolio-tab" data-filter="stata">STATA Analysis</button>
+                        <button class="portfolio-tab" data-filter="research">Research</button>
+                    </div>
+                    
+                    <div class="portfolio-grid">
+                        <div class="portfolio-item" data-category="gis">
+                            <div class="portfolio-image">
+                                <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/sample_map.jpg" alt="Health Facilities Mapping" loading="lazy">
+                                <div class="portfolio-overlay">
+                                    <span class="portfolio-category">GIS</span>
+                                    <h4>Zambia Health Facilities</h4>
+                                    <a href="/portfolio.html" class="portfolio-link">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item" data-category="stata">
+                            <div class="portfolio-image">
+                                <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/sample_chart.jpg" alt="Malaria Trends Analysis" loading="lazy">
+                                <div class="portfolio-overlay">
+                                    <span class="portfolio-category">STATA</span>
+                                    <h4>Malaria Trends 2020-2025</h4>
+                                    <a href="/portfolio.html" class="portfolio-link">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item" data-category="research">
+                            <div class="portfolio-image">
+                                <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/sample_research.jpg" alt="Maternal Health Study" loading="lazy">
+                                <div class="portfolio-overlay">
+                                    <span class="portfolio-category">Research</span>
+                                    <h4>Maternal Health Outcomes</h4>
+                                    <a href="/portfolio.html" class="portfolio-link">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-cta">
+                    <a href="/portfolio.html" class="btn btn-outline-primary">
+                        View Full Portfolio
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ⭐ TESTIMONIALS SLIDER - DYNAMIC READY     -->
+        <!-- ============================================ -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">TESTIMONIALS</span>
+                    <h2 class="section-title">Trusted by Researchers<br>& Professionals</h2>
+                </div>
+                
+                <div class="testimonial-slider-container">
+                    <div class="testimonial-slider" id="testimonialSlider">
+                        <!-- Will be populated by slider.js from API -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-quote">
+                                "The GIS mapping support from Martoo Tech transformed our health facility distribution analysis. Highly professional team."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Dr. Mwamba Banda</h4>
+                                    <p>Public Health Specialist, MOH Zambia</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-quote">
+                                "STATA training was exceptional. Now I confidently analyze my own research data. Worth every kwacha!"
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Chanda Mwila</h4>
+                                    <p>MSc Candidate, UNZA</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-quote">
+                                "Proposal writing service helped us secure funding. Detailed, timely, and professional."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Thandiwe Phiri</h4>
+                                    <p>Program Manager, CIDRZ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-controls">
+                        <button class="slider-arrow prev" aria-label="Previous testimonial">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="slider-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <button class="slider-arrow next" aria-label="Next testimonial">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📰 BLOG PREVIEW - LATEST INSIGHTS           -->
+        <!-- ============================================ -->
+        <section class="blog-preview">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">INSIGHTS</span>
+                    <h2 class="section-title">Latest from Our Blog</h2>
+                    <p class="section-description">
+                        Tips, tutorials, and industry updates for public health professionals.
+                    </p>
+                </div>
+                
+                <div class="blog-grid" id="blogPreview">
+                    <!-- Will be populated by api.js from backend -->
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <span class="blog-category">STATA</span>
+                            <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/stata_tips.jpg" alt="STATA Tips" loading="lazy">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> Feb 10, 2026</span>
+                                <span><i class="fas fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3 class="blog-title">
+                                <a href="/blog-post.html">10 Essential STATA Commands for Public Health Data</a>
+                            </h3>
+                            <p class="blog-excerpt">
+                                Master these STATA commands to streamline your health data analysis workflow...
+                            </p>
+                            <a href="/blog-post.html" class="blog-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <span class="blog-category">GIS</span>
+                            <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/qgis_tutorial.jpg" alt="QGIS Tutorial" loading="lazy">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> Feb 5, 2026</span>
+                                <span><i class="fas fa-clock"></i> 8 min read</span>
+                            </div>
+                            <h3 class="blog-title">
+                                <a href="/blog-post.html">Creating Health Facility Maps in QGIS: Step-by-Step</a>
+                            </h3>
+                            <p class="blog-excerpt">
+                                Learn how to create professional health facility distribution maps using open-source QGIS...
+                            </p>
+                            <a href="/blog-post.html" class="blog-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <span class="blog-category">Research</span>
+                            <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/research_methods.jpg" alt="Research Methods" loading="lazy">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> Jan 28, 2026</span>
+                                <span><i class="fas fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3 class="blog-title">
+                                <a href="/blog-post.html">Writing Winning Research Proposals: A Guide</a>
+                            </h3>
+                            <p class="blog-excerpt">
+                                Key elements that funding agencies look for in public health research proposals...
+                            </p>
+                            <a href="/blog-post.html" class="blog-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-cta">
+                    <a href="/blog.html" class="btn btn-outline-primary">
+                        View All Articles
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📞 CONTACT SECTION - QUICK CONNECT          -->
+        <!-- ============================================ -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <span class="contact-badge">GET IN TOUCH</span>
+                        <h2 class="contact-title">Ready to Elevate<br>Your Research?</h2>
+                        <p class="contact-description">
+                            Whether you need GIS mapping, data analysis, or academic support, 
+                            our team is ready to assist you within 24 hours.
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h4>Call Us</h4>
+                                    <a href="tel:260774766077" class="method-link">
+                                        <i class="fas fa-phone"></i> Call Now
+                                    </a>
+                                    <a href="tel:260773495316" class="method-link">
+                                        <i class="fas fa-phone"></i> Call Now
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h4>WhatsApp</h4>
+                                    <a href="https://wa.me/260973495316" class="method-link" target="_blank">
+                                        <i class="fab fa-whatsapp"></i> Send Message
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h4>Email</h4>
+                                    <a href="mailto:martootechworks@gmail.com" class="method-link">
+                                        martootechworks@gmail.com
+                                    </a>
+                                    <a href="mailto:mtechworks1@gmail.com" class="method-link">
+                                        mtechworks1@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h4>Location</h4>
+                                    <p>Lusaka, Zambia / Virtual</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-social">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com/profile.php?id=61568599103956" class="social-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://youtube.com/@martootechworks" class="social-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="https://wa.me/260973495316" class="social-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" class="contact-form">
+                            <h3>Send a Message</h3>
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" placeholder="Phone Number (Optional)">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="form-group">
+                                <select id="service" name="service">
+                                    <option value="" disabled selected>Select Service</option>
+                                    <option value="gis">GIS / QGIS Mapping</option>
+                                    <option value="stata">STATA Data Analysis</option>
+                                    <option value="research">Proposal Writing</option>
+                                    <option value="academic">Academic Support</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="How can we help you?" rows="4" required></textarea>
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                Send Message
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER - COMPREHENSIVE & CLEAN           -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="/Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="/academy.html">Academy</a></li>
+                        <li><a href="/portfolio.html">Portfolio</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/services.html#research">Research & Proposals</a></li>
+                        <li><a href="/services.html#stata">STATA Analysis</a></li>
+                        <li><a href="/services.html#gis">GIS / QGIS Mapping</a></li>
+                        <li><a href="/services.html#academic">Academic Support</a></li>
+                        <li><a href="/software_downloads.html">Software Downloads</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                        <li><a href="/refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest tips and course updates.</p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/terms.html">Terms</a>
+                    <a href="/privacy.html">Privacy</a>
+                    <a href="/refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/js/main.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/slider.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    
+    <script>
+        // Initialize contact form with API
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+                    
+                    try {
+                        const formData = {
+                            name: document.getElementById('name').value,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value,
+                            service: document.getElementById('service').value,
+                            message: document.getElementById('message').value
+                        };
+                        
+                        const response = await fetch(`${API_BASE_URL}/messages`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            alert('Message sent successfully! We\'ll respond within 24 hours.');
+                            contactForm.reset();
+                        } else {
+                            alert('Failed to send message. Please try again.');
+                        }
+                    } catch (error) {
+                        console.error('Contact form error:', error);
+                        alert('Network error. Please try again later.');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                    }
+                });
+            }
+            
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
