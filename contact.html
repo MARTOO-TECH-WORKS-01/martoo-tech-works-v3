@@ -1,1 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Contact Martoo Tech Works - Get in touch for GIS mapping, STATA analysis, research support, and academic assistance. Lusaka, Zambia.">
+    <meta name="keywords" content="contact Martoo Tech, WhatsApp Zambia, Lusaka GIS services, public health support Zambia, data analysis help">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="Contact Us - Martoo Tech Works">
+    <meta property="og:description" content="Reach out to our team for professional GIS, data analysis, and research support services">
+    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Contact Us - Martoo Tech Works</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== CONTACT PAGE SPECIFIC STYLES ===== */
+        .contact-hero {
+            background: linear-gradient(145deg, var(--primary-deeper) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .contact-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-hero p {
+            font-size: 18px;
+            color: var(--neutral-300);
+            margin-bottom: 0;
+        }
+        
+        /* Contact Grid Layout */
+        .contact-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        /* Contact Info Cards */
+        .contact-info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .contact-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 123, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+        
+        .contact-card-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .contact-card-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--accent-blue);
+            transition: all var(--transition-normal);
+        }
+        
+        .contact-card:hover .contact-card-icon {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .contact-card-header h3 {
+            font-size: 24px;
+            margin-bottom: 4px;
+            color: var(--neutral-100);
+        }
+        
+        .contact-card-header p {
+            margin-bottom: 0;
+            color: var(--neutral-400);
+            font-size: 14px;
+        }
+        
+        /* Contact Methods List */
+        .contact-methods-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-method-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            background: var(--primary-deep);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-fast);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        
+        .contact-method-item:hover {
+            background: var(--primary-midnight);
+            border-color: rgba(0, 123, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .method-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+        
+        .method-details-wrapper {
+            flex: 1;
+        }
+        
+        .method-label {
+            font-size: 12px;
+            color: var(--neutral-400);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .method-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--neutral-100);
+            margin-bottom: 0;
+        }
+        
+        .method-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 4px;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .method-link:hover {
+            color: var(--accent-blue-light);
+            gap: 12px;
+        }
+        
+        .method-link i {
+            font-size: 12px;
+        }
+        
+        /* WhatsApp Card Special */
+        .whatsapp-card {
+            background: linear-gradient(145deg, rgba(37, 211, 102, 0.05), rgba(37, 211, 102, 0.02));
+            border-color: rgba(37, 211, 102, 0.2);
+        }
+        
+        .whatsapp-card .contact-card-icon {
+            background: rgba(37, 211, 102, 0.1);
+            color: #25D366;
+        }
+        
+        .whatsapp-card:hover .contact-card-icon {
+            background: #25D366;
+            color: white;
+        }
+        
+        .whatsapp-card::before {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 24px;
+            background: #25D366;
+            color: white;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 16px;
+            transition: all var(--transition-normal);
+            width: 100%;
+            margin-top: 16px;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+            color: white;
+        }
+        
+        /* Office Card */
+        .office-card .contact-card-icon {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--accent-green);
+        }
+        
+        .office-card:hover .contact-card-icon {
+            background: var(--accent-green);
+            color: white;
+        }
+        
+        .office-card::before {
+            background: var(--gradient-green);
+        }
+        
+        .office-hours {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .office-hours:last-child {
+            border-bottom: none;
+        }
+        
+        .office-hours span:first-child {
+            color: var(--neutral-400);
+            font-size: 14px;
+        }
+        
+        .office-hours span:last-child {
+            color: var(--neutral-100);
+            font-weight: 600;
+        }
+        
+        /* Contact Form */
+        .contact-form-section {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-blue);
+        }
+        
+        .form-header {
+            margin-bottom: 32px;
+        }
+        
+        .form-header h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .form-header p {
+            color: var(--neutral-300);
+            margin-bottom: 0;
+        }
+        
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-group i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-400);
+            font-size: 18px;
+            transition: color var(--transition-fast);
+            z-index: 2;
+        }
+        
+        .contact-form .form-group input,
+        .contact-form .form-group select,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 16px 16px 16px 52px;
+            background: var(--primary-deep);
+            border: 2px solid rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            color: var(--neutral-100);
+            font-family: var(--font-body);
+            font-size: 16px;
+            transition: all var(--transition-normal);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-form .form-group textarea {
+            padding: 16px 16px 16px 52px;
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .contact-form .form-group textarea ~ i {
+            top: 20px;
+            transform: none;
+        }
+        
+        .contact-form .form-group input:focus,
+        .contact-form .form-group select:focus,
+        .contact-form .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: var(--primary-midnight);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+        }
+        
+        .contact-form .form-group input:focus + i,
+        .contact-form .form-group select:focus ~ i,
+        .contact-form .form-group textarea:focus ~ i {
+            color: var(--accent-blue);
+        }
+        
+        .contact-form .form-group select {
+            appearance: none;
+            cursor: pointer;
+        }
+        
+        .contact-form .form-group select option {
+            background: var(--primary-dark);
+            color: var(--neutral-100);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.3);
+        }
+        
+        .submit-btn i {
+            font-size: 18px;
+            transition: transform var(--transition-fast);
+        }
+        
+        .submit-btn:hover i {
+            transform: translateX(4px);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Map Section */
+        .map-section {
+            margin-top: 60px;
+        }
+        
+        .map-container {
+            background: var(--gradient-card);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+        
+        .map-header h3 {
+            font-size: 20px;
+            margin-bottom: 0;
+            color: var(--neutral-100);
+        }
+        
+        .map-header i {
+            color: var(--accent-blue);
+            font-size: 24px;
+        }
+        
+        .map-placeholder {
+            background: var(--primary-deep);
+            border-radius: var(--radius-lg);
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .map-overlay {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .map-overlay i {
+            font-size: 64px;
+            color: var(--accent-blue);
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .map-overlay h4 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .map-overlay p {
+            color: var(--neutral-300);
+            margin-bottom: 20px;
+        }
+        
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--accent-blue);
+            color: white;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+        }
+        
+        .map-btn:hover {
+            background: var(--accent-blue-deep);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 60px;
+            background: var(--gradient-navy);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .faq-header h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .faq-header p {
+            font-size: 18px;
+            color: var(--neutral-300);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .faq-item {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all var(--transition-normal);
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 123, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .faq-question {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .faq-question i {
+            font-size: 20px;
+            color: var(--accent-blue);
+        }
+        
+        .faq-question h4 {
+            font-size: 18px;
+            margin-bottom: 0;
+            color: var(--neutral-100);
+        }
+        
+        .faq-answer {
+            color: var(--neutral-300);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-left: 32px;
+        }
+        
+        /* Error & Success Messages */
+        .error-message {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            color: #ff6b7b;
+            font-size: 14px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: shake 0.5s ease;
+        }
+        
+        .success-message {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            color: var(--accent-green-light);
+            font-size: 14px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .contact-main-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 36px;
+            }
+            
+            .contact-form .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .contact-form-section {
+                padding: 32px 24px;
+            }
+            
+            .faq-section {
+                padding: 32px 24px;
+            }
+            
+            .contact-card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-method-item {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="./index.html" class="logo">
+                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="./login.html" class="btn btn-outline">Sign In</a>
+                    <a href="./register.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 📞 CONTACT HERO                            -->
+        <!-- ============================================ -->
+        <section class="contact-hero">
+            <div class="container">
+                <div class="contact-hero-content">
+                    <h1>Get In <span class="highlight-blue">Touch</span></h1>
+                    <p>We're here to help with your GIS mapping, data analysis, research, and academic support needs. Reach out to us anytime.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📋 MAIN CONTENT - CONTACT INFO & FORM       -->
+        <!-- ============================================ -->
+        <section class="services" style="padding-top: 0;">
+            <div class="container">
+                <div class="contact-main-grid">
+                    <!-- LEFT COLUMN - CONTACT INFORMATION -->
+                    <div class="contact-info-cards">
+                        <!-- WhatsApp Card - Icons Only, No Numbers Displayed -->
+                        <div class="contact-card whatsapp-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h3>WhatsApp</h3>
+                                    <p>Quick response • 24/7</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-methods-list">
+                                <div class="contact-method-item">
+                                    <div class="method-icon-wrapper">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <div class="method-details-wrapper">
+                                        <div class="method-label">Primary Contact</div>
+                                        <p class="method-value">
+                                            <i class="fas fa-phone"></i> Call/Message
+                                        </p>
+                                        <a href="https://wa.me/260973495316" class="method-link" target="_blank" rel="noopener noreferrer">
+                                            Open WhatsApp <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <a href="https://wa.me/260973495316" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i>
+                                Send Message on WhatsApp
+                            </a>
+                        </div>
+
+                        <!-- Phone Card - Icons Only, No Numbers Displayed -->
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h3>Phone</h3>
+                                    <p>Direct line • 08:00 - 17:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-methods-list">
+                                <div class="contact-method-item">
+                                    <div class="method-icon-wrapper">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="method-details-wrapper">
+                                        <div class="method-label">Main Line</div>
+                                        <p class="method-value">
+                                            <i class="fas fa-phone"></i> Call Now
+                                        </p>
+                                        <a href="tel:260774766077" class="method-link">
+                                            <i class="fas fa-phone"></i> Call <span style="color: var(--neutral-400); margin-left: 4px;">(Tap to call)</span>
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-method-item">
+                                    <div class="method-icon-wrapper">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="method-details-wrapper">
+                                        <div class="method-label">Alternative</div>
+                                        <p class="method-value">
+                                            <i class="fas fa-phone"></i> Call Now
+                                        </p>
+                                        <a href="tel:260773495316" class="method-link">
+                                            <i class="fas fa-phone"></i> Call <span style="color: var(--neutral-400); margin-left: 4px;">(Tap to call)</span>
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email Card -->
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h3>Email</h3>
+                                    <p>Response within 24 hours</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-methods-list">
+                                <div class="contact-method-item">
+                                    <div class="method-icon-wrapper">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="method-details-wrapper">
+                                        <div class="method-label">Primary Email</div>
+                                        <p class="method-value">martootechworks@gmail.com</p>
+                                        <a href="mailto:martootechworks@gmail.com" class="method-link">
+                                            Send Email <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-method-item">
+                                    <div class="method-icon-wrapper">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="method-details-wrapper">
+                                        <div class="method-label">Alternative</div>
+                                        <p class="method-value">mtechworks1@gmail.com</p>
+                                        <a href="mailto:mtechworks1@gmail.com" class="method-link">
+                                            Send Email <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Office Location Card -->
+                        <div class="contact-card office-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h3>Location</h3>
+                                    <p>Lusaka, Zambia / Virtual</p>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 24px;">
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                                    <i class="fas fa-map-pin" style="color: var(--accent-green); font-size: 20px;"></i>
+                                    <span style="color: var(--neutral-200);">Lusaka, Zambia (by appointment)</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <i class="fas fa-globe" style="color: var(--accent-blue); font-size: 20px;"></i>
+                                    <span style="color: var(--neutral-200);">Virtual consultations available nationwide</span>
+                                </div>
+                            </div>
+                            
+                            <div style="background: var(--primary-deep); border-radius: var(--radius-lg); padding: 20px;">
+                                <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--neutral-100);">Office Hours</h4>
+                                <div class="office-hours">
+                                    <span>Monday – Friday</span>
+                                    <span>08:00 – 17:00</span>
+                                </div>
+                                <div class="office-hours">
+                                    <span>Saturday</span>
+                                    <span>09:00 – 13:00</span>
+                                </div>
+                                <div class="office-hours">
+                                    <span>Sunday</span>
+                                    <span>Closed</span>
+                                </div>
+                                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+                                    <span style="color: var(--neutral-400); font-size: 13px;">
+                                        <i class="fas fa-clock"></i> Virtual consultations available outside hours
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Card -->
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <div class="contact-card-icon">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <div>
+                                    <h3>Follow Us</h3>
+                                    <p>Stay connected for updates</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 16px; justify-content: space-around; margin-top: 16px;">
+                                <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--primary-deep); border-radius: var(--radius-lg); flex: 1; transition: all var(--transition-fast);">
+                                    <i class="fab fa-facebook-f" style="font-size: 28px; color: #1877F2;"></i>
+                                    <span style="color: var(--neutral-300); font-size: 13px;">Facebook</span>
+                                </a>
+                                <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--primary-deep); border-radius: var(--radius-lg); flex: 1; transition: all var(--transition-fast);">
+                                    <i class="fab fa-youtube" style="font-size: 28px; color: #FF0000;"></i>
+                                    <span style="color: var(--neutral-300); font-size: 13px;">YouTube</span>
+                                </a>
+                                <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--primary-deep); border-radius: var(--radius-lg); flex: 1; transition: all var(--transition-fast);">
+                                    <i class="fab fa-whatsapp" style="font-size: 28px; color: #25D366;"></i>
+                                    <span style="color: var(--neutral-300); font-size: 13px;">WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN - CONTACT FORM -->
+                    <div class="contact-form-section">
+                        <div class="form-header">
+                            <h2>Send Us a Message</h2>
+                            <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                        </div>
+
+                        <!-- Error/Success Messages -->
+                        <div id="errorContainer" class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span id="errorText"></span>
+                        </div>
+                        
+                        <div id="successContainer" class="success-message" style="display: none;">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="successText"></span>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <i class="fas fa-user"></i>
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        name="name" 
+                                        placeholder="Your Full Name" 
+                                        autocomplete="name"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-envelope"></i>
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="email" 
+                                        placeholder="Your Email Address" 
+                                        autocomplete="email"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input 
+                                        type="tel" 
+                                        id="phone" 
+                                        name="phone" 
+                                        placeholder="Phone Number (Optional)" 
+                                        autocomplete="tel"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-tag"></i>
+                                    <select id="service" name="service" required>
+                                        <option value="" disabled selected>Select a Service</option>
+                                        <option value="gis">GIS / QGIS Mapping</option>
+                                        <option value="stata">STATA Data Analysis</option>
+                                        <option value="research">Research & Proposal Writing</option>
+                                        <option value="academic">Academic Support</option>
+                                        <option value="software">Software Download Assistance</option>
+                                        <option value="training">Training & Workshops</option>
+                                        <option value="consulting">Consulting Services</option>
+                                        <option value="other">Other Inquiry</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-comment"></i>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    placeholder="How can we help you? Please provide details about your project or inquiry..." 
+                                    rows="5"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div style="margin-bottom: 24px;">
+                                <label style="display: flex; align-items: center; gap: 12px; color: var(--neutral-300); font-size: 14px; cursor: pointer;">
+                                    <input type="checkbox" id="priority" style="width: 18px; height: 18px; accent-color: var(--accent-blue);">
+                                    <span>This is urgent - I need a response within 12 hours</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="submit-btn">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+
+                            <p style="text-align: center; margin-top: 20px; color: var(--neutral-400); font-size: 13px;">
+                                <i class="fas fa-shield-alt"></i>
+                                Your information is secure and will not be shared with third parties.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- 🗺️ LOCATION MAP                             -->
+                <!-- ============================================ -->
+                <div class="map-section">
+                    <div class="map-container">
+                        <div class="map-header">
+                            <h3><i class="fas fa-map-marker-alt" style="color: var(--accent-blue); margin-right: 8px;"></i> Our Location</h3>
+                            <i class="fas fa-map"></i>
+                        </div>
+                        
+                        <div class="map-placeholder">
+                            <div class="map-overlay">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <h4>Lusaka, Zambia</h4>
+                                <p>Serving clients nationwide and virtually</p>
+                                <a href="https://maps.google.com/?q=Lusaka,+Zambia" target="_blank" rel="noopener noreferrer" class="map-btn">
+                                    <i class="fas fa-directions"></i>
+                                    Open in Google Maps
+                                </a>
+                            </div>
+                            <!-- Decorative map dots -->
+                            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 8px;">
+                                <span style="width: 8px; height: 8px; background: var(--accent-blue); border-radius: 50%; opacity: 0.3;"></span>
+                                <span style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; opacity: 0.3;"></span>
+                                <span style="width: 8px; height: 8px; background: var(--accent-blue); border-radius: 50%; opacity: 0.3;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- ❓ FREQUENTLY ASKED QUESTIONS               -->
+                <!-- ============================================ -->
+                <div class="faq-section">
+                    <div class="faq-header">
+                        <h2>Frequently Asked <span class="highlight-green">Questions</span></h2>
+                        <p>Quick answers to common inquiries about our services and support.</p>
+                    </div>
+                    
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-clock"></i>
+                                <h4>How quickly do you respond?</h4>
+                            </div>
+                            <div class="faq-answer">
+                                We respond to all inquiries within 24 hours. Urgent requests marked with the priority checkbox are prioritized and typically receive a response within 4-6 hours.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-file-contract"></i>
+                                <h4>Do you offer free consultations?</h4>
+                            </div>
+                            <div class="faq-answer">
+                                Yes! We offer a 15-minute free consultation to discuss your project needs and provide a customized quote with no obligation.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-credit-card"></i>
+                                <h4>What payment methods do you accept?</h4>
+                            </div>
+                            <div class="faq-answer">
+                                We accept mobile money (Airtel, MTN), bank transfers, and cash. Payment plans are available for larger projects upon request.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-globe"></i>
+                                <h4>Do you work with clients outside Lusaka?</h4>
+                            </div>
+                            <div class="faq-answer">
+                                Absolutely! We work with clients across all provinces of Zambia via WhatsApp, email, and virtual meetings. We also offer on-site support in selected areas.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-lock"></i>
+                                <h4>Is my data secure?</h4>
+                            </div>
+                            <div class="faq-answer">
+                                Yes, we treat all client data with strict confidentiality. We sign NDAs upon request and never share your information or project details with third parties.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-file-signature"></i>
+                                <h4>Do I need a formal agreement?</h4>
+                            </div>
+                            <div class="faq-answer">
+                                For projects above K500, we provide a formal service agreement outlining scope, deliverables, timeline, and payment terms.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER                                   -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./academy.html">Academy</a></li>
+                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="./services.html#research">Research & Proposals</a></li>
+                        <li><a href="./services.html#stata">STATA Analysis</a></li>
+                        <li><a href="./services.html#gis">GIS / QGIS Mapping</a></li>
+                        <li><a href="./services.html#academic">Academic Support</a></li>
+                        <li><a href="./services.html#downloads">Software Downloads</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./privacy.html">Privacy Policy</a></li>
+                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/api.js"></script>
+    
+    <script>
+        // ============================================
+        // 📞 CONTACT PAGE - PRODUCTION READY
+        // ============================================
+        
+        'use strict';
+
+        // API Configuration
+        const API_BASE_URL = 'https://martoo-tech-backend-qgis.vercel.app/api';
+
+        // ============================================
+        // 🎯 DOM ELEMENTS
+        // ============================================
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorContainer = document.getElementById('errorContainer');
+        const errorText = document.getElementById('errorText');
+        const successContainer = document.getElementById('successContainer');
+        const successText = document.getElementById('successText');
+
+        // ============================================
+        // 🔧 UTILITY FUNCTIONS
+        // ============================================
+        
+        /**
+         * Show Error Message
+         */
+        function showError(message) {
+            errorText.textContent = message;
+            errorContainer.style.display = 'flex';
+            successContainer.style.display = 'none';
+            
+            setTimeout(() => {
+                errorContainer.style.display = 'none';
+            }, 5000);
+        }
+
+        /**
+         * Show Success Message
+         */
+        function showSuccess(message) {
+            successText.textContent = message;
+            successContainer.style.display = 'flex';
+            errorContainer.style.display = 'none';
+            
+            setTimeout(() => {
+                successContainer.style.display = 'none';
+            }, 5000);
+        }
+
+        /**
+         * Hide All Messages
+         */
+        function hideMessages() {
+            errorContainer.style.display = 'none';
+            successContainer.style.display = 'none';
+        }
+
+        /**
+         * Set Loading State
+         */
+        function setLoading(isLoading) {
+            if (submitBtn) {
+                submitBtn.disabled = isLoading;
+                submitBtn.innerHTML = isLoading 
+                    ? '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>'
+                    : '<span>Send Message</span> <i class="fas fa-paper-plane"></i>';
+            }
+        }
+
+        /**
+         * Validate Email Format
+         */
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        /**
+         * Validate Zambian Phone Number (Optional)
+         */
+        function isValidZambianPhone(phone) {
+            if (!phone) return true; // Optional field
+            const cleaned = phone.replace(/\D/g, '');
+            return /^(\+?260|0)?[97]\d{8}$/.test(cleaned);
+        }
+
+        // ============================================
+        // 🚀 FORM SUBMISSION HANDLER
+        // ============================================
+        
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            try {
+                setLoading(true);
+                hideMessages();
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value.trim();
+                const isPriority = document.getElementById('priority').checked;
+                
+                // Validation
+                if (!name) {
+                    showError('Please enter your full name');
+                    setLoading(false);
+                    return;
+                }
+                
+                if (!email) {
+                    showError('Please enter your email address');
+                    setLoading(false);
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showError('Please enter a valid email address');
+                    setLoading(false);
+                    return;
+                }
+                
+                if (phone && !isValidZambianPhone(phone)) {
+                    showError('Please enter a valid Zambian phone number (e.g., 0971234567)');
+                    setLoading(false);
+                    return;
+                }
+                
+                if (!service) {
+                    showError('Please select a service');
+                    setLoading(false);
+                    return;
+                }
+                
+                if (!message) {
+                    showError('Please enter your message');
+                    setLoading(false);
+                    return;
+                }
+                
+                if (message.length < 10) {
+                    showError('Please provide more detail in your message (at least 10 characters)');
+                    setLoading(false);
+                    return;
+                }
+                
+                // Prepare form data
+                const formData = {
+                    name: name,
+                    email: email,
+                    phone: phone || null,
+                    service: service,
+                    message: message,
+                    priority: isPriority,
+                    source: 'Contact Page Form',
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send to API
+                const response = await fetch(`${API_BASE_URL}/messages`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showSuccess('✅ Message sent successfully! We\'ll respond within 24 hours.');
+                    contactForm.reset();
+                    
+                    // Track conversion (optional)
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'form_submission', {
+                            'event_category': 'contact',
+                            'event_label': service
+                        });
+                    }
+                } else {
+                    showError(data.error || 'Failed to send message. Please try again.');
+                }
+                
+            } catch (error) {
+                console.error('Contact form error:', error);
+                
+                if (error.message === 'Failed to fetch') {
+                    showError('Network error. Please check your internet connection.');
+                } else {
+                    showError('Something went wrong. Please try again later.');
+                }
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        // ============================================
+        // 🎯 INITIALIZATION
+        // ============================================
+        
+        function init() {
+            // Form submission
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleSubmit);
+            }
+            
+            // Clear messages on input
+            const inputs = document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', hideMessages);
+            });
+            
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+            
+            // Set active nav based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === './' + currentPage || 
+                    (currentPage === 'contact.html' && href === './contact.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Pre-fill service from URL parameter (if coming from services page)
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceParam = urlParams.get('service');
+            if (serviceParam) {
+                const serviceSelect = document.getElementById('service');
+                if (serviceSelect) {
+                    for (let option of serviceSelect.options) {
+                        if (option.value === serviceParam) {
+                            option.selected = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            console.log('✅ Contact page initialized');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
