@@ -1,1 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Martoo Tech Works Privacy Policy - Learn how we collect, use, and protect your personal data in compliance with Zambian and international privacy laws.">
+    <meta name="keywords" content="privacy policy, data protection, GDPR, Zambia data privacy, Martoo Tech privacy">
+    <meta name="author" content="Martoo Tech Works">
+    <meta property="og:title" content="Privacy Policy - Martoo Tech Works">
+    <meta property="og:description" content="How we protect and handle your personal information">
+    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Privacy Policy - Martoo Tech Works</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== PRIVACY POLICY PAGE SPECIFIC STYLES ===== */
+        .legal-hero {
+            background: linear-gradient(145deg, var(--primary-deeper) 0%, var(--primary-dark) 100%);
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legal-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .legal-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .legal-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .legal-hero p {
+            font-size: 18px;
+            color: var(--neutral-300);
+            margin-bottom: 0;
+        }
+        
+        .last-updated {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 24px;
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-full);
+            color: var(--accent-blue-light);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .last-updated i {
+            margin-right: 8px;
+        }
+        
+        /* Legal Content */
+        .legal-content-section {
+            padding: 60px 0;
+            background: var(--primary-deep);
+        }
+        
+        .legal-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Table of Contents */
+        .toc-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+        }
+        
+        .toc-title {
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: var(--neutral-100);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .toc-title i {
+            color: var(--accent-blue);
+            font-size: 20px;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-item {
+            margin-bottom: 12px;
+        }
+        
+        .toc-link {
+            color: var(--neutral-300);
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-link i {
+            color: var(--accent-blue);
+            font-size: 12px;
+            opacity: 0.7;
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--accent-blue);
+            padding-left: 20px;
+        }
+        
+        .toc-link:hover i {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        
+        .toc-link.active {
+            color: var(--accent-blue);
+            font-weight: 600;
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        /* Main Content */
+        .legal-main {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+        }
+        
+        .legal-section {
+            margin-bottom: 48px;
+            scroll-margin-top: 100px;
+        }
+        
+        .legal-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .legal-section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--accent-blue);
+        }
+        
+        .legal-section-header h2 {
+            font-size: 28px;
+            margin-bottom: 0;
+            color: var(--neutral-100);
+        }
+        
+        .legal-section h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--neutral-100);
+        }
+        
+        .legal-section h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--neutral-200);
+        }
+        
+        .legal-section p {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .legal-section ul,
+        .legal-section ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+        
+        .legal-section li {
+            color: var(--neutral-300);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        .legal-section li strong {
+            color: var(--neutral-100);
+        }
+        
+        .legal-section li i {
+            color: var(--accent-blue);
+            margin-right: 8px;
+        }
+        
+        /* Info Cards */
+        .info-card {
+            background: var(--primary-deep);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .info-card i {
+            font-size: 28px;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+        
+        .info-card-content h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .info-card-content p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--primary-deep);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        
+        .data-table th {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--neutral-100);
+            font-weight: 700;
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .data-table td {
+            padding: 16px;
+            color: var(--neutral-300);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table tr:hover td {
+            background: rgba(0, 123, 255, 0.02);
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(40, 167, 69, 0.05);
+            border-left: 4px solid var(--accent-green);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .highlight-box i {
+            color: var(--accent-green);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box h4 {
+            color: var(--accent-green);
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--neutral-200);
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255, 193, 7, 0.05);
+            border-left: 4px solid var(--warning);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .warning-box i {
+            color: var(--warning);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .warning-box h4 {
+            color: var(--warning);
+            margin-bottom: 12px;
+        }
+        
+        /* Contact Card */
+        .privacy-contact {
+            background: var(--gradient-navy);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        
+        .privacy-contact h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--neutral-100);
+        }
+        
+        .privacy-contact p {
+            margin-bottom: 0;
+            color: var(--neutral-300);
+        }
+        
+        .privacy-contact .contact-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        /* Policy Footer */
+        .policy-footer {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--neutral-400);
+            font-size: 14px;
+        }
+        
+        .policy-footer i {
+            color: var(--accent-blue);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .legal-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc-sidebar {
+                position: relative;
+                top: 0;
+                margin-bottom: 30px;
+            }
+            
+            .legal-main {
+                padding: 32px 24px;
+            }
+            
+            .legal-section-header h2 {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .legal-hero h1 {
+                font-size: 36px;
+            }
+            
+            .info-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .privacy-contact {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- ============================================ -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="./index.html" class="logo">
+                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                    <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="./login.html" class="btn btn-outline">Sign In</a>
+                    <a href="./register.html" class="btn btn-primary">Get Started</a>
+                </div>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        <!-- ============================================ -->
+        <!-- 🔒 PRIVACY HERO                            -->
+        <!-- ============================================ -->
+        <section class="legal-hero">
+            <div class="container">
+                <div class="legal-hero-content">
+                    <h1>Privacy <span class="highlight-blue">Policy</span></h1>
+                    <p>How we collect, use, and protect your personal information. Our commitment to your privacy and data security.</p>
+                    <span class="last-updated">
+                        <i class="fas fa-calendar-alt"></i>
+                        Last Updated: February 12, 2026
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 📋 PRIVACY POLICY CONTENT                  -->
+        <!-- ============================================ -->
+        <section class="legal-content-section">
+            <div class="legal-container">
+                <!-- Table of Contents Sidebar -->
+                <aside class="toc-sidebar">
+                    <h3 class="toc-title">
+                        <i class="fas fa-list-ul"></i>
+                        Contents
+                    </h3>
+                    <ul class="toc-list">
+                        <li class="toc-item">
+                            <a href="#introduction" class="toc-link active">
+                                <i class="fas fa-chevron-right"></i>
+                                Introduction
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#information-we-collect" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Information We Collect
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#how-we-use" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                How We Use Your Information
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#legal-basis" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Legal Basis for Processing
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#sharing" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Information Sharing
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#data-security" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Data Security
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#data-retention" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Data Retention
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#your-rights" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Your Rights
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#cookies" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Cookies & Tracking
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#children" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Children's Privacy
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#international" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                International Transfers
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#changes" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Changes to This Policy
+                            </a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#contact-us" class="toc-link">
+                                <i class="fas fa-chevron-right"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <a href="./privacy-policy.pdf" class="btn btn-outline-primary" style="width: 100%;" onclick="alert('PDF download demo. In production, this would download the privacy policy.');">
+                            <i class="fas fa-file-pdf"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="legal-main">
+                    <!-- Introduction -->
+                    <section id="introduction" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h2>Introduction</h2>
+                        </div>
+                        
+                        <p>Martoo Tech Works ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</p>
+                        
+                        <p>We are a Zambian company operating in compliance with Zambian data protection laws and international standards including GDPR where applicable. By using our services, you consent to the practices described in this policy.</p>
+                        
+                        <div class="highlight-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Our Commitment</h4>
+                            <p>We take your privacy seriously. All client data is treated with strict confidentiality, and we never sell your personal information to third parties. Our systems are designed with privacy as a core principle.</p>
+                        </div>
+                    </section>
+
+                    <!-- Information We Collect -->
+                    <section id="information-we-collect" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h2>Information We Collect</h2>
+                        </div>
+                        
+                        <p>We collect several types of information from and about users of our website and services, including:</p>
+                        
+                        <h4>Personal Information You Provide</h4>
+                        <p>When you register, enroll in courses, request services, or contact us, we may collect:</p>
+                        
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Data Type</th>
+                                    <th>Examples</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Identity Data</strong></td>
+                                    <td>Name, username, date of birth</td>
+                                    <td>Account creation, personalization</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Contact Data</strong></td>
+                                    <td>Email address, phone number, physical address</td>
+                                    <td>Communication, service delivery</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Academic Data</strong></td>
+                                    <td>Institution, course of study, research interests</td>
+                                    <td>Service customization, course recommendations</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Payment Data</strong></td>
+                                    <td>Payment method, transaction details (NOT credit card numbers)</td>
+                                    <td>Billing and invoicing</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Service Data</strong></td>
+                                    <td>Project details, research data, analysis requests</td>
+                                    <td>Service delivery and support</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>Information Automatically Collected</h4>
+                        <p>When you visit our website, we may automatically collect certain information about your device and usage patterns, including:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Device Information:</strong> IP address, browser type, operating system</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Usage Data:</strong> Pages visited, time spent, links clicked, referring website</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Cookies:</strong> Small data files stored on your device (see our Cookie section below)</li>
+                        </ul>
+                        
+                        <div class="info-card">
+                            <i class="fas fa-file-contract"></i>
+                            <div class="info-card-content">
+                                <h4>Important Note on Research Data</h4>
+                                <p>Any research data, theses, or academic work you share with us remains your intellectual property. We do not claim ownership over your work and will not use it for any purpose without your explicit consent.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- How We Use Your Information -->
+                    <section id="how-we-use" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h2>How We Use Your Information</h2>
+                        </div>
+                        
+                        <p>We use the information we collect for various purposes, including:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>To Provide and Maintain Services:</strong> Process enrollments, deliver courses, complete service requests</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>To Communicate With You:</strong> Respond to inquiries, send administrative information, provide technical support</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>To Improve Our Platform:</strong> Analyze usage patterns, troubleshoot issues, enhance user experience</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>To Personalize Your Experience:</strong> Recommend courses and services relevant to your interests</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>To Process Payments:</strong> Bill for services and manage subscriptions</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>To Comply with Legal Obligations:</strong> Maintain records, respond to lawful requests</li>
+                        </ul>
+                        
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>No Selling of Personal Data</h4>
+                            <p>We do not and will never sell your personal information to third parties. Your data is yours alone.</p>
+                        </div>
+                    </section>
+
+                    <!-- Legal Basis for Processing -->
+                    <section id="legal-basis" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h2>Legal Basis for Processing</h2>
+                        </div>
+                        
+                        <p>Our legal basis for collecting and using your personal information depends on the specific context and the type of information processed:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Contractual Necessity:</strong> To fulfill our service obligations to you (e.g., course delivery, data analysis)</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Legitimate Interests:</strong> To improve our services, prevent fraud, and secure our platform</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Consent:</strong> For marketing communications and optional data collection (you may withdraw consent at any time)</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Legal Compliance:</strong> To comply with Zambian laws and regulations</li>
+                        </ul>
+                    </section>
+
+                    <!-- Information Sharing -->
+                    <section id="sharing" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <h2>Information Sharing</h2>
+                        </div>
+                        
+                        <p>We may share your information with the following categories of third parties:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Service Providers:</strong> Third-party vendors who help us operate our business (payment processors, cloud hosting, email services). These providers are contractually bound to protect your data.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Professional Advisors:</strong> Lawyers, auditors, and consultants who provide professional services to us.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Legal Authorities:</strong> When required by law, court order, or to protect our rights and safety.</li>
+                        </ul>
+                        
+                        <p>We do not share your personal information with third parties for their own marketing purposes.</p>
+                    </section>
+
+                    <!-- Data Security -->
+                    <section id="data-security" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h2>Data Security</h2>
+                        </div>
+                        
+                        <p>We implement appropriate technical and organizational security measures to protect your personal information, including:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Encryption:</strong> All data transmitted between your browser and our servers is encrypted using SSL/TLS technology.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Access Controls:</strong> Strict authentication requirements and role-based access to personal data.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Regular Audits:</strong> Periodic security assessments and vulnerability testing.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Employee Training:</strong> All team members receive training on data protection and privacy.</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <i class="fas fa-lock"></i>
+                            <h4>Security is Our Priority</h4>
+                            <p>While no method of transmission over the Internet is 100% secure, we follow industry best practices to protect your information. We use Vercel and Firebase, which maintain ISO 27001 certification and SOC 2 compliance.</p>
+                        </div>
+                    </section>
+
+                    <!-- Data Retention -->
+                    <section id="data-retention" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h2>Data Retention</h2>
+                        </div>
+                        
+                        <p>We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Account Information:</strong> Retained while your account is active and for 2 years thereafter</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Transaction Records:</strong> Retained for 5 years to comply with tax and financial regulations</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Service Data:</strong> Retained for the duration of the project and 1 year after completion, unless otherwise agreed</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Communications:</strong> Retained for 2 years</li>
+                        </ul>
+                        
+                        <p>You may request deletion of your personal data at any time by contacting us.</p>
+                    </section>
+
+                    <!-- Your Rights -->
+                    <section id="your-rights" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <h2>Your Rights</h2>
+                        </div>
+                        
+                        <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                        
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <strong>Right to Access:</strong> Request a copy of the personal data we hold about you.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Right to Rectification:</strong> Correct inaccurate or incomplete information.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Right to Erasure:</strong> Request deletion of your personal data (subject to legal obligations).</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Right to Restrict Processing:</strong> Limit how we use your data.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Right to Data Portability:</strong> Receive your data in a structured, commonly used format.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Right to Object:</strong> Object to processing based on legitimate interests.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Right to Withdraw Consent:</strong> Withdraw consent at any time where processing is based on consent.</li>
+                        </ul>
+                        
+                        <p>To exercise any of these rights, please contact us using the information in the "Contact Us" section. We will respond to your request within 30 days.</p>
+                    </section>
+
+                    <!-- Cookies & Tracking -->
+                    <section id="cookies" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-cookie-bite"></i>
+                            </div>
+                            <h2>Cookies & Tracking Technologies</h2>
+                        </div>
+                        
+                        <p>Our website uses cookies and similar tracking technologies to enhance your browsing experience, analyze site traffic, and understand where our visitors come from.</p>
+                        
+                        <h4>Types of Cookies We Use</h4>
+                        
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Cookie Type</th>
+                                    <th>Purpose</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Essential Cookies</strong></td>
+                                    <td>Required for website functionality (login, shopping cart)</td>
+                                    <td>Session / Persistent</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Preference Cookies</strong></td>
+                                    <td>Remember your settings and preferences</td>
+                                    <td>1 year</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Analytics Cookies</strong></td>
+                                    <td>Help us understand how visitors use our site</td>
+                                    <td>2 years</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p>You can control cookies through your browser settings. However, disabling certain cookies may limit your ability to use some features of our website.</p>
+                    </section>
+
+                    <!-- Children's Privacy -->
+                    <section id="children" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <h2>Children's Privacy</h2>
+                        </div>
+                        
+                        <p>Our services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children under 16. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.</p>
+                    </section>
+
+                    <!-- International Transfers -->
+                    <section id="international" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-globe-africa"></i>
+                            </div>
+                            <h2>International Data Transfers</h2>
+                        </div>
+                        
+                        <p>Your information may be transferred to and maintained on servers located outside of Zambia. We use service providers (such as Vercel and Firebase) that may store data in multiple jurisdictions. We ensure appropriate safeguards are in place to protect your information in accordance with this Privacy Policy.</p>
+                    </section>
+
+                    <!-- Changes to This Policy -->
+                    <section id="changes" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h2>Changes to This Privacy Policy</h2>
+                        </div>
+                        
+                        <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technologies, legal requirements, or other factors. When we make material changes, we will notify you by email (if you have an account) or through a prominent notice on our website prior to the change becoming effective.</p>
+                        
+                        <p>We encourage you to review this Privacy Policy periodically for the latest information about our privacy practices.</p>
+                    </section>
+
+                    <!-- Contact Us -->
+                    <section id="contact-us" class="legal-section">
+                        <div class="legal-section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h2>Contact Us</h2>
+                        </div>
+                        
+                        <p>If you have questions or concerns about this Privacy Policy, our data practices, or wish to exercise your rights, please contact us:</p>
+                        
+                        <div class="privacy-contact">
+                            <div>
+                                <h3>Data Protection Officer</h3>
+                                <p><i class="fas fa-user-tie" style="color: var(--accent-blue); margin-right: 8px;"></i> Martin Tech, Founder</p>
+                                <p style="margin-top: 8px;"><i class="fas fa-envelope" style="color: var(--accent-blue); margin-right: 8px;"></i> privacy@martootech.com</p>
+                                <p><i class="fas fa-phone" style="color: var(--accent-blue); margin-right: 8px;"></i> <a href="tel:260774766077" style="color: var(--neutral-300);">+260 774 766 077</a></p>
+                                <p><i class="fas fa-map-marker-alt" style="color: var(--accent-blue); margin-right: 8px;"></i> Lusaka, Zambia</p>
+                            </div>
+                            <div class="contact-buttons">
+                                <a href="./contact.html" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Contact Form
+                                </a>
+                                <a href="https://wa.me/260973495316" class="btn btn-outline-primary" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-top: 24px;">For data subject access requests, please include "Privacy Request" in the subject line of your communication to help us process your request efficiently.</p>
+                    </section>
+                    
+                    <!-- Policy Footer -->
+                    <div class="policy-footer">
+                        <p><i class="fas fa-balance-scale"></i> This Privacy Policy was last updated on February 12, 2026.</p>
+                        <p style="margin-top: 8px;">© 2026 Martoo Tech Works. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 🎯 RELATED LEGAL DOCUMENTS                 -->
+        <!-- ============================================ -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div style="background: var(--gradient-navy); border-radius: var(--radius-xl); padding: 48px; text-align: center; border: 1px solid rgba(0,123,255,0.2);">
+                <h2 style="font-size: 28px; margin-bottom: 20px; color: var(--neutral-100);">Other Legal <span class="highlight-blue">Documents</span></h2>
+                <p style="color: var(--neutral-300); font-size: 16px; max-width: 700px; margin: 0 auto 32px;">
+                    Review our terms of service, refund policy, and other legal information.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="./terms.html" class="btn btn-outline-primary">
+                        <i class="fas fa-file-contract"></i>
+                        Terms of Service
+                    </a>
+                    <a href="./refund-policy.html" class="btn btn-outline-primary">
+                        <i class="fas fa-undo-alt"></i>
+                        Refund Policy
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 🦶 FOOTER                                   -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <span>MARTOO TECH</span>
+                    </div>
+                    <p class="footer-description">
+                        Bridging Public Health and Digital Innovation through expert GIS mapping, 
+                        data analysis, and academic support services across Zambia.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61568599103956" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@martootechworks" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/260973495316" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:martootechworks@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./academy.html">Academy</a></li>
+                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./blog.html">Insights</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="./terms.html">Terms of Service</a></li>
+                        <li><a href="./privacy.html" class="active">Privacy Policy</a></li>
+                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest tips and course updates.</p>
+                    <form id="newsletterForm" class="newsletter-form" onsubmit="event.preventDefault(); alert('Newsletter subscription demo. In production, this would connect to your API.');">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+    <script src="./js/navigation.js"></script>
+    
+    <script>
+        // ============================================
+        // 🔒 PRIVACY POLICY PAGE - PRODUCTION READY
+        // ============================================
+        
+        'use strict';
+
+        // ============================================
+        // 📋 TABLE OF CONTENTS HIGHLIGHTING
+        // ============================================
+        
+        function initTocHighlight() {
+            const sections = document.querySelectorAll('.legal-section');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            function updateActiveToc() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 130;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href').substring(1); // Remove #
+                    if (href === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateTocHighlight);
+            window.addEventListener('load', updateTocHighlight);
+        }
+
+        // ============================================
+        // 🚀 INITIALIZATION
+        // ============================================
+        
+        function init() {
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            }
+            
+            // Set active nav based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === './' + currentPage || 
+                    (currentPage === 'privacy.html' && href === './privacy.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Initialize table of contents highlighting
+            initTocHighlight();
+            
+            // Smooth scroll for TOC links
+            document.querySelectorAll('.toc-link').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            console.log('✅ Privacy Policy page initialized');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
