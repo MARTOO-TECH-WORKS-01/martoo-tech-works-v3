@@ -8,7 +8,7 @@
     <meta name="author" content="Martoo Tech Works">
     <meta property="og:title" content="Sign In - Martoo Tech Works">
     <meta property="og:description" content="Access your Martoo Tech Works account">
-    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:image" content="Images/martoo_tech_logo.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     
@@ -20,11 +20,11 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS - FIXED PATHS -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     
-    <!-- Favicon - FIXED PATH -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="Images/martoo_tech_logo.png">
     
     <style>
@@ -455,7 +455,7 @@
 </head>
 <body>
     <!-- ============================================ -->
-    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION - FIXED HAMBURGER -->
     <!-- ============================================ -->
     <header class="header">
         <div class="container header-container">
@@ -483,7 +483,8 @@
                 </div>
             </nav>
             
-            <button class="mobile-toggle" aria-label="Menu">
+            <!-- Hamburger Menu Button - FIXED -->
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -493,7 +494,7 @@
 
     <main>
         <!-- ============================================ -->
-        <!-- 🔐 LOGIN SECTION - PRODUCTION READY         -->
+        <!-- 🔐 LOGIN SECTION                           -->
         <!-- ============================================ -->
         <section class="auth-section">
             <div class="container auth-container">
@@ -507,7 +508,7 @@
                         <p>Sign in to access your learning dashboard</p>
                     </div>
 
-                    <!-- Error/Success Messages (Hidden by default) -->
+                    <!-- Error/Success Messages -->
                     <div id="errorContainer" class="error-message" style="display: none;">
                         <i class="fas fa-exclamation-circle"></i>
                         <span id="errorText"></span>
@@ -685,7 +686,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript - FIXED PATHS -->
+    <!-- JavaScript - Load in correct order -->
     <script src="js/main.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/api.js"></script>
@@ -693,26 +694,20 @@
     
     <script>
         // ============================================
-        // 🔐 LOGIN PAGE - FULLY FIXED PRODUCTION READY
+        // 🔐 LOGIN PAGE - FULLY FIXED
         // ============================================
 
         'use strict';
 
         // ============================================
-        // 📧 EMAIL VALIDATION FUNCTION - FIXED!
+        // 📧 EMAIL VALIDATION
         // ============================================
         
-        /**
-         * Validate email format
-         */
         function isValidEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         }
 
-        /**
-         * Validate password strength
-         */
         function isValidPassword(password) {
             return password && password.length >= 8;
         }
@@ -736,9 +731,6 @@
         // 🔧 UI UTILITIES
         // ============================================
         
-        /**
-         * Toggle Password Visibility
-         */
         window.togglePasswordVisibility = function(inputId) {
             const input = document.getElementById(inputId);
             const toggleBtn = input.parentElement.querySelector('.password-toggle i');
@@ -752,9 +744,6 @@
             }
         };
 
-        /**
-         * Show Error Message
-         */
         function showError(message) {
             errorText.textContent = message;
             errorContainer.style.display = 'flex';
@@ -765,9 +754,6 @@
             }, 5000);
         }
 
-        /**
-         * Show Success Message
-         */
         function showSuccess(message) {
             successText.textContent = message;
             successContainer.style.display = 'flex';
@@ -778,17 +764,11 @@
             }, 5000);
         }
 
-        /**
-         * Hide All Messages
-         */
         function hideMessages() {
             errorContainer.style.display = 'none';
             successContainer.style.display = 'none';
         }
 
-        /**
-         * Set Loading State
-         */
         function setLoading(isLoading) {
             if (isLoading) {
                 loginBtn.disabled = true;
@@ -802,34 +782,43 @@
         }
 
         // ============================================
-        // 🔐 TOKEN MANAGEMENT
+        // 🔐 TOKEN MANAGEMENT - FIXED FOR ADMIN
         // ============================================
         
-        /**
-         * Store Token Securely
-         */
-        function storeToken(token, remember = false) {
-            if (remember) {
+        function storeToken(token, remember = false, isAdmin = false) {
+            // ✅ FORCE localStorage for admin users regardless of remember me
+            if (isAdmin) {
+                console.log('🔐 Admin login - forcing localStorage');
                 localStorage.setItem('martoo_token', token);
                 localStorage.setItem('martoo_remember', 'true');
-            } else {
+                sessionStorage.removeItem('martoo_token');
+            } 
+            // Regular user with remember me
+            else if (remember) {
+                localStorage.setItem('martoo_token', token);
+                localStorage.setItem('martoo_remember', 'true');
+                sessionStorage.removeItem('martoo_token');
+            } 
+            // Regular user without remember me
+            else {
                 sessionStorage.setItem('martoo_token', token);
                 localStorage.removeItem('martoo_remember');
             }
             
             // Cookie backup
-            const expiry = remember ? 30 : 1;
+            const expiry = (isAdmin || remember) ? 30 : 1;
             const date = new Date();
             date.setTime(date.getTime() + (expiry * 24 * 60 * 60 * 1000));
             document.cookie = `martoo_token=${token}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+            
+            console.log('✅ Token stored in:', isAdmin || remember ? 'localStorage' : 'sessionStorage');
         }
 
-        /**
-         * Handle Successful Login
-         */
         function handleLoginSuccess(response) {
-            // Store token
-            storeToken(response.data.token, rememberMeCheckbox.checked);
+            const isAdmin = response.data.user.role === 'admin';
+            
+            // Store token with admin flag
+            storeToken(response.data.token, rememberMeCheckbox.checked, isAdmin);
             
             // Store user data
             const userData = {
@@ -850,12 +839,10 @@
                 localStorage.removeItem('martoo_remembered_email');
             }
             
-            // Show success message
             showSuccess('Login successful! Redirecting...');
             
-            // Redirect based on role
             setTimeout(() => {
-                if (userData.role === 'admin') {
+                if (isAdmin) {
                     window.location.href = 'admin-dashboard.html';
                 } else {
                     window.location.href = 'user_dashboard.html';
@@ -867,9 +854,6 @@
         // 🚀 LOGIN HANDLERS
         // ============================================
         
-        /**
-         * Handle User Login
-         */
         async function handleSubmit(e) {
             e.preventDefault();
             
@@ -880,7 +864,6 @@
                 const email = emailInput.value.trim();
                 const password = passwordInput.value.trim();
                 
-                // Validation
                 if (!email) {
                     showError('Please enter your email address');
                     emailInput.focus();
@@ -909,14 +892,12 @@
                     return;
                 }
                 
-                // Check if API is available
                 if (!window.API) {
                     showError('API service unavailable. Please try again later.');
                     setLoading(false);
                     return;
                 }
                 
-                // Call login API - USING window.API (not window.MartooAPI)
                 const response = await window.API.auth.login(email, password);
                 
                 if (response.success) {
@@ -941,7 +922,7 @@
         }
 
         /**
-         * Handle Admin Login
+         * Handle Admin Login - FIXED VERSION
          */
         async function handleAdminLogin() {
             try {
@@ -963,19 +944,28 @@
                     return;
                 }
                 
-                // Check if API is available
                 if (!window.API) {
                     showError('API service unavailable. Please try again later.');
                     setLoading(false);
                     return;
                 }
                 
-                // Call admin login endpoint - USING window.API (not window.MartooAPI)
+                console.log('🔐 Admin login attempt for:', email);
+                
                 const response = await window.API.auth.adminLogin(email, password);
                 
                 if (response.success) {
-                    // Store token
-                    storeToken(response.data.token, rememberMeCheckbox.checked);
+                    console.log('✅ Admin login successful');
+                    
+                    // ✅ FORCE localStorage for admin
+                    localStorage.setItem('martoo_token', response.data.token);
+                    localStorage.setItem('martoo_remember', 'true');
+                    sessionStorage.removeItem('martoo_token');
+                    
+                    // Cookie backup - 30 days
+                    const date = new Date();
+                    date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+                    document.cookie = `martoo_token=${response.data.token}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
                     
                     // Store admin user data
                     const adminUser = {
@@ -987,16 +977,19 @@
                     
                     localStorage.setItem('martoo_user', JSON.stringify(adminUser));
                     
+                    console.log('✅ Token stored in localStorage for admin');
+                    
                     showSuccess('Admin login successful! Redirecting...');
                     
                     setTimeout(() => {
                         window.location.href = 'admin-dashboard.html';
                     }, 1000);
                 } else {
+                    console.error('❌ Admin login failed:', response.error);
                     showError(response.error || 'Invalid admin credentials');
                 }
             } catch (error) {
-                console.error('Admin login error:', error);
+                console.error('❌ Admin login error:', error);
                 showError(error.message || 'Admin authentication failed');
             } finally {
                 setLoading(false);
@@ -1007,9 +1000,6 @@
         // 🔍 SESSION MANAGEMENT
         // ============================================
         
-        /**
-         * Check for Existing Session
-         */
         function checkExistingSession() {
             const token = localStorage.getItem('martoo_token') || sessionStorage.getItem('martoo_token');
             const userJson = localStorage.getItem('martoo_user') || sessionStorage.getItem('martoo_user');
@@ -1018,12 +1008,10 @@
                 try {
                     const userData = JSON.parse(userJson);
                     
-                    // Don't auto-redirect if we're already on login page
                     if (window.location.pathname.includes('login.html')) {
                         return;
                     }
                     
-                    // Redirect to appropriate dashboard
                     if (userData.role === 'admin') {
                         window.location.href = 'admin-dashboard.html';
                     } else {
@@ -1035,9 +1023,6 @@
             }
         }
 
-        /**
-         * Pre-fill Email from Remembered Session
-         */
         function prefillEmail() {
             const rememberedEmail = localStorage.getItem('martoo_remembered_email');
             if (rememberedEmail) {
@@ -1047,23 +1032,99 @@
         }
 
         // ============================================
+        // 📱 HAMBURGER MENU - FIXED LOCAL FALLBACK
+        // ============================================
+        
+        function initMobileMenu() {
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (!mobileToggle || !navMenu) {
+                console.log('⚠️ Mobile menu elements not found');
+                return;
+            }
+            
+            console.log('📱 Initializing mobile menu');
+            
+            // Remove any existing listeners by cloning
+            const newToggle = mobileToggle.cloneNode(true);
+            mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
+            
+            // Get fresh references
+            const freshToggle = document.getElementById('mobileToggle');
+            
+            // Toggle menu on click
+            freshToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+                
+                console.log('📱 Menu toggled:', navMenu.classList.contains('active') ? 'open' : 'closed');
+            });
+            
+            // Close on outside click
+            document.addEventListener('click', function(e) {
+                if (navMenu.classList.contains('active') && 
+                    !navMenu.contains(e.target) && 
+                    !freshToggle.contains(e.target)) {
+                    
+                    freshToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                    
+                    console.log('📱 Menu closed by outside click');
+                }
+            });
+            
+            // Close on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    freshToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                    
+                    console.log('📱 Menu closed by escape key');
+                }
+            });
+            
+            // Close on window resize (if going from mobile to desktop)
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                    freshToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                }
+            });
+            
+            console.log('📱 Mobile menu initialized');
+        }
+
+        // ============================================
         // 🚀 INITIALIZATION
         // ============================================
         
         function init() {
+            console.log('🔧 Initializing login page...');
+            
             // Check for existing session
             checkExistingSession();
             
             // Pre-fill email
             prefillEmail();
             
+            // Initialize mobile menu (FIXED)
+            initMobileMenu();
+            
             // Event listeners
-            loginForm.addEventListener('submit', handleSubmit);
-            adminLoginBtn.addEventListener('click', handleAdminLogin);
+            if (loginForm) loginForm.addEventListener('submit', handleSubmit);
+            if (adminLoginBtn) adminLoginBtn.addEventListener('click', handleAdminLogin);
             
             // Clear messages on input
-            emailInput.addEventListener('input', hideMessages);
-            passwordInput.addEventListener('input', hideMessages);
+            if (emailInput) emailInput.addEventListener('input', hideMessages);
+            if (passwordInput) passwordInput.addEventListener('input', hideMessages);
             
             console.log('🔐 Login page initialized', {
                 apiAvailable: !!window.API,
