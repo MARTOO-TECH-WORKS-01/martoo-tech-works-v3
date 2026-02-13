@@ -15,11 +15,11 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS - FIXED PATHS -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     
-    <!-- Favicon - FIXED PATH -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="Images/martoo_tech_logo.png">
     
     <style>
@@ -796,7 +796,7 @@
             100% { background-position: -200% 0; }
         }
 
-        /* ===== MOBILE HAMBURGER MENU STYLES - ADDED ===== */
+        /* ===== MOBILE HAMBURGER MENU STYLES ===== */
         @media (max-width: 768px) {
             .dashboard-sidebar {
                 transform: translateX(-100%);
@@ -813,7 +813,6 @@
                 margin-left: 0 !important;
             }
             
-            /* Mobile menu toggle button */
             .mobile-menu-toggle {
                 display: flex !important;
                 flex-direction: column;
@@ -900,10 +899,6 @@
             .welcome-stats {
                 flex-direction: column;
                 gap: 16px;
-            }
-            
-            .header-date span {
-                display: none;
             }
         }
     </style>
@@ -1048,7 +1043,7 @@
             <!-- Header -->
             <header class="dashboard-header">
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <!-- Mobile Hamburger Menu Button - ADDED -->
+                    <!-- Mobile Hamburger Menu Button -->
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu" style="display: none;">
                         <span></span>
                         <span></span>
@@ -1091,7 +1086,7 @@
     <script>
         /**
          * ===================================================================
-         * ADMIN DASHBOARD - FULLY FIXED WITH PERSISTENT LOGIN & MOBILE MENU
+         * ADMIN DASHBOARD - COMPLETE FIX WITH PERSISTENT LOGIN
          * ===================================================================
          */
 
@@ -1106,58 +1101,70 @@
         };
 
         // ===================================================================
-        // 🔐 AUTHENTICATION CHECK - FIXED
+        // 🔐 AUTHENTICATION CHECK - COMPLETELY REWRITTEN FOR RELIABILITY
         // ===================================================================
-        (async function checkAuth() {
+        (function checkAuth() {
+            console.log('🔍 Admin dashboard checking authentication...');
+            
+            // ✅ Check ALL possible storage locations
+            const token = localStorage.getItem('martoo_token') || 
+                          sessionStorage.getItem('martoo_token');
+            
+            const userJson = localStorage.getItem('martoo_user') || 
+                             sessionStorage.getItem('martoo_user');
+            
+            console.log('📦 Token found:', !!token);
+            console.log('📦 User data found:', !!userJson);
+            
+            // If no token, redirect immediately
+            if (!token || !userJson) {
+                console.log('❌ No token or user data - redirecting to login');
+                window.location.replace('login.html');
+                return;
+            }
+            
             try {
-                console.log('🔍 Checking authentication...');
-                
-                // ✅ Check localStorage FIRST (admin should be here)
-                const token = localStorage.getItem('martoo_token');
-                const userData = localStorage.getItem('martoo_user');
-                
-                console.log('📦 Token in localStorage:', !!token);
-                console.log('📦 User data in localStorage:', !!userData);
-                
-                // If not in localStorage, check sessionStorage as fallback
-                const sessionToken = sessionStorage.getItem('martoo_token');
-                const sessionUser = sessionStorage.getItem('martoo_user');
-                
-                if (!token && !sessionToken) {
-                    console.log('❌ No token found - redirecting to login');
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                // Use whichever token exists
-                const activeToken = token || sessionToken;
-                const activeUser = userData || sessionUser;
-                
-                if (!activeUser) {
-                    console.log('❌ No user data found - redirecting to login');
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                const user = JSON.parse(activeUser);
+                const user = JSON.parse(userJson);
                 console.log('👤 User:', user.email, 'Role:', user.role);
                 
                 // Verify admin role
                 if (user.role !== 'admin') {
                     console.log('❌ Not an admin - redirecting to user dashboard');
-                    window.location.href = 'user_dashboard.html';
+                    window.location.replace('user_dashboard.html');
                     return;
                 }
-
-                // Set admin name
-                document.getElementById('adminName').textContent = user.name || 'Administrator';
+                
+                // ✅ CRITICAL: Ensure token is in BOTH storages for redundancy
+                if (!localStorage.getItem('martoo_token') && sessionStorage.getItem('martoo_token')) {
+                    console.log('📦 Copying token from sessionStorage to localStorage');
+                    localStorage.setItem('martoo_token', sessionStorage.getItem('martoo_token'));
+                }
+                
+                if (!localStorage.getItem('martoo_user') && sessionStorage.getItem('martoo_user')) {
+                    console.log('📦 Copying user from sessionStorage to localStorage');
+                    localStorage.setItem('martoo_user', sessionStorage.getItem('martoo_user'));
+                }
+                
+                // Set admin name in UI
+                const adminNameEl = document.getElementById('adminName');
+                if (adminNameEl) {
+                    adminNameEl.textContent = user.name || 'Administrator';
+                }
+                
+                console.log('✅ Authentication successful, loading dashboard...');
                 
                 // Initialize dashboard
-                initDashboard();
+                if (typeof initDashboard === 'function') {
+                    initDashboard();
+                } else {
+                    console.error('❌ initDashboard function not found');
+                    // Fallback initialization
+                    window.location.reload();
+                }
                 
             } catch (error) {
-                console.error('❌ Auth check failed:', error);
-                window.location.href = 'login.html';
+                console.error('❌ Error parsing user data:', error);
+                window.location.replace('login.html');
             }
         })();
 
@@ -1201,7 +1208,20 @@
                 
             } catch (error) {
                 console.error('❌ Dashboard initialization failed:', error);
-                alert('Failed to load dashboard data. Please refresh the page.');
+                // Don't redirect on initialization error, just show error message
+                const content = document.getElementById('dashboardContent');
+                if (content) {
+                    content.innerHTML = `
+                        <div style="text-align: center; padding: 100px 20px;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 64px; color: var(--danger); margin-bottom: 20px;"></i>
+                            <h2>Failed to load dashboard</h2>
+                            <p style="color: var(--neutral-300);">Please refresh the page or try again later.</p>
+                            <button onclick="window.location.reload()" class="btn btn-primary" style="margin-top: 20px;">
+                                <i class="fas fa-sync-alt"></i> Refresh Page
+                            </button>
+                        </div>
+                    `;
+                }
             }
         }
 
@@ -1220,22 +1240,21 @@
             console.log('📱 Initializing mobile menu');
             
             // Show on mobile only
-            if (window.innerWidth <= 768) {
-                mobileToggle.style.display = 'flex';
-            } else {
-                mobileToggle.style.display = 'none';
-            }
-            
-            // Handle resize
-            window.addEventListener('resize', function() {
+            function updateMobileMenuVisibility() {
                 if (window.innerWidth <= 768) {
                     mobileToggle.style.display = 'flex';
                 } else {
                     mobileToggle.style.display = 'none';
                     sidebar.classList.remove('active');
                     document.body.classList.remove('menu-open');
+                    mobileToggle.classList.remove('active');
                 }
-            });
+            }
+            
+            updateMobileMenuVisibility();
+            
+            // Handle resize
+            window.addEventListener('resize', updateMobileMenuVisibility);
             
             // Toggle menu on click
             mobileToggle.addEventListener('click', function(e) {
@@ -1279,11 +1298,10 @@
         }
 
         // ===================================================================
-        // 📊 STATISTICS - FIXED API CALLS
+        // 📊 STATISTICS
         // ===================================================================
         async function loadStats() {
             try {
-                // Try using window.API if available
                 let stats = {
                     totalUsers: 0,
                     totalEnrollments: 0,
@@ -1306,18 +1324,15 @@
                     };
                 }
                 
-                // Update stat cards
                 updateElement('totalUsersStat', stats.totalUsers || 0);
                 updateElement('totalEnrollmentsStat', stats.totalEnrollments || 0);
                 updateElement('pendingPaymentsStat', stats.pendingPayments || 0);
                 updateElement('confirmedEnrollmentsStat', stats.confirmedEnrollments || 0);
                 
-                // Update badges
                 updateElement('userCountBadge', stats.totalUsers || 0);
                 updateElement('enrollmentBadge', stats.pendingPayments || 0);
                 updateElement('paymentBadge', stats.pendingPayments || 0);
                 
-                // Update welcome stats
                 updateElement('welcomeEnrollments', stats.totalEnrollments || 0);
                 updateElement('welcomeUsers', stats.totalUsers || 0);
                 updateElement('welcomeRevenue', formatCurrency(stats.revenue || 0));
@@ -1332,7 +1347,6 @@
         // 📈 CHARTS INITIALIZATION
         // ===================================================================
         function initializeCharts() {
-            // Check if Chart.js is loaded
             if (typeof Chart === 'undefined') {
                 const script = document.createElement('script');
                 script.src = 'https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js';
@@ -1371,9 +1385,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -1411,10 +1423,7 @@
                     plugins: {
                         legend: {
                             position: 'bottom',
-                            labels: {
-                                color: '#E6E9F0',
-                                font: { size: 12 }
-                            }
+                            labels: { color: '#E6E9F0', font: { size: 12 } }
                         }
                     },
                     cutout: '70%'
@@ -1423,7 +1432,7 @@
         }
 
         // ===================================================================
-        // 👥 USERS MANAGEMENT - FIXED
+        // 👥 USERS MANAGEMENT
         // ===================================================================
         async function loadRecentUsers() {
             const tbody = document.getElementById('recentUsersTable');
@@ -1439,7 +1448,6 @@
                     }
                 }
                 
-                // Mock data if no users
                 if (users.length === 0) {
                     users = [
                         { id: 1, name: 'John Mulenga', email: 'john.mulenga@example.com', course: 'Introduction to STATA', status: 'active', createdAt: new Date().toISOString() },
@@ -1483,7 +1491,7 @@
         }
 
         // ===================================================================
-        // 📝 ENROLLMENTS MANAGEMENT - FIXED
+        // 📝 ENROLLMENTS MANAGEMENT
         // ===================================================================
         async function loadRecentEnrollments() {
             const tbody = document.getElementById('recentEnrollmentsTable');
@@ -1499,7 +1507,6 @@
                     }
                 }
                 
-                // Mock data
                 if (enrollments.length === 0) {
                     enrollments = [
                         { id: 1, name: 'John Mulenga', email: 'john.mulenga@example.com', course: 'Introduction to STATA', status: 'Payment Proof Submitted', createdAt: new Date().toISOString(), proofUrl: '#' },
@@ -1566,7 +1573,6 @@
         async function loadSection(section) {
             const content = document.getElementById('dashboardContent');
             
-            // Update active nav state
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
@@ -1574,7 +1580,6 @@
             const activeLink = document.querySelector(`[data-section="${section}"]`);
             if (activeLink) activeLink.classList.add('active');
             
-            // Load section content
             switch(section) {
                 case 'dashboard':
                     content.innerHTML = getDashboardHTML();
@@ -1583,7 +1588,6 @@
                         loadRecentUsers(),
                         loadRecentEnrollments()
                     ]);
-                    // Reinitialize charts
                     setTimeout(() => {
                         createEnrollmentChart();
                         createRevenueChart();
@@ -1595,7 +1599,7 @@
                         <div style="text-align: center; padding: 100px 20px;">
                             <i class="fas fa-tools" style="font-size: 64px; color: var(--accent-blue); margin-bottom: 20px;"></i>
                             <h2>${section.charAt(0).toUpperCase() + section.slice(1)} Management</h2>
-                            <p style="color: var(--neutral-300);">This section is under construction and will be available soon.</p>
+                            <p style="color: var(--neutral-300);">Coming soon...</p>
                         </div>
                     `;
             }
@@ -1606,7 +1610,6 @@
         // ===================================================================
         function getDashboardHTML() {
             return `
-                <!-- Welcome Banner -->
                 <div class="welcome-banner">
                     <div class="welcome-content">
                         <h2>Welcome back, <span id="adminNameDisplay">Administrator</span>!</h2>
@@ -1628,7 +1631,6 @@
                     </div>
                 </div>
 
-                <!-- Stats Grid -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-info">
@@ -1664,7 +1666,6 @@
                     </div>
                 </div>
 
-                <!-- Charts -->
                 <div class="charts-grid">
                     <div class="chart-card">
                         <div class="chart-header">
@@ -1688,7 +1689,6 @@
                     </div>
                 </div>
 
-                <!-- Recent Users -->
                 <div class="table-card">
                     <div class="table-header">
                         <h3>Recent Users</h3>
@@ -1705,7 +1705,6 @@
                     </div>
                 </div>
 
-                <!-- Recent Enrollments -->
                 <div class="table-card">
                     <div class="table-header">
                         <h3>Pending Enrollments</h3>
@@ -1722,7 +1721,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
                 <div class="quick-actions">
                     <div class="quick-action-card" onclick="alert('Create User modal would open')">
                         <div class="quick-action-icon"><i class="fas fa-user-plus"></i></div>
@@ -1752,26 +1750,22 @@
         // 🎯 EVENT LISTENERS
         // ===================================================================
         function initEventListeners() {
-            // Sidebar toggle (desktop)
             const sidebarToggle = document.getElementById('sidebarToggle');
             if (sidebarToggle) {
                 sidebarToggle.addEventListener('click', toggleSidebar);
             }
             
-            // Logout button
             const logoutBtn = document.getElementById('logoutBtn');
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', handleLogout);
             }
             
-            // Navigation links
             document.querySelectorAll('.nav-link[data-section]').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const section = link.dataset.section;
                     loadSection(section);
                     
-                    // Close mobile menu after navigation
                     if (window.innerWidth <= 768) {
                         document.getElementById('mobileMenuToggle')?.classList.remove('active');
                         document.getElementById('sidebar')?.classList.remove('active');
@@ -1780,13 +1774,11 @@
                 });
             });
             
-            // Global search
             const searchInput = document.getElementById('globalSearch');
             if (searchInput) {
                 searchInput.addEventListener('input', debounce(handleSearch, 500));
             }
             
-            // Notification button
             const notificationBtn = document.getElementById('notificationBtn');
             if (notificationBtn) {
                 notificationBtn.addEventListener('click', () => {
@@ -1794,7 +1786,6 @@
                 });
             }
             
-            // Update datetime
             updateDateTime();
             setInterval(updateDateTime, 1000);
         }
@@ -1811,21 +1802,18 @@
 
         async function handleLogout() {
             try {
-                // Clear ALL storage
                 localStorage.clear();
                 sessionStorage.clear();
                 
-                // Clear cookies
                 document.cookie.split(';').forEach(c => {
                     document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;');
                 });
                 
-                // Redirect to login
-                window.location.href = 'login.html';
+                window.location.replace('login.html');
                 
             } catch (error) {
                 console.error('Logout error:', error);
-                window.location.href = 'login.html';
+                window.location.replace('login.html');
             }
         }
 
@@ -1848,7 +1836,6 @@
             if (!dateString) return '—';
             const date = new Date(dateString);
             if (isNaN(date.getTime())) return '—';
-            
             return date.toLocaleDateString('en-ZM', {
                 day: 'numeric',
                 month: 'short',
@@ -1884,7 +1871,6 @@
         }
 
         function showLoading() {
-            // Add loading class to stat cards
             document.querySelectorAll('.stat-card .stat-number').forEach(el => {
                 el.style.opacity = '0.5';
             });
@@ -1906,7 +1892,7 @@
         }
 
         // ===================================================================
-        // 📤 GLOBAL FUNCTIONS (Placeholders)
+        // 📤 GLOBAL FUNCTIONS
         // ===================================================================
         window.loadSection = loadSection;
         window.viewUser = (id) => alert(`View user: ${id}`);
