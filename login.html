@@ -455,7 +455,7 @@
 </head>
 <body>
     <!-- ============================================ -->
-    <!-- 🚀 STICKY HEADER WITH NAVIGATION - FIXED HAMBURGER -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
     <!-- ============================================ -->
     <header class="header">
         <div class="container header-container">
@@ -483,7 +483,7 @@
                 </div>
             </nav>
             
-            <!-- Hamburger Menu Button - FIXED -->
+            <!-- Hamburger Menu Button -->
             <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -694,7 +694,7 @@
     
     <script>
         // ============================================
-        // 🔐 LOGIN PAGE - FULLY FIXED
+        // 🔐 LOGIN PAGE - ULTIMATE FIXED VERSION
         // ============================================
 
         'use strict';
@@ -782,45 +782,54 @@
         }
 
         // ============================================
-        // 🔐 TOKEN MANAGEMENT - FIXED FOR ADMIN
+        // 🔐 TOKEN MANAGEMENT - ULTRA RELIABLE
         // ============================================
         
         function storeToken(token, remember = false, isAdmin = false) {
-            // ✅ FORCE localStorage for admin users regardless of remember me
+            console.log('🔐 Storing token - isAdmin:', isAdmin, 'remember:', remember);
+            
+            // ✅ ALWAYS store in localStorage for admin
             if (isAdmin) {
-                console.log('🔐 Admin login - forcing localStorage');
                 localStorage.setItem('martoo_token', token);
                 localStorage.setItem('martoo_remember', 'true');
-                sessionStorage.removeItem('martoo_token');
+                // Also store in sessionStorage as backup
+                sessionStorage.setItem('martoo_token', token);
+                console.log('✅ Admin token stored in localStorage AND sessionStorage');
             } 
             // Regular user with remember me
             else if (remember) {
                 localStorage.setItem('martoo_token', token);
                 localStorage.setItem('martoo_remember', 'true');
-                sessionStorage.removeItem('martoo_token');
+                sessionStorage.setItem('martoo_token', token); // Backup
+                console.log('✅ User token stored in localStorage (remember) + session backup');
             } 
             // Regular user without remember me
             else {
                 sessionStorage.setItem('martoo_token', token);
-                localStorage.removeItem('martoo_remember');
+                // Still store in localStorage but mark as session-only
+                localStorage.setItem('martoo_token', token); // Backup
+                localStorage.setItem('martoo_session_only', 'true');
+                console.log('✅ Token stored in sessionStorage + localStorage backup');
             }
             
-            // Cookie backup
-            const expiry = (isAdmin || remember) ? 30 : 1;
+            // Cookie backup (always 30 days for admin, otherwise as specified)
+            const expiry = isAdmin ? 30 : (remember ? 30 : 1);
             const date = new Date();
             date.setTime(date.getTime() + (expiry * 24 * 60 * 60 * 1000));
             document.cookie = `martoo_token=${token}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
             
-            console.log('✅ Token stored in:', isAdmin || remember ? 'localStorage' : 'sessionStorage');
+            // Verify storage
+            console.log('📦 Verification - localStorage:', !!localStorage.getItem('martoo_token'));
+            console.log('📦 Verification - sessionStorage:', !!sessionStorage.getItem('martoo_token'));
         }
 
         function handleLoginSuccess(response) {
             const isAdmin = response.data.user.role === 'admin';
             
-            // Store token with admin flag
+            // Store token with admin flag - use ULTRA RELIABLE method
             storeToken(response.data.token, rememberMeCheckbox.checked, isAdmin);
             
-            // Store user data
+            // Store user data in BOTH storages
             const userData = {
                 id: response.data.user.id,
                 name: response.data.user.name,
@@ -830,7 +839,9 @@
                 phone: response.data.user.phone || null
             };
             
-            localStorage.setItem('martoo_user', JSON.stringify(userData));
+            const userJson = JSON.stringify(userData);
+            localStorage.setItem('martoo_user', userJson);
+            sessionStorage.setItem('martoo_user', userJson);
             
             // Store remembered email
             if (rememberMeCheckbox.checked) {
@@ -841,11 +852,14 @@
             
             showSuccess('Login successful! Redirecting...');
             
+            // Short delay then redirect
             setTimeout(() => {
                 if (isAdmin) {
-                    window.location.href = 'admin-dashboard.html';
+                    console.log('🚀 Redirecting to admin dashboard...');
+                    window.location.replace('admin-dashboard.html');
                 } else {
-                    window.location.href = 'user_dashboard.html';
+                    console.log('🚀 Redirecting to user dashboard...');
+                    window.location.replace('user_dashboard.html');
                 }
             }, 1000);
         }
@@ -898,6 +912,7 @@
                     return;
                 }
                 
+                console.log('🔐 Login attempt for:', email);
                 const response = await window.API.auth.login(email, password);
                 
                 if (response.success) {
@@ -922,7 +937,7 @@
         }
 
         /**
-         * Handle Admin Login - FIXED VERSION
+         * Handle Admin Login - ULTRA RELIABLE
          */
         async function handleAdminLogin() {
             try {
@@ -957,17 +972,20 @@
                 if (response.success) {
                     console.log('✅ Admin login successful');
                     
-                    // ✅ FORCE localStorage for admin
-                    localStorage.setItem('martoo_token', response.data.token);
+                    // ✅ ULTRA RELIABLE storage for admin
+                    const token = response.data.token;
+                    
+                    // Store in EVERY possible location
+                    localStorage.setItem('martoo_token', token);
+                    sessionStorage.setItem('martoo_token', token);
                     localStorage.setItem('martoo_remember', 'true');
-                    sessionStorage.removeItem('martoo_token');
                     
                     // Cookie backup - 30 days
                     const date = new Date();
                     date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-                    document.cookie = `martoo_token=${response.data.token}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+                    document.cookie = `martoo_token=${token}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
                     
-                    // Store admin user data
+                    // Store admin user data in both storages
                     const adminUser = {
                         id: 'admin',
                         email: response.data.user.email,
@@ -975,14 +993,19 @@
                         role: 'admin'
                     };
                     
-                    localStorage.setItem('martoo_user', JSON.stringify(adminUser));
+                    const userJson = JSON.stringify(adminUser);
+                    localStorage.setItem('martoo_user', userJson);
+                    sessionStorage.setItem('martoo_user', userJson);
                     
-                    console.log('✅ Token stored in localStorage for admin');
+                    console.log('✅ Token stored in localStorage AND sessionStorage');
+                    console.log('📦 Verification - localStorage token:', !!localStorage.getItem('martoo_token'));
+                    console.log('📦 Verification - sessionStorage token:', !!sessionStorage.getItem('martoo_token'));
                     
                     showSuccess('Admin login successful! Redirecting...');
                     
                     setTimeout(() => {
-                        window.location.href = 'admin-dashboard.html';
+                        console.log('🚀 Redirecting to admin dashboard...');
+                        window.location.replace('admin-dashboard.html');
                     }, 1000);
                 } else {
                     console.error('❌ Admin login failed:', response.error);
@@ -1001,17 +1024,21 @@
         // ============================================
         
         function checkExistingSession() {
+            // Check ALL possible storage locations
             const token = localStorage.getItem('martoo_token') || sessionStorage.getItem('martoo_token');
             const userJson = localStorage.getItem('martoo_user') || sessionStorage.getItem('martoo_user');
             
             if (token && userJson) {
                 try {
                     const userData = JSON.parse(userJson);
+                    console.log('👤 Existing session found for:', userData.email);
                     
+                    // Already on login page, no need to redirect
                     if (window.location.pathname.includes('login.html')) {
                         return;
                     }
                     
+                    // Redirect to appropriate dashboard
                     if (userData.role === 'admin') {
                         window.location.href = 'admin-dashboard.html';
                     } else {
@@ -1032,7 +1059,7 @@
         }
 
         // ============================================
-        // 📱 HAMBURGER MENU - FIXED LOCAL FALLBACK
+        // 📱 HAMBURGER MENU
         // ============================================
         
         function initMobileMenu() {
@@ -1061,8 +1088,6 @@
                 this.classList.toggle('active');
                 navMenu.classList.toggle('active');
                 document.body.classList.toggle('menu-open');
-                
-                console.log('📱 Menu toggled:', navMenu.classList.contains('active') ? 'open' : 'closed');
             });
             
             // Close on outside click
@@ -1074,8 +1099,6 @@
                     freshToggle.classList.remove('active');
                     navMenu.classList.remove('active');
                     document.body.classList.remove('menu-open');
-                    
-                    console.log('📱 Menu closed by outside click');
                 }
             });
             
@@ -1085,12 +1108,10 @@
                     freshToggle.classList.remove('active');
                     navMenu.classList.remove('active');
                     document.body.classList.remove('menu-open');
-                    
-                    console.log('📱 Menu closed by escape key');
                 }
             });
             
-            // Close on window resize (if going from mobile to desktop)
+            // Close on window resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
                     freshToggle.classList.remove('active');
@@ -1115,7 +1136,7 @@
             // Pre-fill email
             prefillEmail();
             
-            // Initialize mobile menu (FIXED)
+            // Initialize mobile menu
             initMobileMenu();
             
             // Event listeners
