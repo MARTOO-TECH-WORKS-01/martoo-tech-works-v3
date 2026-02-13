@@ -1,7 +1,7 @@
 /**
  * ===================================================================
  * MARTOO TECH WORKS - AUTHENTICATION MODULE
- * Version: 2.0.0
+ * Version: 2.0.0 - FIXED
  * Backend: Node.js/Express on Vercel - YOUR ACTUAL BACKEND
  * Repository: mtechworks1-hub/martoo-tech-backend-Qgis
  * Features: JWT management, login, logout, session handling
@@ -118,28 +118,30 @@
     
     const Auth = {
         /**
-         * Get authentication token
+         * Get authentication token from ANY storage
          */
         getToken() {
             return safeGet(CONFIG.TOKEN_KEY) || safeGet(CONFIG.TOKEN_KEY, true) || null;
         },
 
         /**
-         * Store authentication token
+         * Store authentication token - NOW STORES IN BOTH STORAGES FOR REDUNDANCY
          */
         setToken(token, remember = false) {
+            // ✅ ALWAYS store in both storages for redundancy
+            safeSet(CONFIG.TOKEN_KEY, token, false); // localStorage
+            safeSet(CONFIG.TOKEN_KEY, token, true);  // sessionStorage
+            
             if (remember) {
-                safeSet(CONFIG.TOKEN_KEY, token, false);
                 safeSet(CONFIG.REMEMBER_KEY, 'true', false);
-                safeRemove(CONFIG.TOKEN_KEY, true);
             } else {
-                safeSet(CONFIG.TOKEN_KEY, token, true);
-                safeRemove(CONFIG.TOKEN_KEY, false);
                 safeRemove(CONFIG.REMEMBER_KEY, false);
             }
             
             // Also set cookie as backup
             this.setTokenCookie(token, remember);
+            
+            console.log('✅ Token stored in both localStorage and sessionStorage');
         },
 
         /**
@@ -175,6 +177,7 @@
             if (!token) return false;
             
             if (isTokenExpired(token)) {
+                console.log('⚠️ Token expired, logging out');
                 this.logout(false);
                 return false;
             }
@@ -191,7 +194,7 @@
         },
 
         /**
-         * Get current user data
+         * Get current user data from ANY storage
          */
         getUser() {
             const userData = safeGet(CONFIG.USER_KEY) || safeGet(CONFIG.USER_KEY, true);
@@ -205,17 +208,13 @@
         },
 
         /**
-         * Store user data
+         * Store user data in BOTH storages
          */
         setUser(user, remember = false) {
             const userString = JSON.stringify(user);
-            if (remember) {
-                safeSet(CONFIG.USER_KEY, userString, false);
-                safeRemove(CONFIG.USER_KEY, true);
-            } else {
-                safeSet(CONFIG.USER_KEY, userString, true);
-                safeRemove(CONFIG.USER_KEY, false);
-            }
+            // ✅ Store in both storages
+            safeSet(CONFIG.USER_KEY, userString, false); // localStorage
+            safeSet(CONFIG.USER_KEY, userString, true);  // sessionStorage
         },
 
         /**
@@ -236,15 +235,17 @@
          */
         async login(email, password, remember = false) {
             try {
-                // Check if API is available
                 if (!window.API) {
                     throw new Error('API module not loaded');
                 }
 
+                console.log('🔐 Login attempt for:', email);
                 const response = await window.API.auth.login(email, password);
                 
                 if (response.success) {
-                    // Store token
+                    console.log('✅ Login successful');
+                    
+                    // Store token (now stores in both storages)
                     this.setToken(response.data.token, remember);
                     
                     // Store user data
@@ -270,6 +271,7 @@
                     };
                 }
                 
+                console.log('❌ Login failed:', response.error);
                 return response;
             } catch (error) {
                 console.error('Login error:', error);
@@ -281,7 +283,7 @@
         },
 
         /**
-         * Admin login - POST /login (matches your backend with trim fix)
+         * Admin login - POST /login
          */
         async adminLogin(email, password, remember = false) {
             try {
@@ -289,10 +291,13 @@
                     throw new Error('API module not loaded');
                 }
 
+                console.log('🔐 Admin login attempt for:', email);
                 const response = await window.API.auth.adminLogin(email, password);
                 
                 if (response.success) {
-                    // Store token
+                    console.log('✅ Admin login successful');
+                    
+                    // Store token (now stores in both storages)
                     this.setToken(response.data.token, remember);
                     
                     // Store admin user data
@@ -318,6 +323,7 @@
                     };
                 }
                 
+                console.log('❌ Admin login failed:', response.error);
                 return response;
             } catch (error) {
                 console.error('Admin login error:', error);
@@ -332,7 +338,9 @@
          * Logout user
          */
         logout(redirect = true) {
-            // Clear stored data
+            console.log('🔓 Logging out...');
+            
+            // Clear ALL storage
             safeRemove(CONFIG.TOKEN_KEY, false);
             safeRemove(CONFIG.TOKEN_KEY, true);
             safeRemove(CONFIG.USER_KEY, false);
@@ -348,6 +356,8 @@
             
             // Dispatch logout event
             this.dispatchEvent(CONFIG.EVENTS.LOGOUT);
+            
+            console.log('✅ Logout complete');
             
             // Redirect to login
             if (redirect) {
@@ -377,25 +387,37 @@
         },
 
         /**
-         * Validate token with backend
+         * 🔧 FIXED: Validate token with backend - NO AUTO-LOGOUT ON ERROR
          */
         async validateToken() {
             const token = this.getToken();
-            if (!token) return false;
+            if (!token) {
+                console.log('❌ No token found for validation');
+                return false;
+            }
             
             try {
                 if (!window.API) {
-                    throw new Error('API module not loaded');
+                    console.log('❌ API not available for validation');
+                    return false;
                 }
 
+                console.log('🔍 Validating token with backend...');
                 const response = await window.API.auth.getProfile();
-                return response.success;
-            } catch (error) {
-                console.error('Token validation error:', error);
                 
-                if (error.status === 401 || error.status === 403) {
-                    this.logout(false);
+                if (response.success) {
+                    console.log('✅ Token is valid');
+                    return true;
+                } else {
+                    console.log('❌ Token validation failed:', response.error);
+                    return false;
                 }
+                
+            } catch (error) {
+                console.error('❌ Token validation error:', error);
+                
+                // ✅ FIXED: Don't logout automatically on validation error
+                // The dashboard should decide what to do
                 
                 return false;
             }
@@ -495,7 +517,6 @@
                 return { valid: false, errors, strength: 0, label: 'No password' };
             }
             
-            // Length check (min 8 as per your backend)
             if (password.length < 8) {
                 errors.push('Password must be at least 8 characters');
             } else {
@@ -506,35 +527,30 @@
                 strength += 1;
             }
             
-            // Uppercase check
             if (!/[A-Z]/.test(password)) {
                 errors.push('Must contain uppercase letter');
             } else {
                 strength += 1;
             }
             
-            // Lowercase check
             if (!/[a-z]/.test(password)) {
                 errors.push('Must contain lowercase letter');
             } else {
                 strength += 1;
             }
             
-            // Number check
             if (!/[0-9]/.test(password)) {
                 errors.push('Must contain number');
             } else {
                 strength += 1;
             }
             
-            // Special character check - matches your backend
             if (!/[!@#$%^&*]/.test(password)) {
                 errors.push('Must contain special character (!@#$%^&*)');
             } else {
                 strength += 1;
             }
             
-            // Common passwords check
             const commonPasswords = ['password', '12345678', 'qwerty', 'admin', 'letmein', 'welcome'];
             if (commonPasswords.includes(password.toLowerCase())) {
                 errors.push('Password is too common');
@@ -569,19 +585,16 @@
             
             let password = '';
             
-            // Ensure at least one of each character type
             password += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
             password += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
             password += numbers.charAt(Math.floor(Math.random() * numbers.length));
             password += special.charAt(Math.floor(Math.random() * special.length));
             
-            // Fill remaining length
             const allChars = uppercase + lowercase + numbers + special;
             for (let i = 4; i < length; i++) {
                 password += allChars.charAt(Math.floor(Math.random() * allChars.length));
             }
             
-            // Shuffle password
             return password.split('').sort(() => Math.random() - 0.5).join('');
         }
     };
@@ -652,7 +665,7 @@
                         if (onExpiry) onExpiry();
                     }
                 }
-            }, 60000); // Check every minute
+            }, 60000);
             
             return interval;
         },
@@ -674,11 +687,7 @@
          * Handle login form submission
          */
         async handleLogin(form, options = {}) {
-            const {
-                onSuccess,
-                onError,
-                rememberField = 'remember'
-            } = options;
+            const { onSuccess, onError, rememberField = 'remember' } = options;
             
             const formData = new FormData(form);
             const email = formData.get('email');
@@ -693,11 +702,8 @@
             const result = await Auth.login(email, password, remember);
             
             if (result.success) {
-                if (onSuccess) {
-                    onSuccess(result);
-                } else {
-                    window.location.href = result.redirect;
-                }
+                if (onSuccess) onSuccess(result);
+                else window.location.href = result.redirect;
             } else {
                 if (onError) onError(result.error || 'Login failed');
             }
@@ -709,11 +715,7 @@
          * Handle registration form submission
          */
         async handleRegistration(form, options = {}) {
-            const {
-                onSuccess,
-                onError,
-                validatePassword = true
-            } = options;
+            const { onSuccess, onError, validatePassword = true } = options;
             
             const formData = new FormData(form);
             const firstName = formData.get('firstName');
@@ -725,7 +727,6 @@
             const confirmPassword = formData.get('confirmPassword');
             const notes = formData.get('notes');
             
-            // Validation
             if (!firstName || !lastName) {
                 if (onError) onError('Please enter your full name');
                 return { success: false, error: 'Name required' };
@@ -769,7 +770,6 @@
             }
             
             try {
-                // Format phone number for backend
                 const formattedPhone = phone ? 
                     (phone.startsWith('0') ? '+260' + phone.substring(1) : 
                      phone.startsWith('260') ? '+' + phone : phone) : 
@@ -783,22 +783,13 @@
                     notes: notes || null
                 };
                 
-                // POST /enrollments - Create enrollment
                 const response = await window.API.enrollments.createEnrollment(enrollmentData);
                 
                 if (response.success) {
                     if (onSuccess) {
-                        onSuccess({
-                            enrollmentId: response.data.id,
-                            email,
-                            course
-                        });
+                        onSuccess({ enrollmentId: response.data.id, email, course });
                     }
-                    
-                    return {
-                        success: true,
-                        enrollmentId: response.data.id
-                    };
+                    return { success: true, enrollmentId: response.data.id };
                 } else {
                     if (onError) onError(response.error || 'Registration failed');
                     return response;
@@ -832,7 +823,6 @@
             }
             
             try {
-                // POST /users/forgot-password
                 const response = await window.API.auth.forgotPassword(email);
                 
                 if (response.success) {
@@ -860,12 +850,7 @@
          * Protect route based on authentication
          */
         protect(options = {}) {
-            const {
-                requireAuth = true,
-                requireAdmin = false,
-                redirectTo = CONFIG.LOGIN_URL,
-                fallback = null
-            } = options;
+            const { requireAuth = true, requireAdmin = false, redirectTo = CONFIG.LOGIN_URL, fallback = null } = options;
             
             if (requireAuth && !Auth.isAuthenticated()) {
                 if (redirectTo) {
@@ -876,9 +861,7 @@
             }
             
             if (requireAdmin && !Auth.isAdmin()) {
-                if (redirectTo) {
-                    window.location.href = CONFIG.DASHBOARD_URL;
-                }
+                if (redirectTo) window.location.href = CONFIG.DASHBOARD_URL;
                 return fallback;
             }
             
@@ -895,8 +878,6 @@
         const redirectUrl = safeGet('martoo_redirect_after_login', true);
         if (redirectUrl && Auth.isAuthenticated()) {
             safeRemove('martoo_redirect_after_login', true);
-            
-            // Only redirect if not already on that page
             if (!window.location.pathname.includes(redirectUrl)) {
                 window.location.href = redirectUrl;
             }
