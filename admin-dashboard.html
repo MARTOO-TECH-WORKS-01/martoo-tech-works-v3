@@ -1077,7 +1077,7 @@
         </main>
     </div>
 
-    <!-- JavaScript - FIXED PATHS -->
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
@@ -1086,39 +1086,27 @@
     <script>
         /**
          * ===================================================================
-         * ADMIN DASHBOARD - COMPLETE FIX WITH PERSISTENT LOGIN
+         * ADMIN DASHBOARD - COMPLETE FIXED VERSION
          * ===================================================================
          */
 
         'use strict';
 
         // ===================================================================
-        // 🔧 CONFIGURATION
+        // 🔐 AUTHENTICATION CHECK - FIXED
         // ===================================================================
-        const CONFIG = {
-            API_BASE_URL: 'https://martoo-tech-backend-qgis.vercel.app/api',
-            DEBUG: true
-        };
-
-        // ===================================================================
-        // 🔐 AUTHENTICATION CHECK - COMPLETELY REWRITTEN FOR RELIABILITY
-        // ===================================================================
-        (function checkAuth() {
+        (function() {
             console.log('🔍 Admin dashboard checking authentication...');
             
-            // ✅ Check ALL possible storage locations
-            const token = localStorage.getItem('martoo_token') || 
-                          sessionStorage.getItem('martoo_token');
+            // Check ALL storage locations
+            const token = localStorage.getItem('martoo_token') || sessionStorage.getItem('martoo_token');
+            const userJson = localStorage.getItem('martoo_user') || sessionStorage.getItem('martoo_user');
             
-            const userJson = localStorage.getItem('martoo_user') || 
-                             sessionStorage.getItem('martoo_user');
+            console.log('📦 Token exists:', !!token);
+            console.log('📦 User data exists:', !!userJson);
             
-            console.log('📦 Token found:', !!token);
-            console.log('📦 User data found:', !!userJson);
-            
-            // If no token, redirect immediately
             if (!token || !userJson) {
-                console.log('❌ No token or user data - redirecting to login');
+                console.log('❌ No authentication found - redirecting to login');
                 window.location.replace('login.html');
                 return;
             }
@@ -1127,39 +1115,25 @@
                 const user = JSON.parse(userJson);
                 console.log('👤 User:', user.email, 'Role:', user.role);
                 
-                // Verify admin role
                 if (user.role !== 'admin') {
-                    console.log('❌ Not an admin - redirecting to user dashboard');
+                    console.log('❌ Not admin - redirecting to user dashboard');
                     window.location.replace('user_dashboard.html');
                     return;
                 }
                 
-                // ✅ CRITICAL: Ensure token is in BOTH storages for redundancy
-                if (!localStorage.getItem('martoo_token') && sessionStorage.getItem('martoo_token')) {
-                    console.log('📦 Copying token from sessionStorage to localStorage');
-                    localStorage.setItem('martoo_token', sessionStorage.getItem('martoo_token'));
-                }
-                
-                if (!localStorage.getItem('martoo_user') && sessionStorage.getItem('martoo_user')) {
-                    console.log('📦 Copying user from sessionStorage to localStorage');
-                    localStorage.setItem('martoo_user', sessionStorage.getItem('martoo_user'));
-                }
-                
-                // Set admin name in UI
+                // Set admin name
                 const adminNameEl = document.getElementById('adminName');
                 if (adminNameEl) {
                     adminNameEl.textContent = user.name || 'Administrator';
                 }
                 
-                console.log('✅ Authentication successful, loading dashboard...');
+                console.log('✅ Authentication successful');
                 
-                // Initialize dashboard
+                // Start dashboard
                 if (typeof initDashboard === 'function') {
                     initDashboard();
                 } else {
-                    console.error('❌ initDashboard function not found');
-                    // Fallback initialization
-                    window.location.reload();
+                    console.error('❌ initDashboard not found');
                 }
                 
             } catch (error) {
@@ -1179,7 +1153,7 @@
                 showLoading();
                 
                 // Load dashboard sections
-                await Promise.all([
+                await Promise.allSettled([
                     loadStats(),
                     loadRecentUsers(),
                     loadRecentEnrollments(),
@@ -1189,7 +1163,7 @@
                 // Initialize charts
                 initializeCharts();
                 
-                // Load default section (dashboard)
+                // Load default section
                 loadSection('dashboard');
                 
                 // Hide loading
@@ -1208,7 +1182,7 @@
                 
             } catch (error) {
                 console.error('❌ Dashboard initialization failed:', error);
-                // Don't redirect on initialization error, just show error message
+                // Don't redirect, just show error
                 const content = document.getElementById('dashboardContent');
                 if (content) {
                     content.innerHTML = `
@@ -1216,9 +1190,6 @@
                             <i class="fas fa-exclamation-triangle" style="font-size: 64px; color: var(--danger); margin-bottom: 20px;"></i>
                             <h2>Failed to load dashboard</h2>
                             <p style="color: var(--neutral-300);">Please refresh the page or try again later.</p>
-                            <button onclick="window.location.reload()" class="btn btn-primary" style="margin-top: 20px;">
-                                <i class="fas fa-sync-alt"></i> Refresh Page
-                            </button>
                         </div>
                     `;
                 }
@@ -1226,75 +1197,50 @@
         }
 
         // ===================================================================
-        // 📱 MOBILE MENU - FIXED
+        // 📱 MOBILE MENU
         // ===================================================================
         function initMobileMenu() {
             const mobileToggle = document.getElementById('mobileMenuToggle');
             const sidebar = document.getElementById('sidebar');
             
-            if (!mobileToggle || !sidebar) {
-                console.log('⚠️ Mobile menu elements not found');
-                return;
-            }
+            if (!mobileToggle || !sidebar) return;
             
-            console.log('📱 Initializing mobile menu');
-            
-            // Show on mobile only
-            function updateMobileMenuVisibility() {
+            function updateVisibility() {
                 if (window.innerWidth <= 768) {
                     mobileToggle.style.display = 'flex';
                 } else {
                     mobileToggle.style.display = 'none';
                     sidebar.classList.remove('active');
                     document.body.classList.remove('menu-open');
-                    mobileToggle.classList.remove('active');
                 }
             }
             
-            updateMobileMenuVisibility();
+            updateVisibility();
+            window.addEventListener('resize', updateVisibility);
             
-            // Handle resize
-            window.addEventListener('resize', updateMobileMenuVisibility);
-            
-            // Toggle menu on click
-            mobileToggle.addEventListener('click', function(e) {
+            mobileToggle.addEventListener('click', (e) => {
                 e.preventDefault();
-                e.stopPropagation();
-                
-                this.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
                 sidebar.classList.toggle('active');
                 document.body.classList.toggle('menu-open');
-                
-                console.log('📱 Menu toggled:', sidebar.classList.contains('active') ? 'open' : 'closed');
             });
             
-            // Close on outside click
-            document.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768 && 
-                    sidebar.classList.contains('active') && 
-                    !sidebar.contains(e.target) && 
-                    !mobileToggle.contains(e.target)) {
-                    
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && sidebar.classList.contains('active') && 
+                    !sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
                     mobileToggle.classList.remove('active');
                     sidebar.classList.remove('active');
                     document.body.classList.remove('menu-open');
-                    
-                    console.log('📱 Menu closed by outside click');
                 }
             });
             
-            // Close on escape key
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && sidebar.classList.contains('active')) {
                     mobileToggle.classList.remove('active');
                     sidebar.classList.remove('active');
                     document.body.classList.remove('menu-open');
-                    
-                    console.log('📱 Menu closed by escape key');
                 }
             });
-            
-            console.log('📱 Mobile menu initialized');
         }
 
         // ===================================================================
@@ -1302,40 +1248,24 @@
         // ===================================================================
         async function loadStats() {
             try {
-                let stats = {
-                    totalUsers: 0,
-                    totalEnrollments: 0,
-                    pendingPayments: 0,
-                    confirmedEnrollments: 0
-                };
+                let stats = { totalUsers: 0, totalEnrollments: 0, pendingPayments: 0, confirmedEnrollments: 0 };
                 
-                if (window.API && window.API.admin && window.API.admin.getStats) {
+                if (window.API?.admin?.getStats) {
                     const response = await window.API.admin.getStats();
                     if (response.success) {
                         stats = response.data.stats || stats;
                     }
-                } else {
-                    // Mock data for demo
-                    stats = {
-                        totalUsers: 156,
-                        totalEnrollments: 89,
-                        pendingPayments: 12,
-                        confirmedEnrollments: 67
-                    };
                 }
                 
                 updateElement('totalUsersStat', stats.totalUsers || 0);
                 updateElement('totalEnrollmentsStat', stats.totalEnrollments || 0);
                 updateElement('pendingPaymentsStat', stats.pendingPayments || 0);
                 updateElement('confirmedEnrollmentsStat', stats.confirmedEnrollments || 0);
-                
                 updateElement('userCountBadge', stats.totalUsers || 0);
                 updateElement('enrollmentBadge', stats.pendingPayments || 0);
                 updateElement('paymentBadge', stats.pendingPayments || 0);
-                
                 updateElement('welcomeEnrollments', stats.totalEnrollments || 0);
                 updateElement('welcomeUsers', stats.totalUsers || 0);
-                updateElement('welcomeRevenue', formatCurrency(stats.revenue || 0));
                 
                 return stats;
             } catch (error) {
@@ -1344,30 +1274,28 @@
         }
 
         // ===================================================================
-        // 📈 CHARTS INITIALIZATION
+        // 📈 CHARTS
         // ===================================================================
         function initializeCharts() {
             if (typeof Chart === 'undefined') {
                 const script = document.createElement('script');
                 script.src = 'https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js';
-                script.onload = () => {
-                    createEnrollmentChart();
-                    createRevenueChart();
-                };
+                script.onload = createCharts;
                 document.head.appendChild(script);
             } else {
-                createEnrollmentChart();
-                createRevenueChart();
+                createCharts();
             }
+        }
+
+        function createCharts() {
+            createEnrollmentChart();
+            createRevenueChart();
         }
 
         function createEnrollmentChart() {
             const canvas = document.getElementById('enrollmentChart');
             if (!canvas) return;
-            
-            const ctx = canvas.getContext('2d');
-            
-            new Chart(ctx, {
+            new Chart(canvas.getContext('2d'), {
                 type: 'line',
                 data: {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -1377,26 +1305,13 @@
                         borderColor: '#007BFF',
                         backgroundColor: 'rgba(0, 123, 255, 0.1)',
                         tension: 0.4,
-                        fill: true,
-                        pointBackgroundColor: '#007BFF',
-                        pointBorderColor: '#FFFFFF'
+                        fill: true
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                            ticks: { color: '#9AA5B8' }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: { color: '#9AA5B8' }
-                        }
-                    }
+                    plugins: { legend: { display: false } }
                 }
             });
         }
@@ -1404,10 +1319,7 @@
         function createRevenueChart() {
             const canvas = document.getElementById('revenueChart');
             if (!canvas) return;
-            
-            const ctx = canvas.getContext('2d');
-            
-            new Chart(ctx, {
+            new Chart(canvas.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['STATA', 'GIS', 'Research', 'Academic'],
@@ -1420,19 +1332,14 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { color: '#E6E9F0', font: { size: 12 } }
-                        }
-                    },
+                    plugins: { legend: { position: 'bottom' } },
                     cutout: '70%'
                 }
             });
         }
 
         // ===================================================================
-        // 👥 USERS MANAGEMENT
+        // 👥 USERS
         // ===================================================================
         async function loadRecentUsers() {
             const tbody = document.getElementById('recentUsersTable');
@@ -1440,18 +1347,15 @@
             
             try {
                 let users = [];
-                
-                if (window.API && window.API.users && window.API.users.getAllUsers) {
+                if (window.API?.users?.getAllUsers) {
                     const response = await window.API.users.getAllUsers({ limit: 5 });
-                    if (response.success) {
-                        users = response.data.users || [];
-                    }
+                    if (response.success) users = response.data.users || [];
                 }
                 
                 if (users.length === 0) {
                     users = [
-                        { id: 1, name: 'John Mulenga', email: 'john.mulenga@example.com', course: 'Introduction to STATA', status: 'active', createdAt: new Date().toISOString() },
-                        { id: 2, name: 'Mary Banda', email: 'mary.banda@example.com', course: 'GIS for Public Health', status: 'active', createdAt: new Date().toISOString() }
+                        { id: 1, name: 'John Mulenga', email: 'john@example.com', course: 'STATA', status: 'active', createdAt: new Date().toISOString() },
+                        { id: 2, name: 'Mary Banda', email: 'mary@example.com', course: 'GIS', status: 'active', createdAt: new Date().toISOString() }
                     ];
                 }
                 
@@ -1459,7 +1363,7 @@
                     <tr>
                         <td>
                             <div class="user-info">
-                                <div class="user-avatar">${user.name ? user.name.charAt(0).toUpperCase() : '?'}</div>
+                                <div class="user-avatar">${user.name?.charAt(0).toUpperCase() || '?'}</div>
                                 <div class="user-details">
                                     <span class="user-name">${user.name || 'Unknown'}</span>
                                     <span class="user-email">${user.email || ''}</span>
@@ -1467,31 +1371,21 @@
                             </div>
                         </td>
                         <td>${user.course || '—'}</td>
-                        <td>
-                            <span class="status-badge status-${user.status || 'active'}">
-                                ${user.status || 'Active'}
-                            </span>
-                        </td>
+                        <td><span class="status-badge status-${user.status || 'active'}">${user.status || 'Active'}</span></td>
                         <td>${formatDate(user.createdAt)}</td>
                         <td>
-                            <button class="action-btn" onclick="viewUser('${user.id}')" title="View">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn" onclick="editUser('${user.id}')" title="Edit">
-                                <i class="fas fa-edit"></i>
-                            </button>
+                            <button class="action-btn" onclick="alert('View user: ${user.id}')"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn" onclick="alert('Edit user: ${user.id}')"><i class="fas fa-edit"></i></button>
                         </td>
                     </tr>
                 `).join('');
-                
             } catch (error) {
                 console.error('Failed to load users:', error);
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Failed to load users</td></tr>';
             }
         }
 
         // ===================================================================
-        // 📝 ENROLLMENTS MANAGEMENT
+        // 📝 ENROLLMENTS
         // ===================================================================
         async function loadRecentEnrollments() {
             const tbody = document.getElementById('recentEnrollmentsTable');
@@ -1499,18 +1393,15 @@
             
             try {
                 let enrollments = [];
-                
-                if (window.API && window.API.enrollments && window.API.enrollments.getAllEnrollments) {
+                if (window.API?.enrollments?.getAllEnrollments) {
                     const response = await window.API.enrollments.getAllEnrollments({ limit: 5 });
-                    if (response.success) {
-                        enrollments = response.data.enrollments || [];
-                    }
+                    if (response.success) enrollments = response.data.enrollments || [];
                 }
                 
                 if (enrollments.length === 0) {
                     enrollments = [
-                        { id: 1, name: 'John Mulenga', email: 'john.mulenga@example.com', course: 'Introduction to STATA', status: 'Payment Proof Submitted', createdAt: new Date().toISOString(), proofUrl: '#' },
-                        { id: 2, name: 'Mary Banda', email: 'mary.banda@example.com', course: 'GIS for Public Health', status: 'Confirmed', createdAt: new Date().toISOString(), proofUrl: '#' }
+                        { id: 1, name: 'John Mulenga', course: 'STATA', status: 'Pending', createdAt: new Date().toISOString() },
+                        { id: 2, name: 'Mary Banda', course: 'GIS', status: 'Confirmed', createdAt: new Date().toISOString() }
                     ];
                 }
                 
@@ -1518,32 +1409,15 @@
                     <tr>
                         <td>${enrollment.name}</td>
                         <td>${enrollment.course}</td>
-                        <td>
-                            <span class="status-badge status-${enrollment.status?.toLowerCase().includes('pending') ? 'pending' : 
-                                                                   enrollment.status?.toLowerCase().includes('confirm') ? 'confirmed' : 'pending'}">
-                                ${enrollment.status || 'Pending'}
-                            </span>
-                        </td>
+                        <td><span class="status-badge status-${enrollment.status?.toLowerCase() === 'confirmed' ? 'confirmed' : 'pending'}">${enrollment.status || 'Pending'}</span></td>
                         <td>${formatDate(enrollment.createdAt)}</td>
                         <td>
-                            <button class="action-btn" onclick="viewEnrollment('${enrollment.id}')" title="View">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            ${enrollment.proofUrl ? `
-                                <button class="action-btn" onclick="window.open('${enrollment.proofUrl}')" title="View Proof">
-                                    <i class="fas fa-receipt"></i>
-                                </button>
-                            ` : ''}
-                            <button class="action-btn" onclick="updateEnrollmentStatus('${enrollment.id}')" title="Update Status">
-                                <i class="fas fa-check-circle"></i>
-                            </button>
+                            <button class="action-btn" onclick="alert('View enrollment: ${enrollment.id}')"><i class="fas fa-eye"></i></button>
                         </td>
                     </tr>
                 `).join('');
-                
             } catch (error) {
                 console.error('Failed to load enrollments:', error);
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Failed to load enrollments</td></tr>';
             }
         }
 
@@ -1552,16 +1426,8 @@
         // ===================================================================
         async function loadNotifications() {
             try {
-                const userJson = localStorage.getItem('martoo_user') || sessionStorage.getItem('martoo_user');
-                if (!userJson) return;
-                
-                const user = JSON.parse(userJson);
-                
-                // Mock unread count
-                const unread = 3;
-                document.getElementById('notificationBadge').textContent = unread;
-                document.getElementById('messageBadge').textContent = unread;
-                
+                document.getElementById('notificationBadge').textContent = '3';
+                document.getElementById('messageBadge').textContent = '3';
             } catch (error) {
                 console.error('Failed to load notifications:', error);
             }
@@ -1573,35 +1439,19 @@
         async function loadSection(section) {
             const content = document.getElementById('dashboardContent');
             
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelector(`[data-section="${section}"]`)?.classList.add('active');
             
-            const activeLink = document.querySelector(`[data-section="${section}"]`);
-            if (activeLink) activeLink.classList.add('active');
-            
-            switch(section) {
-                case 'dashboard':
-                    content.innerHTML = getDashboardHTML();
-                    await Promise.all([
-                        loadStats(),
-                        loadRecentUsers(),
-                        loadRecentEnrollments()
-                    ]);
-                    setTimeout(() => {
-                        createEnrollmentChart();
-                        createRevenueChart();
-                    }, 100);
-                    break;
-                    
-                default:
-                    content.innerHTML = `
-                        <div style="text-align: center; padding: 100px 20px;">
-                            <i class="fas fa-tools" style="font-size: 64px; color: var(--accent-blue); margin-bottom: 20px;"></i>
-                            <h2>${section.charAt(0).toUpperCase() + section.slice(1)} Management</h2>
-                            <p style="color: var(--neutral-300);">Coming soon...</p>
-                        </div>
-                    `;
+            if (section === 'dashboard') {
+                content.innerHTML = getDashboardHTML();
+                await Promise.all([loadStats(), loadRecentUsers(), loadRecentEnrollments()]);
+                setTimeout(createCharts, 100);
+            } else {
+                content.innerHTML = `<div style="text-align: center; padding: 100px 20px;">
+                    <i class="fas fa-tools" style="font-size: 64px; color: var(--accent-blue);"></i>
+                    <h2>${section.charAt(0).toUpperCase() + section.slice(1)}</h2>
+                    <p>Coming soon...</p>
+                </div>`;
             }
         }
 
@@ -1612,136 +1462,42 @@
             return `
                 <div class="welcome-banner">
                     <div class="welcome-content">
-                        <h2>Welcome back, <span id="adminNameDisplay">Administrator</span>!</h2>
-                        <p>Here's what's happening with your platform today.</p>
+                        <h2>Welcome back, Administrator!</h2>
+                        <p>Here's what's happening today.</p>
                     </div>
                     <div class="welcome-stats">
-                        <div class="welcome-stat">
-                            <div class="stat-value" id="welcomeEnrollments">0</div>
-                            <div class="stat-label">Total Enrollments</div>
-                        </div>
-                        <div class="welcome-stat">
-                            <div class="stat-value" id="welcomeUsers">0</div>
-                            <div class="stat-label">Active Users</div>
-                        </div>
-                        <div class="welcome-stat">
-                            <div class="stat-value" id="welcomeRevenue">ZMW 0</div>
-                            <div class="stat-label">Revenue</div>
-                        </div>
+                        <div class="welcome-stat"><div class="stat-value" id="welcomeEnrollments">0</div><div class="stat-label">Enrollments</div></div>
+                        <div class="welcome-stat"><div class="stat-value" id="welcomeUsers">0</div><div class="stat-label">Users</div></div>
                     </div>
                 </div>
 
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h4>Total Users</h4>
-                            <div class="stat-number" id="totalUsersStat">0</div>
-                            <div class="stat-trend positive"><i class="fas fa-arrow-up"></i> +12%</div>
-                        </div>
-                        <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h4>Enrollments</h4>
-                            <div class="stat-number" id="totalEnrollmentsStat">0</div>
-                            <div class="stat-trend positive"><i class="fas fa-arrow-up"></i> +8%</div>
-                        </div>
-                        <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h4>Pending Payments</h4>
-                            <div class="stat-number" id="pendingPaymentsStat">0</div>
-                            <div class="stat-trend"><i class="fas fa-clock"></i> Awaiting</div>
-                        </div>
-                        <div class="stat-icon"><i class="fas fa-credit-card"></i></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h4>Confirmed</h4>
-                            <div class="stat-number" id="confirmedEnrollmentsStat">0</div>
-                            <div class="stat-trend positive"><i class="fas fa-check-circle"></i> Active</div>
-                        </div>
-                        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-                    </div>
+                    <div class="stat-card"><div class="stat-info"><h4>Total Users</h4><div class="stat-number" id="totalUsersStat">0</div></div><div class="stat-icon"><i class="fas fa-users"></i></div></div>
+                    <div class="stat-card"><div class="stat-info"><h4>Enrollments</h4><div class="stat-number" id="totalEnrollmentsStat">0</div></div><div class="stat-icon"><i class="fas fa-graduation-cap"></i></div></div>
+                    <div class="stat-card"><div class="stat-info"><h4>Pending</h4><div class="stat-number" id="pendingPaymentsStat">0</div></div><div class="stat-icon"><i class="fas fa-clock"></i></div></div>
+                    <div class="stat-card"><div class="stat-info"><h4>Confirmed</h4><div class="stat-number" id="confirmedEnrollmentsStat">0</div></div><div class="stat-icon"><i class="fas fa-check-circle"></i></div></div>
                 </div>
 
                 <div class="charts-grid">
-                    <div class="chart-card">
-                        <div class="chart-header">
-                            <h3>Enrollment Trends</h3>
-                            <div class="chart-actions">
-                                <button class="chart-btn active">Weekly</button>
-                                <button class="chart-btn">Monthly</button>
-                                <button class="chart-btn">Yearly</button>
-                            </div>
-                        </div>
-                        <div class="chart-container"><canvas id="enrollmentChart"></canvas></div>
-                    </div>
-                    <div class="chart-card">
-                        <div class="chart-header">
-                            <h3>Revenue by Service</h3>
-                            <div class="chart-actions">
-                                <button class="chart-btn active">This Month</button>
-                            </div>
-                        </div>
-                        <div class="chart-container"><canvas id="revenueChart"></canvas></div>
-                    </div>
+                    <div class="chart-card"><div class="chart-header"><h3>Enrollment Trends</h3></div><div class="chart-container"><canvas id="enrollmentChart"></canvas></div></div>
+                    <div class="chart-card"><div class="chart-header"><h3>Revenue by Service</h3></div><div class="chart-container"><canvas id="revenueChart"></canvas></div></div>
                 </div>
 
                 <div class="table-card">
-                    <div class="table-header">
-                        <h3>Recent Users</h3>
-                        <div class="table-actions">
-                            <button class="btn btn-outline-primary btn-sm" onclick="loadSection('users')">
-                                View All <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table><thead><tr><th>User</th><th>Course</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
-                        <tbody id="recentUsersTable"><tr><td colspan="5" style="text-align: center;">Loading users...</td></tr></tbody>
-                        </table>
-                    </div>
+                    <div class="table-header"><h3>Recent Users</h3><button class="btn btn-outline-primary btn-sm" onclick="loadSection('users')">View All</button></div>
+                    <div class="table-container"><table><thead><tr><th>User</th><th>Course</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="recentUsersTable"></tbody></table></div>
                 </div>
 
                 <div class="table-card">
-                    <div class="table-header">
-                        <h3>Pending Enrollments</h3>
-                        <div class="table-actions">
-                            <button class="btn btn-outline-primary btn-sm" onclick="loadSection('enrollments')">
-                                View All <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table><thead><tr><th>Student</th><th>Course</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
-                        <tbody id="recentEnrollmentsTable"><tr><td colspan="5" style="text-align: center;">Loading enrollments...</td></tr></tbody>
-                        </table>
-                    </div>
+                    <div class="table-header"><h3>Recent Enrollments</h3><button class="btn btn-outline-primary btn-sm" onclick="loadSection('enrollments')">View All</button></div>
+                    <div class="table-container"><table><thead><tr><th>Student</th><th>Course</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="recentEnrollmentsTable"></tbody></table></div>
                 </div>
 
                 <div class="quick-actions">
-                    <div class="quick-action-card" onclick="alert('Create User modal would open')">
-                        <div class="quick-action-icon"><i class="fas fa-user-plus"></i></div>
-                        <h4 class="quick-action-title">Add User</h4>
-                        <p class="quick-action-desc">Create new student account</p>
-                    </div>
-                    <div class="quick-action-card" onclick="alert('Create Course modal would open')">
-                        <div class="quick-action-icon"><i class="fas fa-book"></i></div>
-                        <h4 class="quick-action-title">New Course</h4>
-                        <p class="quick-action-desc">Create course content</p>
-                    </div>
-                    <div class="quick-action-card" onclick="alert('Upload Material modal would open')">
-                        <div class="quick-action-icon"><i class="fas fa-upload"></i></div>
-                        <h4 class="quick-action-title">Upload Material</h4>
-                        <p class="quick-action-desc">Share learning resources</p>
-                    </div>
-                    <div class="quick-action-card" onclick="alert('Create Quiz modal would open')">
-                        <div class="quick-action-icon"><i class="fas fa-question-circle"></i></div>
-                        <h4 class="quick-action-title">Create Quiz</h4>
-                        <p class="quick-action-desc">Assess student progress</p>
-                    </div>
+                    <div class="quick-action-card" onclick="alert('Add User')"><div class="quick-action-icon"><i class="fas fa-user-plus"></i></div><h4>Add User</h4></div>
+                    <div class="quick-action-card" onclick="alert('Add Course')"><div class="quick-action-icon"><i class="fas fa-book"></i></div><h4>New Course</h4></div>
+                    <div class="quick-action-card" onclick="alert('Upload')"><div class="quick-action-icon"><i class="fas fa-upload"></i></div><h4>Upload</h4></div>
+                    <div class="quick-action-card" onclick="alert('Create Quiz')"><div class="quick-action-icon"><i class="fas fa-question-circle"></i></div><h4>Create Quiz</h4></div>
                 </div>
             `;
         }
@@ -1750,136 +1506,79 @@
         // 🎯 EVENT LISTENERS
         // ===================================================================
         function initEventListeners() {
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            if (sidebarToggle) {
-                sidebarToggle.addEventListener('click', toggleSidebar);
-            }
+            document.getElementById('sidebarToggle')?.addEventListener('click', toggleSidebar);
             
-            const logoutBtn = document.getElementById('logoutBtn');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', handleLogout);
-            }
+            document.getElementById('logoutBtn')?.addEventListener('click', handleLogout);
             
             document.querySelectorAll('.nav-link[data-section]').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const section = link.dataset.section;
-                    loadSection(section);
-                    
-                    if (window.innerWidth <= 768) {
-                        document.getElementById('mobileMenuToggle')?.classList.remove('active');
-                        document.getElementById('sidebar')?.classList.remove('active');
-                        document.body.classList.remove('menu-open');
-                    }
+                    loadSection(link.dataset.section);
                 });
             });
             
-            const searchInput = document.getElementById('globalSearch');
-            if (searchInput) {
-                searchInput.addEventListener('input', debounce(handleSearch, 500));
-            }
+            document.getElementById('globalSearch')?.addEventListener('input', debounce(handleSearch, 500));
             
-            const notificationBtn = document.getElementById('notificationBtn');
-            if (notificationBtn) {
-                notificationBtn.addEventListener('click', () => {
-                    alert('No new notifications');
-                });
-            }
+            document.getElementById('notificationBtn')?.addEventListener('click', () => alert('No new notifications'));
             
             updateDateTime();
             setInterval(updateDateTime, 1000);
         }
 
         // ===================================================================
-        // 🔧 UTILITY FUNCTIONS
+        // 🔧 UTILITIES
         // ===================================================================
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const main = document.getElementById('mainContent');
-            sidebar?.classList.toggle('collapsed');
-            main?.classList.toggle('expanded');
+            document.getElementById('sidebar')?.classList.toggle('collapsed');
+            document.getElementById('mainContent')?.classList.toggle('expanded');
         }
 
         async function handleLogout() {
-            try {
+            if (window.Auth) {
+                window.Auth.logout(true);
+            } else {
                 localStorage.clear();
                 sessionStorage.clear();
-                
-                document.cookie.split(';').forEach(c => {
-                    document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;');
-                });
-                
-                window.location.replace('login.html');
-                
-            } catch (error) {
-                console.error('Logout error:', error);
-                window.location.replace('login.html');
+                window.location.href = 'login.html';
             }
         }
 
         function debounce(func, wait) {
             let timeout;
-            return function(...args) {
+            return (...args) => {
                 clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
+                timeout = setTimeout(() => func(...args), wait);
             };
         }
 
         function handleSearch(e) {
-            const query = e.target.value.trim();
-            if (query.length > 2) {
-                console.log('Searching for:', query);
-            }
+            if (e.target.value.length > 2) console.log('Searching:', e.target.value);
         }
 
         function formatDate(dateString) {
             if (!dateString) return '—';
             const date = new Date(dateString);
-            if (isNaN(date.getTime())) return '—';
-            return date.toLocaleDateString('en-ZM', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric'
-            });
-        }
-
-        function formatCurrency(amount) {
-            return `K${amount || 0}`;
-        }
-
-        function updateDateTime() {
-            const now = new Date();
-            const element = document.getElementById('currentDateTime');
-            if (element) {
-                element.innerHTML = `
-                    <i class="fas fa-calendar-alt"></i>
-                    ${now.toLocaleDateString('en-ZM', { 
-                        weekday: 'short', 
-                        day: 'numeric', 
-                        month: 'short', 
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    })}
-                `;
-            }
+            return isNaN(date.getTime()) ? '—' : date.toLocaleDateString('en-ZM', { day: 'numeric', month: 'short', year: 'numeric' });
         }
 
         function updateElement(id, value) {
-            const element = document.getElementById(id);
-            if (element) element.textContent = value;
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        function updateDateTime() {
+            const el = document.getElementById('currentDateTime');
+            if (el) {
+                el.innerHTML = `<i class="fas fa-calendar-alt"></i> ${new Date().toLocaleDateString('en-ZM', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`;
+            }
         }
 
         function showLoading() {
-            document.querySelectorAll('.stat-card .stat-number').forEach(el => {
-                el.style.opacity = '0.5';
-            });
+            document.querySelectorAll('.stat-card .stat-number').forEach(el => el.style.opacity = '0.5');
         }
 
         function hideLoading() {
-            document.querySelectorAll('.stat-card .stat-number').forEach(el => {
-                el.style.opacity = '1';
-            });
+            document.querySelectorAll('.stat-card .stat-number').forEach(el => el.style.opacity = '1');
         }
 
         function startAutoRefresh() {
@@ -1891,20 +1590,8 @@
             }, 30000);
         }
 
-        // ===================================================================
-        // 📤 GLOBAL FUNCTIONS
-        // ===================================================================
+        // Global functions
         window.loadSection = loadSection;
-        window.viewUser = (id) => alert(`View user: ${id}`);
-        window.editUser = (id) => alert(`Edit user: ${id}`);
-        window.viewEnrollment = (id) => alert(`View enrollment: ${id}`);
-        window.viewProof = (url) => window.open(url);
-        window.updateEnrollmentStatus = (id) => alert(`Update enrollment status: ${id}`);
-        window.showCreateUserModal = () => alert('Create User modal would open');
-        window.showCreateCourseModal = () => alert('Create Course modal would open');
-        window.showUploadMaterialModal = () => alert('Upload Material modal would open');
-        window.showCreateQuizModal = () => alert('Create Quiz modal would open');
-        window.toggleSidebar = toggleSidebar;
     </script>
 </body>
 </html>
