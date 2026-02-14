@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Martoo Tech Works - Bridging Public Health and Digital Innovation in Zambia. Academic support, STATA analysis, GIS mapping, and digital learning.">
     <meta name="keywords" content="GIS, STATA, public health, research, Zambia, UNZA, CBU, data analysis, QGIS">
     <meta name="author" content="Martoo Tech Works">
     <meta property="og:title" content="Martoo Tech Works - Public Health & Digital Innovation">
     <meta property="og:description" content="Bridging Public Health and Digital Innovation">
-    <meta property="og:image" content="./Images/martoo_tech_logo.png">
+    <meta property="og:image" content="Images/martoo_tech_logo.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     
@@ -20,44 +20,534 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS - FIXED PATHS -->
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     
-    <!-- Favicon - FIXED PATH -->
-    <link rel="icon" type="image/png" href="./Images/martoo_tech_logo.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Images/martoo_tech_logo.png">
+    
+    <style>
+        /* ===== MOBILE-FIRST NAVIGATION STYLES ===== */
+        :root {
+            --header-height: 70px;
+            --mobile-breakpoint: 768px;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 17, 40, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 123, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            height: var(--header-height);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Logo */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            z-index: 1002;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #E6E9F0;
+            letter-spacing: 1px;
+        }
+
+        .logo-text .tech {
+            color: #007BFF;
+        }
+
+        /* Desktop Navigation */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: #CDD3E0;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: white;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007BFF;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1002;
+            position: relative;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            transform-origin: left;
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(2px, -2px);
+            width: 110%;
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(2px, 2px);
+            width: 110%;
+        }
+
+        /* Mobile Menu Overlay */
+        .nav-menu {
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(145deg, #0A1128 0%, #0F1A2F 100%);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: stretch;
+                padding: 30px 20px;
+                transform: translateX(100%);
+                z-index: 1001;
+                overflow-y: auto;
+                gap: 30px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+
+            .nav-list {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-link {
+                display: block;
+                padding: 18px 0;
+                font-size: 1.1rem;
+                text-align: left;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-link.active {
+                color: #007BFF;
+                font-weight: 600;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .nav-buttons .btn {
+                width: 100%;
+                text-align: center;
+                padding: 14px;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .logo-img {
+                height: 35px;
+            }
+            
+            .header-container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Hero Section Mobile */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .hero-social {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .stats-card {
+                flex-direction: column;
+                gap: 20px;
+                padding: 25px;
+            }
+
+            .stat-divider {
+                width: 100%;
+                height: 1px;
+            }
+
+            .hero-wave svg {
+                height: 60px;
+            }
+        }
+
+        /* Services Section Mobile */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .service-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        /* Academy Section Mobile */
+        @media (max-width: 768px) {
+            .academy-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+
+            .academy-features {
+                grid-template-columns: 1fr;
+            }
+
+            .academy-cta {
+                flex-direction: column;
+            }
+
+            .academy-cta .btn {
+                width: 100%;
+            }
+
+            .course-card-preview {
+                padding: 25px;
+            }
+
+            .course-card-preview.second {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+
+        /* Portfolio Section Mobile */
+        @media (max-width: 768px) {
+            .portfolio-tabs {
+                flex-direction: column;
+                gap: 10px;
+                padding: 0 20px;
+            }
+
+            .portfolio-tab {
+                width: 100%;
+                text-align: center;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .portfolio-item {
+                aspect-ratio: 16/9;
+            }
+        }
+
+        /* Testimonials Mobile */
+        @media (max-width: 768px) {
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .author-info {
+                text-align: center;
+            }
+
+            .slider-controls {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+
+        /* Blog Section Mobile */
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .blog-card-content {
+                padding: 20px;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        /* Contact Section Mobile */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-method {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .method-details {
+                text-align: center;
+            }
+
+            .contact-form-wrapper {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Footer Mobile */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .footer-info {
+                text-align: center;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-links {
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-link,
+            .btn,
+            .service-card,
+            .social-icon,
+            .portfolio-item {
+                cursor: default;
+                -webkit-tap-highlight-color: rgba(0, 123, 255, 0.2);
+            }
+
+            .service-card:hover,
+            .portfolio-item:hover {
+                transform: none;
+            }
+
+            .service-card:active,
+            .portfolio-item:active {
+                transform: scale(0.98);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- ============================================ -->
-    <!-- 🚀 STICKY HEADER WITH NAVIGATION - ALL LINKS WORKING -->
+    <!-- 🚀 STICKY HEADER WITH NAVIGATION            -->
     <!-- ============================================ -->
     <header class="header">
         <div class="container header-container">
             <div class="logo-wrapper">
-                <a href="./index.html" class="logo">
-                    <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
+                <a href="index.html" class="logo">
+                    <img src="Images/martoo_tech_logo.png" alt="Martoo Tech Works" class="logo-img">
                     <span class="logo-text">MARTOO<span class="tech">TECH</span></span>
                 </a>
             </div>
             
-            <nav class="nav-menu">
+            <nav class="nav-menu" id="navMenu">
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="./index.html" class="nav-link active">Home</a></li>
-                    <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="./services.html" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="./academy.html" class="nav-link">Academy</a></li>
-                    <li class="nav-item"><a href="./portfolio.html" class="nav-link">Portfolio</a></li>
-                    <li class="nav-item"><a href="./blog.html" class="nav-link">Insights</a></li>
-                    <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="academy.html" class="nav-link">Academy</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Insights</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-buttons">
-                    <a href="./login.html" class="btn btn-outline">Sign In</a>
-                    <a href="./register.html" class="btn btn-primary">Get Started</a>
+                    <a href="login.html" class="btn btn-outline">Sign In</a>
+                    <a href="register.html" class="btn btn-primary">Get Started</a>
                 </div>
             </nav>
             
-            <button class="mobile-toggle" aria-label="Menu">
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -67,7 +557,7 @@
 
     <main>
         <!-- ============================================ -->
-        <!-- 🎯 HERO SECTION - BOLD & IMPACTFUL          -->
+        <!-- 🎯 HERO SECTION                            -->
         <!-- ============================================ -->
         <section class="hero">
             <div class="hero-overlay"></div>
@@ -83,17 +573,16 @@
                         with cutting-edge GIS mapping, STATA analysis, and academic excellence.
                     </p>
                     <div class="hero-actions">
-                        <a href="./contact.html" class="btn btn-primary btn-large">
+                        <a href="contact.html" class="btn btn-primary btn-large">
                             <i class="fas fa-headset"></i>
                             Request Support
                         </a>
-                        <a href="./academy.html" class="btn btn-outline-light btn-large">
+                        <a href="academy.html" class="btn btn-outline-light btn-large">
                             <i class="fas fa-graduation-cap"></i>
                             Start Learning
                         </a>
                     </div>
                     
-                    <!-- Social Icons - No Numbers, Just Icons -->
                     <div class="hero-social">
                         <span class="social-label">Connect:</span>
                         <div class="social-icons">
@@ -136,12 +625,10 @@
                     
                     <div class="hero-map-preview">
                         <i class="fas fa-map-marked-alt"></i>
-                        <div class="map-dots"></div>
                     </div>
                 </div>
             </div>
             
-            <!-- Wave Divider -->
             <div class="hero-wave">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="#0A1128" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
@@ -150,7 +637,7 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- 💡 SERVICES SECTION - CLEAN & PROFESSIONAL  -->
+        <!-- 💡 SERVICES SECTION                         -->
         <!-- ============================================ -->
         <section class="services" id="services">
             <div class="container">
@@ -163,8 +650,7 @@
                 </div>
                 
                 <div class="services-grid">
-                    <!-- Service 1 - Research -->
-                    <div class="service-card" data-aos="fade-up">
+                    <div class="service-card">
                         <div class="service-icon research">
                             <i class="fas fa-file-alt"></i>
                         </div>
@@ -174,14 +660,13 @@
                         </p>
                         <div class="service-footer">
                             <span class="price-range">K150 – K600</span>
-                            <a href="./services.html#research" class="service-link">
+                            <a href="services.html#research" class="service-link">
                                 Learn more <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Service 2 - STATA -->
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
                         <div class="service-icon stata">
                             <i class="fas fa-chart-line"></i>
                         </div>
@@ -191,14 +676,13 @@
                         </p>
                         <div class="service-footer">
                             <span class="price-range">K250 – K500</span>
-                            <a href="./services.html#stata" class="service-link">
+                            <a href="services.html#stata" class="service-link">
                                 Learn more <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Service 3 - GIS -->
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
                         <div class="service-icon gis">
                             <i class="fas fa-map"></i>
                         </div>
@@ -208,14 +692,13 @@
                         </p>
                         <div class="service-footer">
                             <span class="price-range">K200 – K300</span>
-                            <a href="./services.html#gis" class="service-link">
+                            <a href="services.html#gis" class="service-link">
                                 Learn more <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Service 4 - Academic -->
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
                         <div class="service-icon academic">
                             <i class="fas fa-laptop"></i>
                         </div>
@@ -225,7 +708,7 @@
                         </p>
                         <div class="service-footer">
                             <span class="price-range">K100 – K300</span>
-                            <a href="./services.html#academic" class="service-link">
+                            <a href="services.html#academic" class="service-link">
                                 Learn more <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -233,7 +716,7 @@
                 </div>
                 
                 <div class="services-cta">
-                    <a href="./services.html" class="btn btn-outline-primary">
+                    <a href="services.html" class="btn btn-outline-primary">
                         View All Services
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -242,7 +725,7 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- 🎓 ACADEMY PROMO - DEEP OCEAN THEME         -->
+        <!-- 🎓 ACADEMY PROMO                           -->
         <!-- ============================================ -->
         <section class="academy-promo">
             <div class="container">
@@ -278,11 +761,11 @@
                         </div>
                         
                         <div class="academy-cta">
-                            <a href="./academy.html" class="btn btn-primary btn-large">
+                            <a href="academy.html" class="btn btn-primary btn-large">
                                 <i class="fas fa-graduation-cap"></i>
                                 Explore Courses
                             </a>
-                            <a href="./academy.html#free" class="btn btn-outline-light">
+                            <a href="academy.html#free" class="btn btn-outline-light">
                                 Try Free Modules
                             </a>
                         </div>
@@ -327,7 +810,7 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- 🗺️ PORTFOLIO PREVIEW - SHOWCASE            -->
+        <!-- 🗺️ PORTFOLIO PREVIEW                       -->
         <!-- ============================================ -->
         <section class="portfolio-preview">
             <div class="container">
@@ -350,11 +833,11 @@
                     <div class="portfolio-grid">
                         <div class="portfolio-item" data-category="gis">
                             <div class="portfolio-image">
-                                <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/sample_map.jpg" alt="Health Facilities Mapping" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&q=80" alt="Health Facilities Mapping" loading="lazy">
                                 <div class="portfolio-overlay">
                                     <span class="portfolio-category">GIS</span>
                                     <h4>Zambia Health Facilities</h4>
-                                    <a href="./portfolio.html" class="portfolio-link">
+                                    <a href="portfolio.html" class="portfolio-link">
                                         <i class="fas fa-arrow-right"></i>
                                     </a>
                                 </div>
@@ -363,11 +846,11 @@
                         
                         <div class="portfolio-item" data-category="stata">
                             <div class="portfolio-image">
-                                <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/sample_chart.jpg" alt="Malaria Trends Analysis" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Malaria Trends Analysis" loading="lazy">
                                 <div class="portfolio-overlay">
                                     <span class="portfolio-category">STATA</span>
                                     <h4>Malaria Trends 2020-2025</h4>
-                                    <a href="./portfolio.html" class="portfolio-link">
+                                    <a href="portfolio.html" class="portfolio-link">
                                         <i class="fas fa-arrow-right"></i>
                                     </a>
                                 </div>
@@ -376,11 +859,11 @@
                         
                         <div class="portfolio-item" data-category="research">
                             <div class="portfolio-image">
-                                <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/sample_research.jpg" alt="Maternal Health Study" loading="lazy">
+                                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Maternal Health Study" loading="lazy">
                                 <div class="portfolio-overlay">
                                     <span class="portfolio-category">Research</span>
                                     <h4>Maternal Health Outcomes</h4>
-                                    <a href="./portfolio.html" class="portfolio-link">
+                                    <a href="portfolio.html" class="portfolio-link">
                                         <i class="fas fa-arrow-right"></i>
                                     </a>
                                 </div>
@@ -390,7 +873,7 @@
                 </div>
                 
                 <div class="portfolio-cta">
-                    <a href="./portfolio.html" class="btn btn-outline-primary">
+                    <a href="portfolio.html" class="btn btn-outline-primary">
                         View Full Portfolio
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -399,7 +882,7 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- ⭐ TESTIMONIALS SLIDER - DYNAMIC READY     -->
+        <!-- ⭐ TESTIMONIALS SLIDER                      -->
         <!-- ============================================ -->
         <section class="testimonials">
             <div class="container">
@@ -410,14 +893,9 @@
                 
                 <div class="testimonial-slider-container">
                     <div class="testimonial-slider" id="testimonialSlider">
-                        <!-- Will be populated by slider.js from API -->
                         <div class="testimonial-card">
                             <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                             <p class="testimonial-quote">
                                 "The GIS mapping support from Martoo Tech transformed our health facility distribution analysis. Highly professional team."
@@ -435,11 +913,7 @@
                         
                         <div class="testimonial-card">
                             <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                             <p class="testimonial-quote">
                                 "STATA training was exceptional. Now I confidently analyze my own research data. Worth every kwacha!"
@@ -457,11 +931,7 @@
                         
                         <div class="testimonial-card">
                             <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                             <p class="testimonial-quote">
                                 "Proposal writing service helped us secure funding. Detailed, timely, and professional."
@@ -496,7 +966,7 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- 📰 BLOG PREVIEW - LATEST INSIGHTS           -->
+        <!-- 📰 BLOG PREVIEW                            -->
         <!-- ============================================ -->
         <section class="blog-preview">
             <div class="container">
@@ -509,11 +979,10 @@
                 </div>
                 
                 <div class="blog-grid" id="blogPreview">
-                    <!-- Will be populated by api.js from backend -->
                     <div class="blog-card">
                         <div class="blog-image">
                             <span class="blog-category">STATA</span>
-                            <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/stata_tips.jpg" alt="STATA Tips" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="STATA Tips" loading="lazy">
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">
@@ -521,12 +990,12 @@
                                 <span><i class="fas fa-clock"></i> 5 min read</span>
                             </div>
                             <h3 class="blog-title">
-                                <a href="./blog-post.html">10 Essential STATA Commands for Public Health Data</a>
+                                <a href="blog-post.html">10 Essential STATA Commands for Public Health Data</a>
                             </h3>
                             <p class="blog-excerpt">
                                 Master these STATA commands to streamline your health data analysis workflow...
                             </p>
-                            <a href="./blog-post.html" class="blog-link">
+                            <a href="blog-post.html" class="blog-link">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -535,7 +1004,7 @@
                     <div class="blog-card">
                         <div class="blog-image">
                             <span class="blog-category">GIS</span>
-                            <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/qgis_tutorial.jpg" alt="QGIS Tutorial" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80" alt="QGIS Tutorial" loading="lazy">
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">
@@ -543,12 +1012,12 @@
                                 <span><i class="fas fa-clock"></i> 8 min read</span>
                             </div>
                             <h3 class="blog-title">
-                                <a href="./blog-post.html">Creating Health Facility Maps in QGIS: Step-by-Step</a>
+                                <a href="blog-post.html">Creating Health Facility Maps in QGIS: Step-by-Step</a>
                             </h3>
                             <p class="blog-excerpt">
                                 Learn how to create professional health facility distribution maps using open-source QGIS...
                             </p>
-                            <a href="./blog-post.html" class="blog-link">
+                            <a href="blog-post.html" class="blog-link">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -557,7 +1026,7 @@
                     <div class="blog-card">
                         <div class="blog-image">
                             <span class="blog-category">Research</span>
-                            <img src="https://res.cloudinary.com/demo/image/upload/w_600,h_400,c_fill/research_methods.jpg" alt="Research Methods" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Research Methods" loading="lazy">
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">
@@ -565,12 +1034,12 @@
                                 <span><i class="fas fa-clock"></i> 6 min read</span>
                             </div>
                             <h3 class="blog-title">
-                                <a href="./blog-post.html">Writing Winning Research Proposals: A Guide</a>
+                                <a href="blog-post.html">Writing Winning Research Proposals: A Guide</a>
                             </h3>
                             <p class="blog-excerpt">
                                 Key elements that funding agencies look for in public health research proposals...
                             </p>
-                            <a href="./blog-post.html" class="blog-link">
+                            <a href="blog-post.html" class="blog-link">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -578,7 +1047,7 @@
                 </div>
                 
                 <div class="blog-cta">
-                    <a href="./blog.html" class="btn btn-outline-primary">
+                    <a href="blog.html" class="btn btn-outline-primary">
                         View All Articles
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -587,7 +1056,7 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- 📞 CONTACT SECTION - QUICK CONNECT          -->
+        <!-- 📞 CONTACT SECTION                         -->
         <!-- ============================================ -->
         <section class="contact-section">
             <div class="container">
@@ -712,14 +1181,14 @@
     </main>
 
     <!-- ============================================ -->
-    <!-- 🦶 FOOTER - COMPREHENSIVE & CLEAN - ALL LINKS FIXED -->
+    <!-- 🦶 FOOTER                                   -->
     <!-- ============================================ -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
                     <div class="footer-logo">
-                        <img src="./Images/martoo_tech_logo.png" alt="Martoo Tech Works">
+                        <img src="Images/martoo_tech_logo.png" alt="Martoo Tech Works">
                         <span>MARTOO TECH</span>
                     </div>
                     <p class="footer-description">
@@ -745,42 +1214,42 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="./about.html">About Us</a></li>
-                        <li><a href="./services.html">Services</a></li>
-                        <li><a href="./academy.html">Academy</a></li>
-                        <li><a href="./portfolio.html">Portfolio</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="./software_downloads.html">Software Downloads</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="academy.html">Academy</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="software_downloads.html">Software Downloads</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="./services.html#research">Research & Proposals</a></li>
-                        <li><a href="./services.html#stata">STATA Analysis</a></li>
-                        <li><a href="./services.html#gis">GIS / QGIS Mapping</a></li>
-                        <li><a href="./services.html#academic">Academic Support</a></li>
+                        <li><a href="services.html#research">Research & Proposals</a></li>
+                        <li><a href="services.html#stata">STATA Analysis</a></li>
+                        <li><a href="services.html#gis">GIS / QGIS Mapping</a></li>
+                        <li><a href="services.html#academic">Academic Support</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Account</h4>
                     <ul>
-                        <li><a href="./login.html">Sign In</a></li>
-                        <li><a href="./register.html">Create Account</a></li>
-                        <li><a href="./user_dashboard.html">Student Dashboard</a></li>
-                        <li><a href="./admin-dashboard.html">Admin Dashboard</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="register.html">Create Account</a></li>
+                        <li><a href="user_dashboard.html">Student Dashboard</a></li>
+                        <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="./terms.html">Terms of Service</a></li>
-                        <li><a href="./privacy.html">Privacy Policy</a></li>
-                        <li><a href="./refund-policy.html">Refund Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -788,95 +1257,192 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Martoo Tech Works. All rights reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="./terms.html">Terms</a>
-                    <a href="./privacy.html">Privacy</a>
-                    <a href="./refund-policy.html">Refunds</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="refund-policy.html">Refunds</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript - FIXED PATHS -->
-    <script src="./js/main.js"></script>
-    <script src="./js/navigation.js"></script>
-    <script src="./js/slider.js"></script>
-    <script src="./js/api.js"></script>
-    <script src="./js/auth.js"></script>
-    <script src="./js/payment.js"></script>
-    <script src="./js/dashboard.js"></script>
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/dashboard.js"></script>
     
     <script>
         // ============================================
-        // 🔥 GLOBAL CONFIGURATION
+        // 🔥 MOBILE MENU - STANDALONE FALLBACK
         // ============================================
-        const API_BASE_URL = 'https://martoo-tech-backend-qgis.vercel.app/api';
         
-        // Initialize contact form with API
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', async function(e) {
+        'use strict';
+
+        // Mobile Menu Manager - Works independently of navigation.js
+        const MobileMenu = {
+            init() {
+                this.mobileToggle = document.getElementById('mobileToggle');
+                this.navMenu = document.getElementById('navMenu');
+                this.body = document.body;
+                
+                if (!this.mobileToggle || !this.navMenu) {
+                    console.log('⚠️ Mobile menu elements not found');
+                    return;
+                }
+                
+                console.log('📱 Initializing mobile menu');
+                this.bindEvents();
+            },
+            
+            bindEvents() {
+                // Toggle menu on click
+                this.mobileToggle.addEventListener('click', (e) => {
                     e.preventDefault();
+                    e.stopPropagation();
+                    this.toggleMenu();
+                });
+                
+                // Close on outside click
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768 && 
+                        this.navMenu.classList.contains('active') && 
+                        !this.navMenu.contains(e.target) && 
+                        !this.mobileToggle.contains(e.target)) {
+                        this.closeMenu();
+                    }
+                });
+                
+                // Close on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.navMenu.classList.contains('active')) {
+                        this.closeMenu();
+                    }
+                });
+                
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768 && this.navMenu.classList.contains('active')) {
+                        this.closeMenu();
+                    }
+                });
+                
+                // Close menu when clicking on a nav link
+                this.navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            this.closeMenu();
+                        }
+                    });
+                });
+            },
+            
+            toggleMenu() {
+                if (this.navMenu.classList.contains('active')) {
+                    this.closeMenu();
+                } else {
+                    this.openMenu();
+                }
+            },
+            
+            openMenu() {
+                this.mobileToggle.classList.add('active');
+                this.navMenu.classList.add('active');
+                this.body.classList.add('menu-open');
+                console.log('📱 Menu opened');
+            },
+            
+            closeMenu() {
+                this.mobileToggle.classList.remove('active');
+                this.navMenu.classList.remove('active');
+                this.body.classList.remove('menu-open');
+                console.log('📱 Menu closed');
+            }
+        };
+
+        // ============================================
+        // 🔥 CONTACT FORM
+        // ============================================
+        
+        const ContactForm = {
+            init() {
+                this.form = document.getElementById('contactForm');
+                if (!this.form) return;
+                
+                this.form.addEventListener('submit', this.handleSubmit.bind(this));
+                console.log('📧 Contact form initialized');
+            },
+            
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>';
+                
+                try {
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        service: document.getElementById('service').value,
+                        message: document.getElementById('message').value
+                    };
                     
-                    const submitBtn = contactForm.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
-                    
-                    try {
-                        const formData = {
-                            name: document.getElementById('name').value,
-                            email: document.getElementById('email').value,
-                            phone: document.getElementById('phone').value,
-                            service: document.getElementById('service').value,
-                            message: document.getElementById('message').value
-                        };
+                    // Use API if available, otherwise simulate
+                    if (window.API && window.API.messages) {
+                        const response = await window.API.messages.sendMessage(
+                            formData.name,
+                            formData.email,
+                            formData.message,
+                            formData.service,
+                            formData.phone
+                        );
                         
-                        const response = await fetch(`${API_BASE_URL}/messages`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(formData)
-                        });
-                        
-                        const data = await response.json();
-                        
-                        if (data.success) {
+                        if (response.success) {
                             alert('✅ Message sent successfully! We\'ll respond within 24 hours.');
-                            contactForm.reset();
+                            this.form.reset();
                         } else {
                             alert('❌ Failed to send message. Please try again.');
                         }
-                    } catch (error) {
-                        console.error('Contact form error:', error);
-                        alert('❌ Network error. Please check your connection and try again.');
-                    } finally {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalText;
+                    } else {
+                        // Simulate API call
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        alert('✅ Message sent successfully! (Demo mode)');
+                        this.form.reset();
                     }
-                });
+                } catch (error) {
+                    console.error('Contact form error:', error);
+                    alert('❌ Network error. Please check your connection and try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }
             }
+        };
+
+        // ============================================
+        // 🚀 INITIALIZATION
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu
+            MobileMenu.init();
             
-            // Mobile menu toggle
-            const mobileToggle = document.querySelector('.mobile-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                    document.body.classList.toggle('menu-open');
-                });
-            }
+            // Initialize contact form
+            ContactForm.init();
             
             // Set active nav based on current page
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href');
-                if (href === './' + currentPage || 
-                    (currentPage === 'index.html' && href === './index.html') ||
-                    (currentPage === '' && href === './index.html')) {
+                if (href === currentPage || 
+                    (currentPage === 'index.html' && href === 'index.html') ||
+                    (currentPage === '' && href === 'index.html')) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');
