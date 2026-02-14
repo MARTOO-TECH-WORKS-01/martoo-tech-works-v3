@@ -1086,25 +1086,39 @@
     <script>
         /**
          * ===================================================================
-         * ADMIN DASHBOARD - COMPLETE FIXED VERSION
+         * ADMIN DASHBOARD - ULTIMATE FIXED VERSION - NO MORE BLINKING
          * ===================================================================
          */
 
         'use strict';
 
         // ===================================================================
-        // 🔐 AUTHENTICATION CHECK - FIXED
+        // 🛡️ GLOBAL ERROR HANDLER - PREVENT CASCADING FAILURES
         // ===================================================================
-        (function() {
+        window.addEventListener('error', function(e) {
+            console.error('🔥 Caught error:', e.error?.message || e.message);
+            e.preventDefault();
+            return false;
+        });
+
+        // ===================================================================
+        // 🔐 ULTRA-RELIABLE AUTHENTICATION CHECK
+        // ===================================================================
+        (function checkAuthentication() {
             console.log('🔍 Admin dashboard checking authentication...');
             
-            // Check ALL storage locations
-            const token = localStorage.getItem('martoo_token') || sessionStorage.getItem('martoo_token');
-            const userJson = localStorage.getItem('martoo_user') || sessionStorage.getItem('martoo_user');
+            // Check ALL possible storage locations
+            const token = localStorage.getItem('martoo_token') || 
+                         sessionStorage.getItem('martoo_token') || 
+                         document.cookie.replace(/(?:(?:^|.*;\s*)martoo_token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
             
-            console.log('📦 Token exists:', !!token);
-            console.log('📦 User data exists:', !!userJson);
+            const userJson = localStorage.getItem('martoo_user') || 
+                            sessionStorage.getItem('martoo_user');
             
+            console.log('📦 Token found:', !!token);
+            console.log('📦 User data found:', !!userJson);
+            
+            // If no token, redirect immediately
             if (!token || !userJson) {
                 console.log('❌ No authentication found - redirecting to login');
                 window.location.replace('login.html');
@@ -1115,32 +1129,68 @@
                 const user = JSON.parse(userJson);
                 console.log('👤 User:', user.email, 'Role:', user.role);
                 
+                // Verify admin role
                 if (user.role !== 'admin') {
-                    console.log('❌ Not admin - redirecting to user dashboard');
+                    console.log('❌ Not an admin - redirecting to user dashboard');
                     window.location.replace('user_dashboard.html');
                     return;
                 }
                 
-                // Set admin name
+                // ✅ CRITICAL: Ensure token is in BOTH storages
+                if (!localStorage.getItem('martoo_token') && sessionStorage.getItem('martoo_token')) {
+                    localStorage.setItem('martoo_token', sessionStorage.getItem('martoo_token'));
+                }
+                
+                if (!localStorage.getItem('martoo_user') && sessionStorage.getItem('martoo_user')) {
+                    localStorage.setItem('martoo_user', sessionStorage.getItem('martoo_user'));
+                }
+                
+                // Set admin name in UI
                 const adminNameEl = document.getElementById('adminName');
                 if (adminNameEl) {
                     adminNameEl.textContent = user.name || 'Administrator';
                 }
                 
-                console.log('✅ Authentication successful');
+                console.log('✅ Authentication successful, loading dashboard...');
                 
-                // Start dashboard
-                if (typeof initDashboard === 'function') {
-                    initDashboard();
-                } else {
-                    console.error('❌ initDashboard not found');
-                }
+                // Start dashboard initialization with a slight delay
+                setTimeout(() => {
+                    if (typeof initDashboard === 'function') {
+                        initDashboard();
+                    } else {
+                        console.error('❌ initDashboard function not found');
+                        // Fallback initialization
+                        initializeFallbackDashboard();
+                    }
+                }, 100);
                 
             } catch (error) {
                 console.error('❌ Error parsing user data:', error);
                 window.location.replace('login.html');
             }
         })();
+
+        // ===================================================================
+        // 🚀 FALLBACK DASHBOARD INITIALIZATION
+        // ===================================================================
+        function initializeFallbackDashboard() {
+            console.log('🚀 Initializing fallback dashboard...');
+            
+            // Load default section
+            loadSection('dashboard');
+            
+            // Initialize event listeners
+            initEventListeners();
+            
+            // Initialize mobile menu
+            initMobileMenu();
+            
+            // Update datetime
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            
+            console.log('✅ Fallback dashboard initialized');
+        }
 
         // ===================================================================
         // 🚀 DASHBOARD INITIALIZATION
@@ -1152,12 +1202,12 @@
                 // Show loading state
                 showLoading();
                 
-                // Load dashboard sections
+                // Load dashboard sections with error handling
                 await Promise.allSettled([
-                    loadStats(),
-                    loadRecentUsers(),
-                    loadRecentEnrollments(),
-                    loadNotifications()
+                    loadStats().catch(e => console.error('Stats error:', e)),
+                    loadRecentUsers().catch(e => console.error('Users error:', e)),
+                    loadRecentEnrollments().catch(e => console.error('Enrollments error:', e)),
+                    loadNotifications().catch(e => console.error('Notifications error:', e))
                 ]);
                 
                 // Initialize charts
@@ -1190,6 +1240,9 @@
                             <i class="fas fa-exclamation-triangle" style="font-size: 64px; color: var(--danger); margin-bottom: 20px;"></i>
                             <h2>Failed to load dashboard</h2>
                             <p style="color: var(--neutral-300);">Please refresh the page or try again later.</p>
+                            <button onclick="window.location.reload()" class="btn btn-primary" style="margin-top: 20px;">
+                                <i class="fas fa-sync-alt"></i> Refresh Page
+                            </button>
                         </div>
                     `;
                 }
@@ -1212,6 +1265,7 @@
                     mobileToggle.style.display = 'none';
                     sidebar.classList.remove('active');
                     document.body.classList.remove('menu-open');
+                    mobileToggle.classList.remove('active');
                 }
             }
             
@@ -1220,6 +1274,7 @@
             
             mobileToggle.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 mobileToggle.classList.toggle('active');
                 sidebar.classList.toggle('active');
                 document.body.classList.toggle('menu-open');
@@ -1251,12 +1306,13 @@
                 let stats = { totalUsers: 0, totalEnrollments: 0, pendingPayments: 0, confirmedEnrollments: 0 };
                 
                 if (window.API?.admin?.getStats) {
-                    const response = await window.API.admin.getStats();
+                    const response = await window.API.admin.getStats().catch(() => ({ success: false }));
                     if (response.success) {
-                        stats = response.data.stats || stats;
+                        stats = response.data?.stats || stats;
                     }
                 }
                 
+                // Update stat cards with null checks
                 updateElement('totalUsersStat', stats.totalUsers || 0);
                 updateElement('totalEnrollmentsStat', stats.totalEnrollments || 0);
                 updateElement('pendingPaymentsStat', stats.pendingPayments || 0);
@@ -1270,6 +1326,7 @@
                 return stats;
             } catch (error) {
                 console.error('Failed to load stats:', error);
+                return {};
             }
         }
 
@@ -1277,65 +1334,81 @@
         // 📈 CHARTS
         // ===================================================================
         function initializeCharts() {
+            // Check if Chart.js is available
             if (typeof Chart === 'undefined') {
+                // Load Chart.js dynamically
                 const script = document.createElement('script');
                 script.src = 'https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js';
-                script.onload = createCharts;
+                script.onload = () => {
+                    setTimeout(() => {
+                        createEnrollmentChart();
+                        createRevenueChart();
+                    }, 100);
+                };
+                script.onerror = () => console.log('⚠️ Failed to load Chart.js');
                 document.head.appendChild(script);
             } else {
-                createCharts();
+                setTimeout(() => {
+                    createEnrollmentChart();
+                    createRevenueChart();
+                }, 100);
             }
-        }
-
-        function createCharts() {
-            createEnrollmentChart();
-            createRevenueChart();
         }
 
         function createEnrollmentChart() {
             const canvas = document.getElementById('enrollmentChart');
             if (!canvas) return;
-            new Chart(canvas.getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{
-                        label: 'Enrollments',
-                        data: [12, 19, 15, 25, 22, 30],
-                        borderColor: '#007BFF',
-                        backgroundColor: 'rgba(0, 123, 255, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } }
-                }
-            });
+            
+            try {
+                new Chart(canvas.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Enrollments',
+                            data: [12, 19, 15, 25, 22, 30],
+                            borderColor: '#007BFF',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            } catch (e) {
+                console.error('Failed to create enrollment chart:', e);
+            }
         }
 
         function createRevenueChart() {
             const canvas = document.getElementById('revenueChart');
             if (!canvas) return;
-            new Chart(canvas.getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['STATA', 'GIS', 'Research', 'Academic'],
-                    datasets: [{
-                        data: [45, 25, 20, 10],
-                        backgroundColor: ['#007BFF', '#28A745', '#FFC107', '#17A2B8'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom' } },
-                    cutout: '70%'
-                }
-            });
+            
+            try {
+                new Chart(canvas.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['STATA', 'GIS', 'Research', 'Academic'],
+                        datasets: [{
+                            data: [45, 25, 20, 10],
+                            backgroundColor: ['#007BFF', '#28A745', '#FFC107', '#17A2B8'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom' } },
+                        cutout: '70%'
+                    }
+                });
+            } catch (e) {
+                console.error('Failed to create revenue chart:', e);
+            }
         }
 
         // ===================================================================
@@ -1348,8 +1421,8 @@
             try {
                 let users = [];
                 if (window.API?.users?.getAllUsers) {
-                    const response = await window.API.users.getAllUsers({ limit: 5 });
-                    if (response.success) users = response.data.users || [];
+                    const response = await window.API.users.getAllUsers({ limit: 5 }).catch(() => ({ success: false }));
+                    if (response.success) users = response.data?.users || [];
                 }
                 
                 if (users.length === 0) {
@@ -1374,13 +1447,14 @@
                         <td><span class="status-badge status-${user.status || 'active'}">${user.status || 'Active'}</span></td>
                         <td>${formatDate(user.createdAt)}</td>
                         <td>
-                            <button class="action-btn" onclick="alert('View user: ${user.id}')"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn" onclick="alert('Edit user: ${user.id}')"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn" onclick="window.viewUser && viewUser('${user.id}')"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn" onclick="window.editUser && editUser('${user.id}')"><i class="fas fa-edit"></i></button>
                         </td>
                     </tr>
                 `).join('');
             } catch (error) {
                 console.error('Failed to load users:', error);
+                if (tbody) tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Failed to load users</td></tr>';
             }
         }
 
@@ -1394,8 +1468,8 @@
             try {
                 let enrollments = [];
                 if (window.API?.enrollments?.getAllEnrollments) {
-                    const response = await window.API.enrollments.getAllEnrollments({ limit: 5 });
-                    if (response.success) enrollments = response.data.enrollments || [];
+                    const response = await window.API.enrollments.getAllEnrollments({ limit: 5 }).catch(() => ({ success: false }));
+                    if (response.success) enrollments = response.data?.enrollments || [];
                 }
                 
                 if (enrollments.length === 0) {
@@ -1412,12 +1486,13 @@
                         <td><span class="status-badge status-${enrollment.status?.toLowerCase() === 'confirmed' ? 'confirmed' : 'pending'}">${enrollment.status || 'Pending'}</span></td>
                         <td>${formatDate(enrollment.createdAt)}</td>
                         <td>
-                            <button class="action-btn" onclick="alert('View enrollment: ${enrollment.id}')"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn" onclick="window.viewEnrollment && viewEnrollment('${enrollment.id}')"><i class="fas fa-eye"></i></button>
                         </td>
                     </tr>
                 `).join('');
             } catch (error) {
                 console.error('Failed to load enrollments:', error);
+                if (tbody) tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Failed to load enrollments</td></tr>';
             }
         }
 
@@ -1426,8 +1501,8 @@
         // ===================================================================
         async function loadNotifications() {
             try {
-                document.getElementById('notificationBadge').textContent = '3';
-                document.getElementById('messageBadge').textContent = '3';
+                updateElement('notificationBadge', '3');
+                updateElement('messageBadge', '3');
             } catch (error) {
                 console.error('Failed to load notifications:', error);
             }
@@ -1438,14 +1513,24 @@
         // ===================================================================
         async function loadSection(section) {
             const content = document.getElementById('dashboardContent');
+            if (!content) return;
             
+            // Update active nav
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            document.querySelector(`[data-section="${section}"]`)?.classList.add('active');
+            const activeLink = document.querySelector(`[data-section="${section}"]`);
+            if (activeLink) activeLink.classList.add('active');
             
             if (section === 'dashboard') {
                 content.innerHTML = getDashboardHTML();
-                await Promise.all([loadStats(), loadRecentUsers(), loadRecentEnrollments()]);
-                setTimeout(createCharts, 100);
+                await Promise.allSettled([
+                    loadStats(),
+                    loadRecentUsers(),
+                    loadRecentEnrollments()
+                ]);
+                setTimeout(() => {
+                    createEnrollmentChart();
+                    createRevenueChart();
+                }, 200);
             } else {
                 content.innerHTML = `<div style="text-align: center; padding: 100px 20px;">
                     <i class="fas fa-tools" style="font-size: 64px; color: var(--accent-blue);"></i>
@@ -1485,19 +1570,19 @@
 
                 <div class="table-card">
                     <div class="table-header"><h3>Recent Users</h3><button class="btn btn-outline-primary btn-sm" onclick="loadSection('users')">View All</button></div>
-                    <div class="table-container"><table><thead><tr><th>User</th><th>Course</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="recentUsersTable"></tbody></table></div>
+                    <div class="table-container"><table><thead><tr><th>User</th><th>Course</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="recentUsersTable"><tr><td colspan="5" style="text-align: center;">Loading...</td></tr></tbody></table></div>
                 </div>
 
                 <div class="table-card">
                     <div class="table-header"><h3>Recent Enrollments</h3><button class="btn btn-outline-primary btn-sm" onclick="loadSection('enrollments')">View All</button></div>
-                    <div class="table-container"><table><thead><tr><th>Student</th><th>Course</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="recentEnrollmentsTable"></tbody></table></div>
+                    <div class="table-container"><table><thead><tr><th>Student</th><th>Course</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="recentEnrollmentsTable"><tr><td colspan="5" style="text-align: center;">Loading...</td></tr></tbody></table></div>
                 </div>
 
                 <div class="quick-actions">
-                    <div class="quick-action-card" onclick="alert('Add User')"><div class="quick-action-icon"><i class="fas fa-user-plus"></i></div><h4>Add User</h4></div>
-                    <div class="quick-action-card" onclick="alert('Add Course')"><div class="quick-action-icon"><i class="fas fa-book"></i></div><h4>New Course</h4></div>
-                    <div class="quick-action-card" onclick="alert('Upload')"><div class="quick-action-icon"><i class="fas fa-upload"></i></div><h4>Upload</h4></div>
-                    <div class="quick-action-card" onclick="alert('Create Quiz')"><div class="quick-action-icon"><i class="fas fa-question-circle"></i></div><h4>Create Quiz</h4></div>
+                    <div class="quick-action-card" onclick="window.showCreateUserModal ? showCreateUserModal() : alert('Add User')"><div class="quick-action-icon"><i class="fas fa-user-plus"></i></div><h4>Add User</h4></div>
+                    <div class="quick-action-card" onclick="window.showCreateCourseModal ? showCreateCourseModal() : alert('Add Course')"><div class="quick-action-icon"><i class="fas fa-book"></i></div><h4>New Course</h4></div>
+                    <div class="quick-action-card" onclick="window.showUploadMaterialModal ? showUploadMaterialModal() : alert('Upload')"><div class="quick-action-icon"><i class="fas fa-upload"></i></div><h4>Upload</h4></div>
+                    <div class="quick-action-card" onclick="window.showCreateQuizModal ? showCreateQuizModal() : alert('Create Quiz')"><div class="quick-action-icon"><i class="fas fa-question-circle"></i></div><h4>Create Quiz</h4></div>
                 </div>
             `;
         }
@@ -1506,20 +1591,42 @@
         // 🎯 EVENT LISTENERS
         // ===================================================================
         function initEventListeners() {
-            document.getElementById('sidebarToggle')?.addEventListener('click', toggleSidebar);
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', toggleSidebar);
+            }
             
-            document.getElementById('logoutBtn')?.addEventListener('click', handleLogout);
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', handleLogout);
+            }
             
             document.querySelectorAll('.nav-link[data-section]').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    loadSection(link.dataset.section);
+                    const section = link.dataset.section;
+                    if (section) loadSection(section);
+                    
+                    // Close mobile menu after navigation
+                    if (window.innerWidth <= 768) {
+                        const mobileToggle = document.getElementById('mobileMenuToggle');
+                        const sidebar = document.getElementById('sidebar');
+                        if (mobileToggle) mobileToggle.classList.remove('active');
+                        if (sidebar) sidebar.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                    }
                 });
             });
             
-            document.getElementById('globalSearch')?.addEventListener('input', debounce(handleSearch, 500));
+            const searchInput = document.getElementById('globalSearch');
+            if (searchInput) {
+                searchInput.addEventListener('input', debounce(handleSearch, 500));
+            }
             
-            document.getElementById('notificationBtn')?.addEventListener('click', () => alert('No new notifications'));
+            const notificationBtn = document.getElementById('notificationBtn');
+            if (notificationBtn) {
+                notificationBtn.addEventListener('click', () => alert('No new notifications'));
+            }
             
             updateDateTime();
             setInterval(updateDateTime, 1000);
@@ -1529,16 +1636,21 @@
         // 🔧 UTILITIES
         // ===================================================================
         function toggleSidebar() {
-            document.getElementById('sidebar')?.classList.toggle('collapsed');
-            document.getElementById('mainContent')?.classList.toggle('expanded');
+            const sidebar = document.getElementById('sidebar');
+            const main = document.getElementById('mainContent');
+            if (sidebar) sidebar.classList.toggle('collapsed');
+            if (main) main.classList.toggle('expanded');
         }
 
         async function handleLogout() {
-            if (window.Auth) {
+            if (window.Auth && typeof window.Auth.logout === 'function') {
                 window.Auth.logout(true);
             } else {
                 localStorage.clear();
                 sessionStorage.clear();
+                document.cookie.split(';').forEach(c => {
+                    document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;');
+                });
                 window.location.href = 'login.html';
             }
         }
@@ -1552,13 +1664,22 @@
         }
 
         function handleSearch(e) {
-            if (e.target.value.length > 2) console.log('Searching:', e.target.value);
+            const query = e.target.value.trim();
+            if (query.length > 2) console.log('Searching:', query);
         }
 
         function formatDate(dateString) {
             if (!dateString) return '—';
-            const date = new Date(dateString);
-            return isNaN(date.getTime()) ? '—' : date.toLocaleDateString('en-ZM', { day: 'numeric', month: 'short', year: 'numeric' });
+            try {
+                const date = new Date(dateString);
+                return isNaN(date.getTime()) ? '—' : date.toLocaleDateString('en-ZM', { 
+                    day: 'numeric', 
+                    month: 'short', 
+                    year: 'numeric' 
+                });
+            } catch {
+                return '—';
+            }
         }
 
         function updateElement(id, value) {
@@ -1569,16 +1690,31 @@
         function updateDateTime() {
             const el = document.getElementById('currentDateTime');
             if (el) {
-                el.innerHTML = `<i class="fas fa-calendar-alt"></i> ${new Date().toLocaleDateString('en-ZM', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`;
+                try {
+                    el.innerHTML = `<i class="fas fa-calendar-alt"></i> ${new Date().toLocaleDateString('en-ZM', { 
+                        weekday: 'short', 
+                        day: 'numeric', 
+                        month: 'short', 
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })}`;
+                } catch {
+                    el.innerHTML = `<i class="fas fa-calendar-alt"></i> ${new Date().toLocaleString()}`;
+                }
             }
         }
 
         function showLoading() {
-            document.querySelectorAll('.stat-card .stat-number').forEach(el => el.style.opacity = '0.5');
+            document.querySelectorAll('.stat-card .stat-number').forEach(el => {
+                if (el) el.style.opacity = '0.5';
+            });
         }
 
         function hideLoading() {
-            document.querySelectorAll('.stat-card .stat-number').forEach(el => el.style.opacity = '1');
+            document.querySelectorAll('.stat-card .stat-number').forEach(el => {
+                if (el) el.style.opacity = '1';
+            });
         }
 
         function startAutoRefresh() {
@@ -1592,6 +1728,16 @@
 
         // Global functions
         window.loadSection = loadSection;
+        window.viewUser = (id) => alert(`View user: ${id}`);
+        window.editUser = (id) => alert(`Edit user: ${id}`);
+        window.viewEnrollment = (id) => alert(`View enrollment: ${id}`);
+        window.viewProof = (url) => window.open(url);
+        window.updateEnrollmentStatus = (id) => alert(`Update enrollment status: ${id}`);
+        window.showCreateUserModal = () => alert('Create User modal would open');
+        window.showCreateCourseModal = () => alert('Create Course modal would open');
+        window.showUploadMaterialModal = () => alert('Upload Material modal would open');
+        window.showCreateQuizModal = () => alert('Create Quiz modal would open');
+        window.toggleSidebar = toggleSidebar;
     </script>
 </body>
 </html>
